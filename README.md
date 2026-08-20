@@ -31,7 +31,7 @@ Repositorio grupal de la cátedra: materiales de clase, trabajos prácticos, tra
 | 8   | Franco Tacca        | 94189  | @FrankensTak    |
 | 9   | Integrante 9        | 00000  | @usuario9       |
 | 10  | Nicolas Farias      | 94737  | @NicolasFarias33|
-| 11  | Integrante 11       | 00000  | @usuario11      |
+| 11  | Florencia Amaya       | 95865  | @FvAmaya      |
 | 12  | Integrante 12       | 00000  | @usuario12      |
 | 13  | Integrante 13       | 00000  | @usuario13      |
 | 14  | Integrante 14       | 00000  | @usuario14      |
