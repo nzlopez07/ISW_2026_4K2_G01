@@ -26,7 +26,7 @@ Repositorio grupal de la cátedra: materiales de clase, trabajos prácticos, tra
 | 3   | Daniel Dragún       | 91910  | @dragunDaniel   |
 | 4   | Lucas Pasolli       | 94250  | @LucasPasolli   |
 | 5   | Joaquin Gomez Muñoz | 96019  | @Manolo1247     |
-| 6   | Integrante 6        | 00000  | @usuario6       |
+| 6   | Francisco González  | 400680 | @7franc         |
 | 7   | López Daniel Nicolás| 97969  | @nzlopez07      |
 | 8   | Franco Tacca        | 94189  | @FrankensTak    |
 | 9   | Martin Boiero       | 400650 | @MartinBoiero    |
@@ -45,7 +45,7 @@ Repositorio grupal de la cátedra: materiales de clase, trabajos prácticos, tra
 ```text
 └── ISW_G1_4K2_2026
     ├── 📁 00_Gestion_Administrativa/
-    │   ├── 📄 GA_Programa_Asignatura_ISW_2026.pdf
+    │   ├── 📄 GA_Presentación_Cátedra_ISW_2026.pdf
     │   ├── 📄 GA_Cronograma_ISW_2026.xlsx
     │   ├── 📄 GA_Planificacion_ISW_2026.pdf
     │   └── 📄 GA_Acuerdos_Comunicacion.pdf
