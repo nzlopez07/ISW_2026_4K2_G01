@@ -32,7 +32,7 @@ Repositorio grupal de la cátedra: materiales de clase, trabajos prácticos, tra
 | 10  | Integrante 10       | 00000  | @usuario10     |
 | 11  | Integrante 11       | 00000  | @usuario11     |
 | 12  | Integrante 12       | 00000  | @usuario12     |
-| 13  | Integrante 13       | 00000  | @usuario13     |
+| 13  | López Daniel Nicolás| 97969  | @nzlopez07     |
 | 14  | Integrante 14       | 00000  | @usuario14     |
 | 15  | Integrante 15       | 00000  | @usuario15     |
 
