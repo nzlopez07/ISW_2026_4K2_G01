@@ -28,7 +28,7 @@ Repositorio grupal de la cátedra: materiales de clase, trabajos prácticos, tra
 | 5   | Joaquin Gomez Muñoz | 96019  | @Manolo1247     |
 | 6   | Integrante 6        | 00000  | @usuario6       |
 | 7   | López Daniel Nicolás| 97969  | @nzlopez07      |
-| 8   | Integrante 8        | 00000  | @usuario8       |
+| 8   | Franco Tacca        | 94189  | @FrankensTak    |
 | 9   | Integrante 9        | 00000  | @usuario9       |
 | 10  | Nicolas Farias      | 94737  | @NicolasFarias33|
 | 11  | Integrante 11       | 00000  | @usuario11      |
