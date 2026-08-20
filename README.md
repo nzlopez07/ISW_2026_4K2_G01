@@ -18,23 +18,23 @@ Repositorio grupal de la cátedra: materiales de clase, trabajos prácticos, tra
 
 ## 👥 Integrantes del equipo
 
-| #   | Integrante      | Legajo | Usuario GitHub |
-| --- | --------------- | ------ | -------------- |
-| 1   | Integrante 1    | 00000  | @usuario1      |
-| 2   | Claudia Alca B. | 93842  | @Ciel7872      |
-| 3   | Integrante 3    | 00000  | @usuario3      |
-| 4   | Lucas Pasolli   | 94250  | @LucasPasolli  |
-| 5   | Integrante 5    | 00000  | @usuario5      |
-| 6   | Integrante 6    | 00000  | @usuario6      |
-| 7   | Integrante 7    | 00000  | @usuario7      |
-| 8   | Integrante 8    | 00000  | @usuario8      |
-| 9   | Integrante 9    | 00000  | @usuario9      |
-| 10  | Integrante 10   | 00000  | @usuario10     |
-| 11  | Integrante 11   | 00000  | @usuario11     |
-| 12  | Integrante 12   | 00000  | @usuario12     |
-| 13  | Integrante 13   | 00000  | @usuario13     |
-| 14  | Integrante 14   | 00000  | @usuario14     |
-| 15  | Integrante 15   | 00000  | @usuario15     |
+| #   | Integrante          | Legajo | Usuario GitHub |
+| --- | ------------------- | ------ | -------------- |
+| 1   | Integrante 1        | 00000  | @usuario1      |
+| 2   | Claudia Alca B.     | 93842  | @Ciel7872      |
+| 3   | Integrante 3        | 00000  | @usuario3      |
+| 4   | Lucas Pasolli       | 94250  | @LucasPasolli  |
+| 5   | Joaquin Gomez Muñoz | 96019  | @Manolo1247    |
+| 6   | Integrante 6        | 00000  | @usuario6      |
+| 7   | Integrante 7        | 00000  | @usuario7      |
+| 8   | Integrante 8        | 00000  | @usuario8      |
+| 9   | Integrante 9        | 00000  | @usuario9      |
+| 10  | Integrante 10       | 00000  | @usuario10     |
+| 11  | Integrante 11       | 00000  | @usuario11     |
+| 12  | Integrante 12       | 00000  | @usuario12     |
+| 13  | Integrante 13       | 00000  | @usuario13     |
+| 14  | Integrante 14       | 00000  | @usuario14     |
+| 15  | Integrante 15       | 00000  | @usuario15     |
 
 ---
 
