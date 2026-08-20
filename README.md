@@ -126,7 +126,7 @@ Repositorio grupal de la cátedra: materiales de clase, trabajos prácticos, tra
 
 ## 🏷️ Criterio de línea base
 
-Queda establecido que luego de la devolución y puntuación de cada trabajo práctico evaluable, y si corresponde, luego de aplicar su correspondiente corrección va a ser definida una nueva línea base.
+Se establece una nueva línea base tras la evaluación y puntuación de cada trabajo práctico evaluable, incluyendo las correcciones correspondientes en caso de ser requeridas.
 
 Cada línea base se marca mediante un **tag de Git** (`v[MAJOR]`): El mecanismo estándar es un tag anotado sobre un commit específico.
 
