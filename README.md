@@ -43,10 +43,10 @@ Repositorio grupal de la cátedra: materiales de clase, trabajos prácticos, tra
 ```text
 └── ISW_G1_4K2_2026
     ├── 📁 00_Gestion_Administrativa/
-    │   ├── 📄 GA_Plan_Configuracion_ISW_2026.md
     │   ├── 📄 GA_Programa_Asignatura_ISW_2026.pdf
-    │   ├── 📄 GA_Cronograma_ISW_2026.pdf
-    │   └── 📄 GA_Informacion_General_Cursado.md
+    │   ├── 📄 GA_Cronograma_ISW_2026.xlsx
+    │   ├── 📄 GA_Planificacion_ISW_2026.pdf
+    │   └── 📄 GA_Acuerdos_Comunicacion.pdf
     │
     ├── 📁 01_Bibliografía/
     │   ├── 📁 Agilismo/
@@ -57,10 +57,6 @@ Repositorio grupal de la cátedra: materiales de clase, trabajos prácticos, tra
     │   └── 📁 Testing_de_Software/
     │
     ├── 📁 02_Presentaciones_de_Clase/
-    │   ├── 📄 PRE_01_IntroduccionIngenieriaSoftware.pdf
-    │   ├── 📄 PRE_02_SCM.pdf
-    │   ├── 📄 PRE_03_RequisitosAgilesUserStories.pdf
-    │   └── 📄 PRE_04_EstimacionesAgiles.pdf (hasta PRE_15)
     │
     ├── 📁 03_Trabajos_Grupales/
     │   ├── 📁 Trabajos_Practicos/
@@ -77,12 +73,9 @@ Repositorio grupal de la cátedra: materiales de clase, trabajos prácticos, tra
     │
     └── 📁 04_Material_de_Estudio/
         ├── 📁 Ejercicios_Practicos_Resueltos/
-        │   ├── 📄 Guia_TPs_Resueltos_Catedra.pdf
-        │   └── 📄 EJ_TestingCajaNegra_NicolasLopez.pdf
+        │   └── 📄 Guia_TPs_Resueltos_Catedra.pdf
         ├── 📁 Notas_de_Clase/
-        │   └── 📄 08-18_NicolasLopez_ClaseIntro.md
         └── 📁 Resumenes/
-            └── 📄 Resumen_U01_IngenieriaSoftwareContexto_NicolasLopez.md
 ```
 
 ---
@@ -91,10 +84,10 @@ Repositorio grupal de la cátedra: materiales de clase, trabajos prácticos, tra
 
 | Ítem de configuración | Regla de nombrado | Ubicación física |
 |---|---|---|
-| Plan de administración de configuración | `GA_Plan_Configuracion_ISW_2026.md` | `ISW_G1_4K2_2026/00_Gestion_Administrativa/` |
 | Programa de la materia | `GA_Programa_Asignatura_ISW_2026.pdf` | `ISW_G1_4K2_2026/00_Gestion_Administrativa/` |
-| Cronograma de cursada | `GA_Cronograma_ISW_2026.pdf` | `ISW_G1_4K2_2026/00_Gestion_Administrativa/` |
-| Información general de cursado | `GA_Informacion_General_Cursado.md` | `ISW_G1_4K2_2026/00_Gestion_Administrativa/` |
+| Cronograma de cursada | `GA_Cronograma_ISW_2026.xlsx` | `ISW_G1_4K2_2026/00_Gestion_Administrativa/` |
+| Planificación de la materia | `GA_Planificacion_ISW_2026.pdf` | `ISW_G1_4K2_2026/00_Gestion_Administrativa/` |
+| Acuerdos de comunicación con cátedra | `GA_Acuerdos_Comunicacion.pdf` | `ISW_G1_4K2_2026/00_Gestion_Administrativa/` |
 | Bibliografía | `BIB_<Tema>_<NombreLibro>_<Autor>.<Extension>` | `ISW_G1_4K2_2026/01_Bibliografía/<Categoria>/` |
 | Presentaciones teóricas | `PRE_<NroPresentacion>_<NombrePresentacion>.<Extension>` | `ISW_G1_4K2_2026/02_Presentaciones_de_Clase/` |
 | Guía de trabajos prácticos evaluables | `Guia_Enunciados_TP_Evaluables_2026.pdf` | `ISW_G1_4K2_2026/03_Trabajos_Grupales/Trabajos_Practicos/` |
@@ -113,9 +106,8 @@ Repositorio grupal de la cátedra: materiales de clase, trabajos prácticos, tra
 
 | Sigla / Placeholder | Significado |
 |---|---|
-| `PascalCase + _` | Convención oficial: Cada campo del nombre se escribe en **PascalCase** (Mayúscula inicial por palabra, sin guion interno). El guion bajo `_` se usa únicamente como delimitador entre campos distintos. Ej: `08-18_NicolasLopez_ClaseIntro.md`. |
 | `<GA>` | Gestión Administrativa. Prefijo para los archivos de gobierno del proyecto. |
-| `<NombreArchivo>` | Nombre descriptivo del archivo administrativo en PascalCase. Ej: `Plan_Configuracion_ISW_2026`. |
+| `<NombreArchivo>` | Nombre descriptivo del archivo administrativo en PascalCase. Ej: `Programa_Asignatura_ISW_2026`. |
 | `<MM-DD>` | Fecha de la toma de nota en formato Mes-Día. Ej: `08-18`, `10-03`. |
 | `<NombreApellido>` | Nombre y apellido del integrante en PascalCase sin guion interno. Ej: `NicolasLopez`, `JoaquinGomez`. |
 | `<Tema>` | Nombre o título del tema en PascalCase sin guion interno. Ej: `SCMHerramientas`, `ClaseIntro`. |
