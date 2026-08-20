@@ -21,7 +21,7 @@ Repositorio grupal de la cátedra: materiales de clase, trabajos prácticos, tra
 | # | Integrante | Legajo | Usuario GitHub |
 |---|---|---|---|
 | 1 | Integrante 1 | 00000 | @usuario1 |
-| 2 | Integrante 2 | 00000 | @usuario2 |
+| 2 | Claudia Alca B.| 93842 | @Ciel7872 |
 | 3 | Integrante 3 | 00000 | @usuario3 |
 | 4 | Integrante 4 | 00000 | @usuario4 |
 | 5 | Integrante 5 | 00000 | @usuario5 |
