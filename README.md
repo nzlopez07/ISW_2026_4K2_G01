@@ -32,7 +32,7 @@ Repositorio grupal de la cátedra: materiales de clase, trabajos prácticos, tra
 | 9   | Martin Boiero       | 400650 | @MartinBoiero    |
 | 10  | Nicolas Farias      | 94737  | @NicolasFarias33|
 | 11  | Florencia Amaya       | 95865  | @FvAmaya      |
-| 12  | Integrante 12       | 00000  | @usuario12      |
+| 12  | Jeremias Lopez Ferreyra | 401016 | @jeremiaslopez526-cpu|
 | 13  | Integrante 13       | 00000  | @usuario13      |
 | 14  | Integrante 14       | 00000  | @usuario14      |
 | 15  | Integrante 15       | 00000  | @usuario15      |
