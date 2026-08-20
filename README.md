@@ -29,7 +29,7 @@ Repositorio grupal de la cátedra: materiales de clase, trabajos prácticos, tra
 | 6   | Integrante 6        | 00000  | @usuario6       |
 | 7   | López Daniel Nicolás| 97969  | @nzlopez07      |
 | 8   | Franco Tacca        | 94189  | @FrankensTak    |
-| 9   | Martin Boiero       | 400650 | @Tincho-git    |
+| 9   | Martin Boiero       | 400650 | @MartinBoiero    |
 | 10  | Nicolas Farias      | 94737  | @NicolasFarias33|
 | 11  | Florencia Amaya       | 95865  | @FvAmaya      |
 | 12  | Integrante 12       | 00000  | @usuario12      |
