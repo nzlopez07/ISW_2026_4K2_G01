@@ -22,7 +22,7 @@ Repositorio grupal de la cátedra: materiales de clase, trabajos prácticos, tra
 | --- | ------------------- | ------ | -------------- |
 | 1   | Integrante 1        | 00000  | @usuario1      |
 | 2   | Claudia Alca B.     | 93842  | @Ciel7872      |
-| 3   | Integrante 3        | 00000  | @usuario3      |
+| 3   | Daniel Dragún       | 91910  | @dragunDaniel  |
 | 4   | Lucas Pasolli       | 94250  | @LucasPasolli  |
 | 5   | Joaquin Gomez Muñoz | 96019  | @Manolo1247    |
 | 6   | Integrante 6        | 00000  | @usuario6      |
