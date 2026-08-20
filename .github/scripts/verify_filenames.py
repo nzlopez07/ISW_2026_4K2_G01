@@ -2,17 +2,20 @@ import os
 import sys
 import re
 
+# Expresión regular de caracteres válidos en español (incluye tildes, ñ, comas y guiones)
+C = r"[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ,\-\.]"
+
 # Reglas de nombrado por carpeta según el Plan de Configuración SCM
 REGLAS = [
     {
         "carpeta": r"^00_Gestion_Administrativa/",
-        "patron": r"^00_Gestion_Administrativa/GA_[A-Z][a-zA-Z0-9_]*\.(pdf|xlsx|md|docx)$",
+        "patron": rf"^00_Gestion_Administrativa/GA_{C}+\.(pdf|xlsx|md|docx)$",
         "formato": "GA_<NombreArchivo>.<ext>",
         "ejemplo": "GA_Programa_Asignatura_ISW_2026.pdf"
     },
     {
         "carpeta": r"^02_Presentaciones_de_Clase/",
-        "patron": r"^02_Presentaciones_de_Clase/PRE_\d{2}_[A-Z][a-zA-Z0-9]+\.(pdf|pptx)$",
+        "patron": rf"^02_Presentaciones_de_Clase/PRE_\d{{2}}_{C}+\.(pdf|pptx)$",
         "formato": "PRE_<NroPresentacion>_<NombrePresentacion>.<ext>",
         "ejemplo": "PRE_01_IntroduccionIngenieriaSoftware.pdf"
     },
@@ -30,19 +33,19 @@ REGLAS = [
     },
     {
         "carpeta": r"^04_Material_de_Estudio/Ejercicios_Practicos_Resueltos/",
-        "patron": r"^04_Material_de_Estudio/Ejercicios_Practicos_Resueltos/(Guia_TPs_Resueltos_Catedra\.pdf|EJ_00_Guia_Resueltos_Catedra\.pdf|EJ_[A-Z][a-zA-Z0-9]+_[A-Z][a-zA-Z0-9]+\.[a-zA-Z0-9]+)$",
+        "patron": rf"^04_Material_de_Estudio/Ejercicios_Practicos_Resueltos/(Guia_TPs_Resueltos_Catedra\.pdf|EJ_00_Guia_Resueltos_Catedra\.pdf|EJ_{C}+_{C}+\.[a-zA-Z0-9]+)$",
         "formato": "EJ_<Tema>_<NombreApellido>.<ext>",
         "ejemplo": "EJ_TestingCajaNegra_NicolasLopez.pdf"
     },
     {
         "carpeta": r"^04_Material_de_Estudio/Notas_de_Clase/",
-        "patron": r"^04_Material_de_Estudio/Notas_de_Clase/\d{2}-\d{2}_[A-Z][a-zA-Z0-9]+_[A-Z][a-zA-Z0-9]+\.md$",
+        "patron": rf"^04_Material_de_Estudio/Notas_de_Clase/\d{{2}}-\d{{2}}_{C}+_{C}+\.md$",
         "formato": "<MM-DD>_<NombreApellido>_<Tema>.md",
         "ejemplo": "08-18_NicolasLopez_ClaseIntro.md"
     },
     {
         "carpeta": r"^04_Material_de_Estudio/Resumenes/",
-        "patron": r"^04_Material_de_Estudio/Resumenes/Resumen_U\d{2}_[A-Z][a-zA-Z0-9]+_[A-Z][a-zA-Z0-9]+\.[a-zA-Z0-9]+$",
+        "patron": rf"^04_Material_de_Estudio/Resumenes/Resumen_U\d{{2}}_{C}+_{C}+\.[a-zA-Z0-9]+$",
         "formato": "Resumen_U<NroUnidad>_<Tema>_<NombreApellido>.<ext>",
         "ejemplo": "Resumen_U01_IngenieriaSoftwareContexto_NicolasLopez.pdf"
     }
