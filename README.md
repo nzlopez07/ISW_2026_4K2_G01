@@ -21,7 +21,7 @@ Repositorio grupal de la cátedra: materiales de clase, trabajos prácticos, tra
 
 | #   | Integrante          | Legajo | Usuario GitHub  |
 | --- | ------------------- | ------ | --------------- |
-| 1   | Integrante 1        | 00000  | @usuario1       |
+| 1   | Sofia Britos        | 90121  | @Sofii01        |
 | 2   | Claudia Alca B.     | 93842  | @Ciel7872       |
 | 3   | Daniel Dragún       | 91910  | @dragunDaniel   |
 | 4   | Lucas Pasolli       | 94250  | @LucasPasolli   |
