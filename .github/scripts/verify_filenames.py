@@ -2,8 +2,8 @@ import os
 import sys
 import re
 
-# Expresión regular de caracteres válidos en español (incluye tildes, ñ, comas y guiones)
-C = r"[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ,\-\.]"
+# Expresión regular de caracteres válidos en español (incluye tildes, ñ, comas, guiones y guiones bajos)
+C = r"[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ,_\-\.]"
 
 # Reglas de nombrado por carpeta según el Plan de Configuración SCM
 REGLAS = [
