@@ -34,7 +34,7 @@ Repositorio grupal de la cátedra: materiales de clase, trabajos prácticos, tra
 | 11  | Florencia Amaya       | 95865  | @FvAmaya      |
 | 12  | Jeremias Lopez Ferreyra | 401016 | @jeremiaslopez526-cpu|
 | 13  | Enzo Aguzzi         | 94764  | @Enzo1600      |
-| 14  | Integrante 14       | 00000  | @usuario14      |
+| 14  | Ignacio J. Cuello   | 400827 | @IgnacioJCuello |
 | 15  | Integrante 15       | 00000  | @usuario15      |
 
 
