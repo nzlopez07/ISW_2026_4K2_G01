@@ -69,7 +69,7 @@ Repositorio grupal de la cátedra: materiales de clase, trabajos prácticos, tra
     │   │   ├── 📁 TP_04/
     │   │   └── 📁 TP_05/ (hasta TP_13)
     │   └── 📁 Trabajos_de_Investigacion/
-    │       ├── 📄 TIG_00_Lineamientos_Investigacion.pdf
+    │       ├── 📄 Lineamientos_Investigacion.pdf
     │       ├── 📁 TIG_01_Exposicion_DespliegueDeProducto/
     │       └── 📁 TIG_02_PosterCientifico_FrameworksLeanAgile/
     │
@@ -94,7 +94,7 @@ Repositorio grupal de la cátedra: materiales de clase, trabajos prácticos, tra
 | Presentaciones teóricas                 | `PRE_<NroPresentacion>_<NombrePresentacion>.<Extension>`  | `ISW_G1_4K2_2026/02_Presentaciones_de_Clase/`                                                                 |
 | Guía de trabajos prácticos evaluables   | `Guia_Enunciados_TP_Evaluables_2026.pdf`                  | `ISW_G1_4K2_2026/03_Trabajos_Grupales/Trabajos_Practicos/`                                                    |
 | Trabajos prácticos evaluables           | `Entrega_TP_<NroTP>_G01_v<MAJOR>.<Extension>`             | `ISW_G1_4K2_2026/03_Trabajos_Grupales/Trabajos_Practicos/TP_<NroTP>/`                                         |
-| Lineamientos de investigación           | `TIG_00_Lineamientos_Investigacion.pdf`                   | `ISW_G1_4K2_2026/03_Trabajos_Grupales/Trabajos_de_Investigacion/`                                             |
+| Lineamientos de investigación           | `Lineamientos_Investigacion.pdf`                   | `ISW_G1_4K2_2026/03_Trabajos_Grupales/Trabajos_de_Investigacion/`                                             |
 | Trabajo de investigación 1              | `TIG_01_G01.<Extension>`                                  | `ISW_G1_4K2_2026/03_Trabajos_Grupales/Trabajos_de_Investigacion/TIG_01_Exposicion_DespliegueDeProducto/`      |
 | Trabajo de investigación 2              | `TIG_02_G01.<Extension>`                                  | `ISW_G1_4K2_2026/03_Trabajos_Grupales/Trabajos_de_Investigacion/TIG_02_PosterCientifico_FrameworksLeanAgile/` |
 | Guía de ejercicios resueltos de cátedra | `Guia_TPs_Resueltos_Catedra.pdf`                          | `ISW_G1_4K2_2026/04_Material_de_Estudio/Ejercicios_Practicos_Resueltos/`                                      |
