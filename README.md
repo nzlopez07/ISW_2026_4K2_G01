@@ -140,7 +140,6 @@ Cada línea base se marca mediante un **tag de Git** (`v[MAJOR]`): El mecanismo 
 
 | Versión | Tag de Git | Fecha      | Descripción                                                                      |
 | ------- | ---------- | ---------- | -------------------------------------------------------------------------------- |
-| `v1.0`  | `v1.0`     | 18/08/2026 | Línea base inicial del repositorio para el TP evaluable 4 (Herramientas de SCM). |
 
 ---
 
