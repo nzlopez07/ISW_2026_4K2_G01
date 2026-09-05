@@ -1,0 +1,27 @@
+MVP;;;;;;;;;;;;USER STORY;
+Minimun viable product;;;;;;;;;;;;VISUALIZAR MAPA DEL PARQUE;
+;;;wachin;;;;;;;;;;
+Validar o no una hipotesis;;;ES MUY IMPORTANTE JUSTIFICAR ABSOLUTAMENTE TODAS LAS DECISIONES QUE SE TOMAN;;;;;;;;;Como visitante logueado a la aplicación del parque;
+;;;Por ejemplo, realizar una breve descripcion de c/hu para que un externo entienda mi criterio;;;;;;;;;Quiero visualizar un mapa del parque en tiempo real;
+;;;a la hora de definir un mvp;;;;;;;;;Para ubicar y visualizar en un mapa donde estoy parado en el parque;
+1.;Hipotesis;;;;;;;;;;;;
+2.;Alcance + Listado de US por parte del MVP;;;;>;Solamente frase verbal;;;;;;CRITERIOS DE ACEPTACIÓN;
+3.;Fuera de alcance;;;;;;;;;;;;
+;;;;;;;;;;;;1.;El sistema deberá tener acceso a la ubicación del dispositivo del usuario
+;;Necesito describir la hipotesis(Descripcion de lo que va a hacer la aplicación);;;;;;;Descripción del alcance…;;;2.;Se deberá proporcionar un mapa dividido en sectores por colores
+Objetivo;(FOCO EN EL VISITANTE PA);;;;;;;;;;;3.;Se deberá poder visualizar con los iconos del mapa (Iconos: Bolsa, inodoro, microfono)
+Proporcionar info sobre exhibiciones;;;, horarios de alimentación de animales, los senderos a caminar, gestion de entradas;;;;;;;;;4.;Mi ubicación deberá guiarse por la brujula del dispositivo conectado
+;;;;;;;;;;;;5.;Se deberá por agrandar o alejar la distancia del zoom del mapa
+1;Consultar mapa interactivo del parque;;;;1;Filtrar exhibiciones x fecha y horarios disponibles para la misma;;;;;;6.;"Se deberá poder clickear en el icono de ""Microfono"" para obtener el nombre y horario del show correspondiente"
+2;Consultar horario de alimentacion;;;;2;Generar notificaciones de recordatorios de horarios de alimentación;;;;;;;
+3;Gestionar compra de entradas;;;;3;Registrar actividades;;;;;;Casos de prueba;
+4;Registrar inscripción a actividades (Tendria que haber actividades);;;;4;Iniciar sesión;;;;;;;
+5;Registrar usuario;;;;5;Visualizacion de ubicación en tiempo real;;;;;;1.;Probaré ingresar al mapa interactivo y veré el mapa según donde este parado
+;;;;;;;;;;;;2.;Probare ingresar al mapa y ver los sectores divididos por colores en el mismo
+TOP SECRET;;;;;;;;;;;;3.;Probaré interactuar con cada icono establecido x el cliente y se abrirá una breve descripcion de su funcionalidad.
+En la consigna se pedirá que describamos 2 user story y que describamos el alcance de estas.;;;;;;;;;;;;4.;Probaré girar el movil desde donde accedo al mapa y el personaje se moverá según el gps.
+Por lo que podríamos necesitar integraciónes para abarcar lo más posible, aunque en general sean atomicas y simples;;;;;;;;;;;;5.;Intentaré hacer zoom en el mapa para que me acerque al mapa
+ES DECIR, EL MVP ES UNA COSA Y LA DESCRIPCION DE LAS US SON OTRAS, TENDRÍAN QUE SER;;;;;;;;;;;;6.;Probar intentar acceder al mapa con la ubicación del dispositivo denegada
+C O M P L E T A S;;;;;;;;;;;;7.;Ingresar al mapa interactivo fuera del parque
+;;;;;;;;;;;;;
+VISUALIZAR MAPA DEL PARQUE EN TIEMPO REAL;;;;;;;;;;;;;
