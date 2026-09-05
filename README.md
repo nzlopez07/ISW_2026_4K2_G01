@@ -18,25 +18,16 @@ Repositorio grupal de la cátedra: materiales de clase, trabajos prácticos, tra
 
 ## 👥 Integrantes del equipo
 
-
-| #   | Integrante          | Legajo | Usuario GitHub  |
-| --- | ------------------- | ------ | --------------- |
-| 1   | Sofia Britos        | 90121  | @Sofii01        |
-| 2   | Claudia Alca B.     | 93842  | @Ciel7872       |
-| 3   | Daniel Dragún       | 91910  | @dragunDaniel   |
-| 4   | Lucas Pasolli       | 94250  | @LucasPasolli   |
-| 5   | Joaquin Gomez Muñoz | 96019  | @Manolo1247     |
-| 6   | Francisco González  | 400680 | @7franc         |
-| 7   | López Daniel Nicolás| 97969  | @nzlopez07      |
-| 8   | Franco Tacca        | 94189  | @FrankensTak    |
-| 9   | Martin Boiero       | 400650 | @MartinBoiero    |
-| 10  | Nicolas Farias      | 94737  | @NicolasFarias33|
-| 11  | Florencia Amaya     | 95865  | @FvAmaya      |
-| 12  | Jeremias Lopez Ferreyra | 401016 | @jeremiaslopez526-cpu|
-| 13  | Enzo Aguzzi         | 94764  | @Enzo1600      |
-| 14  | Ignacio J. Cuello   | 400827 | @IgnacioJCuello |
-| 15  | Luciano Ivo Paglino | 95738  | @lucianopgl    |
-
+| # | Apellido y Nombre | Legajo | Usuario GitHub |
+|---|---|---|---|
+| 1 | Britos, Sofía | 88478 | @Sofiibritos |
+| 2 | Boiero, Martín | 93318 | @martinboiero |
+| 3 | Gómez, Joaquín | 87189 | @JoacoGomez04 |
+| 4 | González, Francisco | 92955 | @FranGonzalez03 |
+| 5 | López, Jeremías | 90311 | @Jere-Lopez |
+| 6 | López, Nicolás | 86884 | @nzlopez07 |
+| 7 | Paglino, Luciano | 93871 | @LucianoPaglino |
+| 8 | Pasolli, Lucas | 94001 | @LucasPasolli |
 
 ---
 
@@ -45,7 +36,7 @@ Repositorio grupal de la cátedra: materiales de clase, trabajos prácticos, tra
 ```text
 └── ISW_G1_4K2_2026
     ├── 📁 00_Gestion_Administrativa/
-    │   ├── 📄 GA_Presentación_Cátedra_ISW_2026.pdf
+    │   ├── 📄 GA_Programa_Asignatura_ISW_2026.pdf
     │   ├── 📄 GA_Cronograma_ISW_2026.xlsx
     │   ├── 📄 GA_Planificacion_ISW_2026.pdf
     │   └── 📄 GA_Acuerdos_Comunicacion.pdf
@@ -59,6 +50,8 @@ Repositorio grupal de la cátedra: materiales de clase, trabajos prácticos, tra
     │   └── 📁 Testing_de_Software/
     │
     ├── 📁 02_Presentaciones_de_Clase/
+    │   ├── 📄 PRE_01_IntroduccionIngenieriaDeSoftware.pdf
+    │   ├── 📄 PRE_02_SCM.pdf (hasta PRE_16)
     │
     ├── 📁 03_Trabajos_Grupales/
     │   ├── 📁 Trabajos_Practicos/
@@ -67,6 +60,7 @@ Repositorio grupal de la cátedra: materiales de clase, trabajos prácticos, tra
     │   │   ├── 📁 TP_02/
     │   │   ├── 📁 TP_03/
     │   │   ├── 📁 TP_04/
+    │   │   │   └── 📄 Entrega_TP_04_G01_v1.0.md
     │   │   └── 📁 TP_05/ (hasta TP_13)
     │   └── 📁 Trabajos_de_Investigacion/
     │       ├── 📄 Lineamientos_Investigacion.pdf
@@ -84,45 +78,48 @@ Repositorio grupal de la cátedra: materiales de clase, trabajos prácticos, tra
 
 ## ⚙️ Ítems de configuración
 
-| Ítem de configuración                   | Regla de nombrado                                         | Ubicación física                                                                                              |
-| --------------------------------------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| Programa de la materia                  | `GA_Programa_Asignatura_ISW_2026.pdf`                     | `ISW_G1_4K2_2026/00_Gestion_Administrativa/`                                                                  |
-| Cronograma de cursada                   | `GA_Cronograma_ISW_2026.xlsx`                             | `ISW_G1_4K2_2026/00_Gestion_Administrativa/`                                                                  |
-| Planificación de la materia             | `GA_Planificacion_ISW_2026.pdf`                           | `ISW_G1_4K2_2026/00_Gestion_Administrativa/`                                                                  |
-| Acuerdos de comunicación con cátedra    | `GA_Acuerdos_Comunicacion.pdf`                            | `ISW_G1_4K2_2026/00_Gestion_Administrativa/`                                                                  |
-| Bibliografía                            | `BIB_<Tema>_<NombreLibro>_<Autor>.<Extension>`            | `ISW_G1_4K2_2026/01_Bibliografía/<Categoria>/`                                                                |
-| Presentaciones teóricas                 | `PRE_<NroPresentacion>_<NombrePresentacion>.<Extension>`  | `ISW_G1_4K2_2026/02_Presentaciones_de_Clase/`                                                                 |
-| Guía de trabajos prácticos evaluables   | `Guia_Enunciados_TP_Evaluables_2026.pdf`                  | `ISW_G1_4K2_2026/03_Trabajos_Grupales/Trabajos_Practicos/`                                                    |
-| Trabajos prácticos evaluables           | `Entrega_TP_<NroTP>_G01_v<MAJOR>.<Extension>`             | `ISW_G1_4K2_2026/03_Trabajos_Grupales/Trabajos_Practicos/TP_<NroTP>/`                                         |
-| Lineamientos de investigación           | `Lineamientos_Investigacion.pdf`                   | `ISW_G1_4K2_2026/03_Trabajos_Grupales/Trabajos_de_Investigacion/`                                             |
-| Trabajo de investigación 1              | `TIG_01_G01.<Extension>`                                  | `ISW_G1_4K2_2026/03_Trabajos_Grupales/Trabajos_de_Investigacion/TIG_01_Exposicion_DespliegueDeProducto/`      |
-| Trabajo de investigación 2              | `TIG_02_G01.<Extension>`                                  | `ISW_G1_4K2_2026/03_Trabajos_Grupales/Trabajos_de_Investigacion/TIG_02_PosterCientifico_FrameworksLeanAgile/` |
-| Guía de ejercicios resueltos de cátedra | `Guia_TPs_Resueltos_Catedra.pdf`                          | `ISW_G1_4K2_2026/04_Material_de_Estudio/Ejercicios_Practicos_Resueltos/`                                      |
-| Ejercicios de estudio                   | `EJ_<Tema>_<NombreApellido>.<Extension>`                  | `ISW_G1_4K2_2026/04_Material_de_Estudio/Ejercicios_Practicos_Resueltos/`                                      |
-| Notas de clase                          | `<MM-DD>_<NombreApellido>_<Tema>.md`                      | `ISW_G1_4K2_2026/04_Material_de_Estudio/Notas_de_Clase/`                                                      |
-| Resúmenes de estudio                    | `Resumen_<NroUnidad>_<Tema>_<NombreApellido>.<Extension>` | `ISW_G1_4K2_2026/04_Material_de_Estudio/Resumenes/`                                                           |
+La siguiente tabla presenta el listado completo de los Ítems de Configuración (IC) del repositorio. Se incluye la columna **Tipo de Ítem** para clasificar el origen de cada artefacto (*Cátedra*, *Clase* o *Producción Propia*) y las rutas relativas de **Ubicación Física**:
+
+| Ítem de Configuración | Tipo de Ítem | Regla de Nomenclatura | Ubicación Física |
+|---|---|---|---|
+| Programa de la materia | Cátedra | `GA_Programa_Asignatura_ISW_2026.pdf` | `00_Gestion_Administrativa/` |
+| Cronograma de cursada | Cátedra | `GA_Cronograma_ISW_2026.xlsx` | `00_Gestion_Administrativa/` |
+| Planificación de la asignatura | Cátedra | `GA_Planificacion_ISW_2026.pdf` | `00_Gestion_Administrativa/` |
+| Acuerdos de comunicación con cátedra | Cátedra | `GA_Acuerdos_Comunicacion.pdf` | `00_Gestion_Administrativa/` |
+| Bibliografía oficial | Cátedra / Externa | `BIB_<Tema>_<NombreLibro>_<Autor>.<ext>` | `01_Bibliografía/<Categoria>/` |
+| Presentaciones teóricas de clase | Cátedra | `PRE_<NroPresentacion>_<NombrePresentacion>.<ext>` | `02_Presentaciones_de_Clase/` |
+| Guía de enunciados de TPs evaluables | Cátedra | `Guia_Enunciados_TP_Evaluables_2026.pdf` | `03_Trabajos_Grupales/Trabajos_Practicos/` |
+| Resolución de Trabajo Práctico 4 (SCM) | Producción Propia | `Entrega_TP_04_G01_v<MAJOR>.<ext>` | `03_Trabajos_Grupales/Trabajos_Practicos/TP_04/` |
+| Entregas de TPs Evaluables (01 a 13) | Producción Propia | `Entrega_TP_<NroTP>_G01_v<MAJOR>.<ext>` | `03_Trabajos_Grupales/Trabajos_Practicos/TP_<NroTP>/` |
+| Lineamientos de investigación (TIGs) | Cátedra | `Lineamientos_Investigacion.pdf` | `03_Trabajos_Grupales/Trabajos_de_Investigacion/` |
+| Trabajo de Investigación 1 (TIG 1) | Producción Propia | `TIG_01_G01.<ext>` | `03_Trabajos_Grupales/Trabajos_de_Investigacion/TIG_01_Exposicion_DespliegueDeProducto/` |
+| Trabajo de Investigación 2 (TIG 2) | Producción Propia | `TIG_02_G01.<ext>` | `03_Trabajos_Grupales/Trabajos_de_Investigacion/TIG_02_PosterCientifico_FrameworksLeanAgile/` |
+| Guía de ejercicios resueltos de cátedra | Cátedra | `Guia_TPs_Resueltos_Catedra.pdf` | `04_Material_de_Estudio/Ejercicios_Practicos_Resueltos/` |
+| Ejercicios de estudio resueltos | Producción Propia | `EJ_<Tema>_<NombreApellido>.<ext>` | `04_Material_de_Estudio/Ejercicios_Practicos_Resueltos/` |
+| Notas de clase y apuntes | Clase | `<MM-DD>_<NombreApellido>_<Tema>.<ext>` | `04_Material_de_Estudio/Notas_de_Clase/` |
+| Resúmenes de estudio | Producción Propia | `Resumen_U<NroUnidad>_<Tema>_<NombreApellido>.<ext>` | `04_Material_de_Estudio/Resumenes/` |
 
 ---
 
 ## 📖 Glosario
 
-| Sigla / Placeholder    | Significado                                                                                                                |
-| ---------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `<GA>`                 | Gestión Administrativa. Prefijo para los archivos de gobierno del proyecto.                                                |
-| `<NombreArchivo>`      | Nombre descriptivo del archivo administrativo en PascalCase. Ej: `Programa_Asignatura_ISW_2026`.                           |
-| `<MM-DD>`              | Fecha de la toma de nota en formato Mes-Día. Ej: `08-18`, `10-03`.                                                         |
-| `<NombreApellido>`     | Nombre y apellido del integrante en PascalCase sin guion interno. Ej: `NicolasLopez`, `JoaquinGomez`.                      |
-| `<Tema>`               | Nombre o título del tema en PascalCase sin guion interno. Ej: `SCMHerramientas`, `ClaseIntro`.                             |
-| `<NombrePresentacion>` | Nombre o título de la presentación teórica según la cátedra en PascalCase. Ej: `IntroduccionIngenieriaSoftware`.           |
-| `<NroTP>`              | Número a 2 dígitos que identifica el Trabajo Práctico. Ej: `01`, `04`, `10`.                                               |
-| `<NroPresentacion>`    | Número a 2 dígitos asignado por la cátedra a la presentación teórica (`01`, `02`, ..., `15`).                              |
-| `<MAJOR>`              | Versión mayor incrementada por cada recepción de entrega evaluable y su corrección cuando correspondiera (`v1.0`, `v2.0`). |
-| `<Extension>`          | Extensión del archivo. Ej: `.pdf`, `.md`, `.docx`, `.xlsx`.                                                                |
-| `ISW`                  | Ingeniería y Calidad de Software.                                                                                          |
-| `TP`                   | Trabajo Práctico.                                                                                                          |
-| `TIG`                  | Trabajo de Investigación Grupal.                                                                                           |
-| `PRE`                  | Presentación Teórica.                                                                                                      |
-| `BIB`                  | Bibliografía.                                                                                                              |
+| Sigla / Placeholder | Significado |
+|---|---|
+| `<GA>` | Gestión Administrativa. Prefijo para los archivos de gobierno del proyecto. |
+| `<NombreArchivo>` | Nombre descriptivo del archivo administrativo en PascalCase. Ej: `Programa_Asignatura_ISW_2026`. |
+| `<MM-DD>` | Fecha de la toma de nota en formato Mes-Día. Ej: `08-18`, `10-03`. |
+| `<NombreApellido>` | Nombre y apellido del integrante en PascalCase sin guion interno. Ej: `NicolasLopez`, `JoaquinGomez`. |
+| `<Tema>` | Nombre o título del tema en PascalCase sin guion interno. Ej: `SCMHerramientas`, `ClaseIntro`. |
+| `<NombrePresentacion>` | Nombre o título de la presentación teórica según la cátedra en PascalCase. Ej: `IntroduccionIngenieriaSoftware`. |
+| `<NroTP>` | Número a 2 dígitos que identifica el Trabajo Práctico. Ej: `01`, `04`, `10`. |
+| `<NroPresentacion>` | Número a 2 dígitos asignado por la cátedra a la presentación teórica (`01`, `02`, ..., `16`). |
+| `<MAJOR>` | Versión mayor incrementada por cada recepción de entrega evaluable y su corrección cuando correspondiera (`v1.0`, `v2.0`). |
+| `<ext>` | Extensión del archivo. Ej: `.pdf`, `.md`, `.docx`, `.xlsx`, `.csv`, `.jpeg`. |
+| `ISW` | Ingeniería y Calidad de Software. |
+| `TP` | Trabajo Práctico. |
+| `TIG` | Trabajo de Investigación Grupal. |
+| `PRE` | Presentación Teórica. |
+| `BIB` | Bibliografía. |
 
 ---
 
@@ -134,12 +131,20 @@ Cada línea base se marca mediante un **tag de Git** (`v[MAJOR]`): El mecanismo 
 
 - **`MAJOR`** → Se incrementa con cada recepción de trabajo práctico evaluable y su corrección, si correspondiera (empieza en `v1.0`).
 
+### Explicación de la Tabla de Líneas Base
+La tabla de líneas base registradas permite llevar el control de los hitos del repositorio mediante cuatro componentes:
+* **Versión:** Identificador numérico principal (`v[MAJOR]`) que señala la versión estable aceptada por la cátedra.
+* **Tag de Git:** Nombre de la etiqueta anotada en Git vinculada al commit específico de congelamiento.
+* **Fecha:** Día en que se consolidó la línea base tras su corrección/evaluación.
+* **Descripción:** Hito o entregable asociado a dicha versión.
+
 ---
 
 ## 📌 Líneas base disponibles
 
-| Versión | Tag de Git | Fecha      | Descripción                                                                      |
-| ------- | ---------- | ---------- | -------------------------------------------------------------------------------- |
+| Versión | Tag de Git | Fecha | Descripción |
+|---|---|---|---|
+| `v1.0` | `v1.0` | 18/08/2026 | Línea base inicial del repositorio correspondiente a la entrega del TP4 (Herramientas de SCM). |
 
 ---
 

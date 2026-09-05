@@ -27,7 +27,7 @@ REGLAS = [
     },
     {
         "carpeta": r"^03_Trabajos_Grupales/Trabajos_de_Investigacion/",
-        "patron": r"^03_Trabajos_Grupales/Trabajos_de_Investigacion/(Guia_Lineamientos_TIG_2026\.pdf|TIG_00_Lineamientos_Investigacion\.pdf|TIG_\d{2}_[A-Za-z0-9_]+/(TIG_\d{2}_G01\.[a-zA-Z0-9]+|\.gitkeep))$",
+        "patron": r"^03_Trabajos_Grupales/Trabajos_de_Investigacion/(Guia_Lineamientos_TIG_2026\.pdf|Lineamientos_Investigacion\.pdf|TIG_00_Lineamientos_Investigacion\.pdf|TIG_\d{2}_[A-Za-z0-9_]+/(TIG_\d{2}_G01\.[a-zA-Z0-9]+|\.gitkeep))$",
         "formato": "TIG_<NroTIG>_G01.<ext>",
         "ejemplo": "TIG_01_G01.pdf"
     },
@@ -39,8 +39,8 @@ REGLAS = [
     },
     {
         "carpeta": r"^04_Material_de_Estudio/Notas_de_Clase/",
-        "patron": rf"^04_Material_de_Estudio/Notas_de_Clase/\d{{2}}-\d{{2}}_{C}+_{C}+\.md$",
-        "formato": "<MM-DD>_<NombreApellido>_<Tema>.md",
+        "patron": rf"^04_Material_de_Estudio/Notas_de_Clase/\d{{2}}-\d{{2}}_{C}+_{C}+\.(md|jpeg|jpg|png|csv|pdf)$",
+        "formato": "<MM-DD>_<NombreApellido>_<Tema>.<ext>",
         "ejemplo": "08-18_NicolasLopez_ClaseIntro.md"
     },
     {
