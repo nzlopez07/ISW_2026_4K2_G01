@@ -5,47 +5,51 @@ import re
 # Expresión regular de caracteres válidos en español (incluye tildes, ñ, comas, guiones y guiones bajos)
 C = r"[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ,_\-\.]"
 
+# Extensiones universales permitidas en todo el proyecto:
+# Documentos, planillas, presentaciones, imágenes, comprimidos, diagramas y configuraciones
+EXT = r"\.(md|pdf|docx|doc|xlsx|xls|pptx|ppt|jpeg|jpg|png|webp|csv|txt|zip|rar|7z|drawio|svg|json|yaml|yml|xml|puml)"
+
 # Reglas de nombrado por carpeta según el Plan de Configuración SCM
 REGLAS = [
     {
         "carpeta": r"^00_Gestion_Administrativa/",
-        "patron": rf"^00_Gestion_Administrativa/GA_{C}+\.(pdf|xlsx|md|docx)$",
+        "patron": rf"^00_Gestion_Administrativa/GA_{C}+{EXT}$",
         "formato": "GA_<NombreArchivo>.<ext>",
         "ejemplo": "GA_Programa_Asignatura_ISW_2026.pdf"
     },
     {
         "carpeta": r"^02_Presentaciones_de_Clase/",
-        "patron": rf"^02_Presentaciones_de_Clase/PRE_\d{{2}}_{C}+\.(pdf|pptx)$",
+        "patron": rf"^02_Presentaciones_de_Clase/PRE_\d{{2}}_{C}+{EXT}$",
         "formato": "PRE_<NroPresentacion>_<NombrePresentacion>.<ext>",
         "ejemplo": "PRE_01_IntroduccionIngenieriaSoftware.pdf"
     },
     {
         "carpeta": r"^03_Trabajos_Grupales/Trabajos_Practicos/",
-        "patron": r"^03_Trabajos_Grupales/Trabajos_Practicos/(Guia_Enunciados_TP_Evaluables_2026\.pdf|TP_00_Guia_Enunciados_Evaluables\.pdf|TP_\d{2}/.*|Entrega_TP_\d{2}_G01_v\d+(\.\d+)?\.[a-zA-Z0-9]+)$",
+        "patron": rf"^03_Trabajos_Grupales/Trabajos_Practicos/(Guia_Enunciados_TP_Evaluables_2026\.pdf|TP_00_Guia_Enunciados_Evaluables\.pdf|TP_\d{{2}}/.*|Entrega_TP_\d{{2}}_G01_v\d+(\.\d+)?{EXT})$",
         "formato": "Entrega_TP_<NroTP>_G01_v<MAJOR>.<ext>",
         "ejemplo": "Entrega_TP_04_G01_v1.0.pdf"
     },
     {
         "carpeta": r"^03_Trabajos_Grupales/Trabajos_de_Investigacion/",
-        "patron": r"^03_Trabajos_Grupales/Trabajos_de_Investigacion/(Guia_Lineamientos_TIG_2026\.pdf|Lineamientos_Investigacion\.pdf|TIG_00_Lineamientos_Investigacion\.pdf|TIG_\d{2}_[A-Za-z0-9_]+/(TIG_\d{2}_G01\.[a-zA-Z0-9]+|\.gitkeep))$",
+        "patron": rf"^03_Trabajos_Grupales/Trabajos_de_Investigacion/(Guia_Lineamientos_TIG_2026\.pdf|Lineamientos_Investigacion\.pdf|TIG_00_Lineamientos_Investigacion\.pdf|TIG_\d{{2}}_[A-Za-z0-9_]+/(TIG_\d{{2}}_G01{EXT}|\.gitkeep))$",
         "formato": "TIG_<NroTIG>_G01.<ext>",
         "ejemplo": "TIG_01_G01.pdf"
     },
     {
         "carpeta": r"^04_Material_de_Estudio/Ejercicios_Practicos_Resueltos/",
-        "patron": rf"^04_Material_de_Estudio/Ejercicios_Practicos_Resueltos/(Guia_TPs_Resueltos_Catedra\.pdf|EJ_00_Guia_Resueltos_Catedra\.pdf|EJ_{C}+_{C}+\.[a-zA-Z0-9]+)$",
+        "patron": rf"^04_Material_de_Estudio/Ejercicios_Practicos_Resueltos/(Guia_TPs_Resueltos_Catedra\.pdf|EJ_00_Guia_Resueltos_Catedra\.pdf|EJ_{C}+_{C}+{EXT})$",
         "formato": "EJ_<Tema>_<NombreApellido>.<ext>",
         "ejemplo": "EJ_TestingCajaNegra_NicolasLopez.pdf"
     },
     {
         "carpeta": r"^04_Material_de_Estudio/Notas_de_Clase/",
-        "patron": rf"^04_Material_de_Estudio/Notas_de_Clase/\d{{2}}-\d{{2}}_{C}+_{C}+\.(md|jpeg|jpg|png|csv|pdf)$",
+        "patron": rf"^04_Material_de_Estudio/Notas_de_Clase/\d{{2}}-\d{{2}}_{C}+_{C}+{EXT}$",
         "formato": "<MM-DD>_<NombreApellido>_<Tema>.<ext>",
         "ejemplo": "08-18_NicolasLopez_ClaseIntro.md"
     },
     {
         "carpeta": r"^04_Material_de_Estudio/Resumenes/",
-        "patron": rf"^04_Material_de_Estudio/Resumenes/Resumen_U\d{{2}}_{C}+_{C}+\.[a-zA-Z0-9]+$",
+        "patron": rf"^04_Material_de_Estudio/Resumenes/Resumen_U\d{{2}}_{C}+_{C}+{EXT}$",
         "formato": "Resumen_U<NroUnidad>_<Tema>_<NombreApellido>.<ext>",
         "ejemplo": "Resumen_U01_IngenieriaSoftwareContexto_NicolasLopez.pdf"
     }
