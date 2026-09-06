@@ -103,7 +103,7 @@ La tabla de líneas base disponibles registra la trazabilidad del estado del rep
 
 | Versión | Tag de Git | Fecha | Descripción |
 |---|---|---|---|
-| `v1.0` | `v1.0` | 18/08/2026 | Línea base inicial del repositorio correspondiente a la corrección del TP4 (Herramientas de SCM). |
+| `v1.0` | `v1.0` | 06/09/2026 | Línea base inicial del repositorio correspondiente a la corrección del TP4 (Herramientas de SCM). |
 
 ---
 
