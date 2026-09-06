@@ -10,16 +10,23 @@
 
 ## 👥 Integrantes del Equipo
 
-| # | Apellido y Nombre | Legajo | Usuario GitHub |
-|---|---|---|---|
-| 1 | Britos, Sofía | 88478 | @Sofiibritos |
-| 2 | Boiero, Martín | 93318 | @martinboiero |
-| 3 | Gómez, Joaquín | 87189 | @JoacoGomez04 |
-| 4 | González, Francisco | 92955 | @FranGonzalez03 |
-| 5 | López, Jeremías | 90311 | @Jere-Lopez |
-| 6 | López, Nicolás | 86884 | @nzlopez07 |
-| 7 | Paglino, Luciano | 93871 | @LucianoPaglino |
-| 8 | Pasolli, Lucas | 94001 | @LucasPasolli |
+| #   | Integrante          | Legajo | Usuario GitHub  |
+| --- | ------------------- | ------ | --------------- |
+| 1   | Sofia Britos        | 90121  | @Sofii01        |
+| 2   | Claudia Alca B.     | 93842  | @Ciel7872       |
+| 3   | Daniel Dragún       | 91910  | @dragunDaniel   |
+| 4   | Lucas Pasolli       | 94250  | @LucasPasolli   |
+| 5   | Joaquin Gomez Muñoz | 96019  | @Manolo1247     |
+| 6   | Francisco González  | 400680 | @7franc         |
+| 7   | López Daniel Nicolás| 97969  | @nzlopez07      |
+| 8   | Franco Tacca        | 94189  | @FrankensTak    |
+| 9   | Martin Boiero       | 400650 | @MartinBoiero   |
+| 10  | Nicolas Farias      | 94737  | @NicolasFarias33|
+| 11  | Florencia Amaya     | 95865  | @FvAmaya        |
+| 12  | Jeremias Lopez Ferreyra | 401016 | @jeremiaslopez526-cpu|
+| 13  | Enzo Aguzzi         | 94764  | @Enzo1600       |
+| 14  | Ignacio J. Cuello   | 400827 | @IgnacioJCuello |
+| 15  | Luciano Ivo Paglino | 95738  | @lucianopgl     |
 
 ---
 
@@ -96,7 +103,7 @@ La tabla de líneas base disponibles registra la trazabilidad del estado del rep
 
 | Versión | Tag de Git | Fecha | Descripción |
 |---|---|---|---|
-| `v1.0` | `v1.0` | 18/08/2026 | Línea base inicial del repositorio correspondiente a la entrega del TP4 (Herramientas de SCM). |
+| `v1.0` | `v1.0` | 18/08/2026 | Línea base inicial del repositorio correspondiente a la corrección del TP4 (Herramientas de SCM). |
 
 ---
 
