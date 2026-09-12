@@ -1,0 +1,89 @@
+Apuntes de Clase: Componentes de un Proyecto de Sistemas de Información
+
+Definición y Características de un Proyecto de Software
+
+Un proyecto de software es un esfuerzo temporal estructurado para crear un producto, servicio o resultado único. Define procesos, tareas, roles y mecanismos para gestionar riesgos, cambios y calidad.
+
+Único e irrepetible: El resultado no se duplica, aun en proyectos similares.
+Duración limitada: Tiene un inicio y un fin claros (al alcanzar los objetivos, se liberan los recursos).
+Orientado a objetivos: Resultados medibles, alcanzables y no ambiguos.Interrelacionado: Tareas interdependientes basadas en asignación de esfuerzo y recursos.
+
+2. Conceptos Clave de Arquitectura y Comunicación (Filminas de Brooks)
+
+Integridad Conceptual: Es la meta suprema del diseño. Es preferible omitir funciones accesorias antes que tener un sistema incoherente. El diseño debe fluir de una arquitectura unificada (pocas mentes diseñan, muchas ejecutan).
+Efecto del Segundo Sistema: El segundo sistema es el más peligroso de construir por la tendencia a sobrecargarlo de funciones raras, perder el foco en el usuario y aumentar la complejidad/manuales. Solución: Asignar presupuestos estrictos de recursos (bytes, microsegundos) a cada función.
+La Torre de Babel (Comunicación): El fracaso suele ser un problema de comunicación, no tecnológico. El esfuerzo de comunicación crece exponencialmente con el tamaño del equipo, reduciendo la productividad individual.
+The Project Workbook (Manual del Proyecto): Documento vivo centralizado que fuerza mini-decisiones, visibiliza políticas difusas y refleja el estado real, las decisiones de diseño y la arquitectura formal del sistema.
+
+3. Administración de Proyectos y Roles
+
+La gestión de proyectos aplica conocimientos, habilidades y herramientas para satisfacer los requerimientos mediante:
+
+1. Identificación de requerimientos.
+2. Establecimiento de objetivos claros.
+3. Adaptación de especificaciones a los stakeholders.
+
+La Triple Restricción
+
+Modelo que equilibra Tiempo, Costo y Alcance. Ajustar dos de estas variables obliga a modificar automáticamente la tercera para mantener la calidad.
+
+* Tiempo: ¿Cuánto tiempo debería llevar completarlo?
+* Costo: ¿Cuánto debería costar?
+* Alcance: ¿Qué trabajo debe realizarse?
+
+Roles y Estructuras
+
+* Líder de Proyecto: Responsable de definir alcance, recursos, presupuesto, estimaciones, análisis de riesgos, plan de contingencia, hitos, control de cambios y reportes de estado.
+* Equipo de Proyecto: Grupo reducido con habilidades complementarias, mutuamente responsable de los objetivos del proyecto y con capacidad de generar sinergia.
+
+4. El Plan de Proyecto (Hoja de Ruta)
+
+Artefacto central que documenta la estrategia de desarrollo a través de 8 dimensiones:
+
+1. Alcance
+Alcance del Producto: Características especificadas del sistema (se mide contra la Especificación de Requerimientos).
+Alcance del Proyecto: Todo el trabajo (y solo el trabajo) necesario para entregarlo (se mide contra el Plan de Proyecto).
+
+2. Proceso y Ciclo de Vida
+Define el cómo y cuándo de las tareas según el contexto (remoto/presencial) y la complejidad del sistema.
+
+
+3. Estimación Secuencial
+* Tamaño del Producto: Dimensión base en líneas de código, requisitos o puntos de función.
+* Esfuerzo: Horas-persona necesarias (representa casi el 80% de los costos).
+* Calendario: Proyección temporal macro de entrega.
+* Costos: Presupuesto económico total derivado del tamaño y esfuerzo.
+
+
+4. Gestión de Riesgos
+Identificación -> Análisis (probabilidad e impacto) -> Planeación (mitigación y contingencia) -> Monitoreo y control continuo.
+
+5. Asignación de Responsabilidades
+Define explícitamente los roles del equipo en el proyecto. Al ser una actividad humano-intensiva, la selección de personal es crítica para la calidad y los tiempos.
+
+6. Programación de Proyectos (Calendarización)
+Lleva el calendario al máximo detalle operacional (días/personas/esfuerzo). Representado habitualmente mediante Diagramas de Gantt.
+
+7. Definición de Métricas
+* Indicadores cuantitativos para dar visibilidad.
+* Métricas de Producto: Tamaño y defectos.
+* Métricas de Proceso / Proyecto: Esfuerzo, calendario y costo.
+
+8. Definición de Controles
+Mecanismos de seguimiento (reuniones periódicas, informes) para validar la ejecución contra las métricas definidas.
+
+5. Factores de Éxito y Causas de Fracaso
+
+Causas Principales de Fracaso
+
+* Fallas en la toma de requerimientos (representan el 80% de los fallos).
+* Mala definición del problema original.
+* Planificación realizada de forma aislada (hecha por "el grupo de planificación" sin el equipo).
+* Estimación basada en supuestos sin consultar datos históricos.
+* Falta de seguimiento, detalle o liderazgo claro ("nadie a cargo").
+
+Factores Clave para el Éxito
+
+* Misión y objetivos claramente definidos.
+* Monitoreo y retroalimentación (feedback) constantes.
+* Canales de comunicación efectivos entre todos los involucrados.

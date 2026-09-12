@@ -1,0 +1,71 @@
+Apuntes de Clase: Estimaciones en Proyectos de Software
+
+1. Concepto y Fundamentos de la Estimación
+
+Una estimación es una aproximación cuantitativa (tiempo, costo, recursos) para predecir la completitud y gestionar riesgos. Es una de las actividades más complejas del desarrollo.
+
+* No es un plan ni un compromiso: Sirve como base para planificar, pero el plan final puede diferir de lo estimado.
+* Requiere: Experiencia, información histórica (métricas) y capacidad para comprometerse con predicciones cuantitativas a partir de datos cualitativos.
+* Errores comunes: Información imprecisa del software o equipo, proyectos mal definidos, imprecisión del método usado y omisión de tareas clave (reuniones, revisiones, requerimientos faltantes).
+
+2. Métodos Tradicionales de Estimación
+
+Se recomienda usar y contrastar múltiples métodos. Todos emplean un "Factor de Ajuste" para calibrar el resultado.
+
+Basados en la Experiencia
+
+* Datos Históricos: Uso de métricas de proyectos anteriores para transferir conocimiento a la organización (la agilidad cuestiona extrapolar datos entre equipos).
+* Juicio Experto:
+* Puro: Un experto estima según las especificaciones y su experiencia (si se va, se pierde la capacidad).
+* Wideband Delphi: Un coordinador reúne estimaciones individuales y anónimas. El equipo discute y revisa iterativamente hasta converger.
+
+
+Analogía: Comparación relativa con proyectos similares. Alto margen de error por falta de extrapolabilidad estricta.
+
+Otros Enfoques Tradicionales
+
+* Basados en Recursos: Estima solo en función del personal y tiempo disponible. Sufre de la Ley de Parkinson (el trabajo se expande hasta consumir todo el recurso).
+* Basados en el Mercado: Estima según la capacidad de pago del cliente, ignorando la naturaleza del producto.
+* Componentes o Proceso:
+* Bottom-up: Descomposición en unidades mínimas, estimación individual y suma total.
+* Top-down: Descomposición en grandes bloques operativos.
+* Métodos Algorítmicos: Fórmulas matemáticas que aplican factores multiplicativos a variables de tamaño, complejidad y dominio. Pueden fallar a pesar de su rigor matemático.
+
+3. Estimaciones en Ambientes Ágiles
+
+Son presunciones numéricas probabilísticas realizadas colectivamente por el equipo de desarrollo (el Product Owner NO estima).
+
+Principios:
+* Medidas relativas, no absolutas (basadas en comparar, no en medir tiempo directo).
+* Comparar es más rápido y fomenta la dinámica grupal.
+* El tamaño no es esfuerzo: El tamaño mide complejidad e incertidumbre; el esfuerzo (horas-persona) varía según la habilidad del desarrollador.
+
+
+* Qué se estima: El tamaño de las User Stories (US) mediante Story Points, evaluando incertidumbre (técnica y de negocio), complejidad (componentes y relaciones) y esfuerzo.
+* Escalas de Tamaño: Números 1-10, talles de remera (S, M, L), series exponenciales base 2, o Serie de Fibonacci.
+* Story Point: Unidad de medida relativa definida por el propio equipo.
+* Velocidad: Métrica de progreso que suma los Story Points de las US completadas al 100% durante un sprint.
+
+4. Técnica Poker Planning (Poker Estimation)
+
+Técnica ágil que combina juicio experto, analogía y desagregación. El equipo estima su propio trabajo usando la Serie de Fibonacci.
+
+Significado de la Escala Fibonacci
+
+* 0: Sin noción de la funcionalidad.
+* 0.5 - 1: Cambios cosméticos o mínimos.
+* 2 - 3: Funcionalidad pequeña a mediana (estado ideal).
+* 5: Funcionalidad mediana (estado ideal).
+* 8: Funcionalidad grande (viable, pero evaluar si conviene dividir).
+* 13: Funcionalidad excesiva (requiere división).
+* 20 - 40: Funcionalidad inmanejable en un solo sprint.
+* 100: Requerimiento mal planteado o indefinido.
+
+Flujo del Poker Planning
+
+1. Prerrequisitos: Lista de Historias de Usuario y mazo de cartas por estimador.
+2. Definición de la Base Story: Se selecciona una historia canónica de referencia (Story Z).
+3. Lectura y Discusión: El PO presenta la US y responde dudas del equipo.
+4. Votación Ciega: Cada estimador selecciona una carta y la coloca boca abajo.
+5. Revelación y Consenso: Se muestran las cartas simultáneamente. Si hay consenso, se asigna el valor. Si hay discrepancias, los puntajes más altos y bajos justifican su postura y se vuelve a votar.
+6. Repetición: Se continúa con la siguiente US comparándola contra la historia base.
