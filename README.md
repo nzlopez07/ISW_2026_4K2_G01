@@ -79,6 +79,7 @@ Repositorio grupal de la cátedra: materiales de clase, trabajos prácticos, tra
         │   └── 📄 Guia_TPs_Resueltos_Catedra.pdf
         ├── 📁 Notas_de_Clase/
         └── 📁 Resumenes/
+            └── 📄 Resumen_U1aU3_DesarrolloDeSoftware_ClaudiaAlca.pdf
 ```
 
 ---
