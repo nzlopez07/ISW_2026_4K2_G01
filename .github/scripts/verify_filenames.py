@@ -2,8 +2,8 @@ import os
 import sys
 import re
 
-# Expresión regular de caracteres válidos en español (incluye tildes, ñ, comas, guiones y guiones bajos)
-C = r"[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ,_\-\.]"
+# Expresión regular de caracteres válidos en español (incluye tildes, ñ, comas, guiones, guiones bajos, paréntesis y espacios)
+C = r"[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ,_\-\.\(\)\s]"
 
 # Extensiones universales permitidas en todo el proyecto:
 # Documentos, planillas, presentaciones, imágenes, comprimidos, diagramas y configuraciones
@@ -49,7 +49,7 @@ REGLAS = [
     },
     {
         "carpeta": r"^04_Material_de_Estudio/Resumenes/",
-        "patron": rf"^04_Material_de_Estudio/Resumenes/Resumen_U\d{{2}}_{C}+_{C}+{EXT}$",
+        "patron": rf"^04_Material_de_Estudio/Resumenes/Resumen_{C}+_{C}+_{C}+{EXT}$",
         "formato": "Resumen_U<NroUnidad>_<Tema>_<NombreApellido>.<ext>",
         "ejemplo": "Resumen_U01_IngenieriaSoftwareContexto_NicolasLopez.pdf"
     }
