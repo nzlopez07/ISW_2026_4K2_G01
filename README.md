@@ -66,9 +66,15 @@ Repositorio grupal de la cátedra: materiales de clase, trabajos prácticos, tra
     │   │   ├── 📁 TP_01/
     │   │   ├── 📁 TP_02/
     │   │   ├── 📁 TP_03/
+    │   │   │   └── 📄 Entrega_TP_03_G01_v1.0.pdf
     │   │   ├── 📁 TP_04/
     │   │   │   └── 📄 Entrega_TP_04_G01_v1.0.md
-    │   │   └── 📁 TP_05/ (hasta TP_13)
+    │   │   ├── 📁 TP_05/
+    │   │   ├── 📁 TP_06/
+    │   │   ├── 📁 TP_07/
+    │   │   │   ├── 📄 Entrega_TP_07_G01_v1.0.docx
+    │   │   │   └── 📄 Entrega_TP_07_G01_v1.0.pdf
+    │   │   └── 📁 TP_08/ (hasta TP_13)
     │   └── 📁 Trabajos_de_Investigacion/
     │       ├── 📄 Lineamientos_Investigacion.pdf
     │       ├── 📁 TIG_01_Exposicion_DespliegueDeProducto/
@@ -153,6 +159,7 @@ La tabla de líneas base registradas permite llevar el control de los hitos del 
 | Versión | Tag de Git | Fecha | Descripción |
 |---|---|---|---|
 | `v1.0` | `v1.0` | 06/09/2026 | Línea base inicial del repositorio correspondiente a la corrección del TP4 (Herramientas de SCM). |
+| `v2.0` | `v2.0` | 07/10/2026 | Línea base del repositorio correspondiente a la entrega del TP7 (Scrum - Ejercicio de aplicación). |
 
 ---
 
