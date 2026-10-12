@@ -1,36 +1,34 @@
-
 **Comprar Entradas**
 
 Como visitante, quiero comprar entrada/s para ingresar al parque
 
 **Criterios de Aceptación**
 
-* El sistema debe validar que la fecha de visita deseada sea posterior o igual a la fecha actual.
-* El sistema debe validar que la compra sea igual o menor a 10 entradas
-* Se debe ingresar la edad de cada visitante
-* Se debe mostrar el monto total
-* Se debe seleccionar la forma de pago: efectivo (boletería) o mercado pago (tarjeta)
-* Se debe enviar la confirmación de la compra vía mail
+*  Debe indicar la fecha de visita deseada, la cantidad de entradas requeridas, la edad de cada
+  visitante y tipo de pase (VIP o regular).
+* La fecha de visita guiada puede ser del día actual o futuro.
+* Debe enviar un mensaje de confirmación vía mail
+* Debe redirigir a mercado pago al confirmar la compra si el pago es con tarjeta de crédito
+* La fecha de la visita debe estar dentro de los días en que el parque está abierto.
+* Debe seleccionar la forma de pago: efectivo en caso de querer pagar en boletería o con tarjeta
+* La cantidad de entradas requeridas no debe ser mayor a 10
+* Al finalizar la compra se debe informar la cantidad de entradas compradas y la fecha.
+* Se debe permitir la compra de entradas solo a usuarios registrados.
 
 **Pruebas de aceptación**
 
-* Probar comprar entradas indicando fecha igual o posterior a la fecha actual (Pass)
-* Probar comprar entradas y la cantidad de entradas no supera las 10 (Pass)
-* Probar comprar entradas y se muestra el monto total de la compra (Pass)
-* Probar comprar entradas y se solicita la edad de cada visitante (Pass)
-* Probar comprar entradas y el sistema permite seleccionar la forma de pago: efectivo o mercado pago. (Pass)
-* Probar comprar entradas y llega la confirmación de la compra vía mail (Pass)
-* Probar comprar entradas indicando una fecha anterior a la actual (Fail)
-* Probar comprar entradas y la cantidad de entradas es mayor a 10 (Fail)
-* Probar comprar entradas y no se muestra el monto total (Fail)
-* Probar comprar entradas y no se muestra la forma de pago efectivo (Fail)
-* Probar comprar entradas y no llega la confirmación de la compra vía mail (Fail)
-* Probar comprar entradas y no se solicita la edad de cada visitante (Fail)
+- Probar comprar una entrada indicando la fecha de visita dentro de los días disponibles, una
+  cantidad de entradas menor a 10, la edad de todos los visitantes, el tipo de pase, la forma de
+  pago con tarjeta mediante Mercado pago y recepción del mail de confirmación (pasa)
+- Probar comprar entradas sin seleccionar forma de pago (falla)
+- Probar comprar entradas ingresando una fecha de visita en la cual el parque se encuentra
+  cerrado (falla)
+- Probar comprar entradas ingresando una cantidad de entradas mayor a 10 (falla)
 
 **User Canonica: Registrar visitante**
 
 **Estimación: SP 8**
 
-* Complejidad: Alto. Contiene validaciones, integraciones y algoritmos para la generación de las entradas
+* Complejidad: Alto. Contiene validaciones e integraciones.
 * Esfuerzo: Medio Alto. Se deben realizar la integraciones con la API de Mercado Pago y Mail
 * Incertidumbre: Medio. Se deben realizar validaciones claras y concretas.
