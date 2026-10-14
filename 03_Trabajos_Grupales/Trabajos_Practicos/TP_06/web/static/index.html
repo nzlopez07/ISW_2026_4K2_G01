@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comprar Entradas | EcoHarmony Park</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+</head>
+<body>
+
+  <!-- Encabezado de la Plataforma -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="brand-wrapper">
+        <div class="brand-icon">🌿</div>
+        <div>
+          <div class="brand-title">EcoHarmony Park</div>
+          <div class="brand-subtitle">Bioparque y Reserva Natural</div>
+        </div>
+      </div>
+      <div class="user-badge" id="user-badge">
+        <div class="user-avatar" id="user-initials">FJ</div>
+        <div class="user-info-text">
+          <strong id="user-name">Fernando Javier</strong>
+          <span class="user-session-pill">(Sesión activa)</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenedor Principal -->
+  <main class="main-wrapper">
+    
+    <!-- Columna Izquierda: Formulario de Checkout -->
+    <section class="checkout-steps">
+
+      <!-- PASO 1: Fecha de Visita -->
+      <article class="checkout-card">
+        <div class="card-header-step">
+          <div class="step-num">1</div>
+          <h2 class="step-title">Fecha de Visita</h2>
+        </div>
+        <div class="date-selector-row">
+          <label for="input-fecha" style="font-weight: 700; font-size: 0.95rem;">Seleccioná el día de tu visita:</label>
+          <input type="date" id="input-fecha" class="date-input-styled">
+          
+          <div class="notice-banner">
+            <span>ℹ️</span>
+            <div>
+              <strong>Días de apertura:</strong> Martes a domingos de 08:30 a 19:00.<br>
+              <em>El parque permanece cerrado los días lunes y los feriados de 25 de diciembre y 1 de enero.</em>
+            </div>
+          </div>
+          <div id="fecha-error" style="color: var(--accent-red); font-weight: 700; font-size: 0.85rem; display: none;"></div>
+        </div>
+      </article>
+
+      <!-- PASO 2: Tipo de Pase -->
+      <article class="checkout-card">
+        <div class="card-header-step">
+          <div class="step-num">2</div>
+          <h2 class="step-title">Tipo de Pase</h2>
+        </div>
+        <div class="pass-options-grid">
+          <div class="pass-card selected" id="card-pase-regular" onclick="seleccionarPase('regular')">
+            <span class="pass-badge regular">Acceso General</span>
+            <div class="pass-price" id="precio-regular-label">$10.000</div>
+            <div style="font-weight: 700; margin-top: 0.2rem;">Pase Regular</div>
+            <div class="pass-desc">Acceso libre a todos los senderos, áreas de observación y exhibiciones naturales.</div>
+          </div>
+
+          <div class="pass-card" id="card-pase-vip" onclick="seleccionarPase('vip')">
+            <span class="pass-badge vip">Pase Exclusivo</span>
+            <div class="pass-price" id="precio-vip-label">$20.000</div>
+            <div style="font-weight: 700; margin-top: 0.2rem;">Pase VIP</div>
+            <div class="pass-desc">Acceso total preferencial y comodidades exclusivas en el bioparque.</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- PASO 3: Visitantes y Edades -->
+      <article class="checkout-card">
+        <div class="card-header-step">
+          <div class="step-num">3</div>
+          <div style="flex: 1;">
+            <h2 class="step-title">Visitantes y Descuentos por Edad</h2>
+            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.15rem;">Seleccioná la cantidad por categoría con los botones (+ / −)</div>
+          </div>
+          <span class="visitor-count-tag" id="tag-cantidad-visitantes">1 de 10 entradas</span>
+        </div>
+        
+        <!-- Steppers Rápidos por Categoría (Estándar UX Mobile) -->
+        <div class="category-steppers-container">
+          
+          <!-- Categoría 1: Adultos -->
+          <div class="category-stepper-card">
+            <div class="cat-info">
+              <div class="cat-title-row">
+                <span class="cat-icon">🧑</span>
+                <strong class="cat-name">Adultos</strong>
+                <span class="cat-age-range">(16 a 59 años)</span>
+              </div>
+              <div class="cat-price-hint" id="cat-price-adulto">Tarifa Plena • $10.000</div>
+            </div>
+            <div class="stepper-controls">
+              <button type="button" class="btn-stepper" id="btn-minus-adulto" onclick="modificarCategoria('adulto', -1)" aria-label="Restar adulto">−</button>
+              <span class="stepper-count" id="count-adulto">1</span>
+              <button type="button" class="btn-stepper" id="btn-plus-adulto" onclick="modificarCategoria('adulto', 1)" aria-label="Sumar adulto">+</button>
+            </div>
+          </div>
+
+          <!-- Categoría 2: Menores -->
+          <div class="category-stepper-card">
+            <div class="cat-info">
+              <div class="cat-title-row">
+                <span class="cat-icon">🧒</span>
+                <strong class="cat-name">Menores</strong>
+                <span class="cat-age-range">(4 a 15 años)</span>
+              </div>
+              <div class="cat-price-hint discount" id="cat-price-menor">50% OFF • $5.000</div>
+            </div>
+            <div class="stepper-controls">
+              <button type="button" class="btn-stepper" id="btn-minus-menor" onclick="modificarCategoria('menor', -1)" aria-label="Restar menor">−</button>
+              <span class="stepper-count" id="count-menor">0</span>
+              <button type="button" class="btn-stepper" id="btn-plus-menor" onclick="modificarCategoria('menor', 1)" aria-label="Sumar menor">+</button>
+            </div>
+          </div>
+
+          <!-- Categoría 3: Adultos Mayores -->
+          <div class="category-stepper-card">
+            <div class="cat-info">
+              <div class="cat-title-row">
+                <span class="cat-icon">👴</span>
+                <strong class="cat-name">Adultos Mayores</strong>
+                <span class="cat-age-range">(60+ años)</span>
+              </div>
+              <div class="cat-price-hint discount" id="cat-price-mayor">50% OFF • $5.000</div>
+            </div>
+            <div class="stepper-controls">
+              <button type="button" class="btn-stepper" id="btn-minus-mayor" onclick="modificarCategoria('mayor', -1)" aria-label="Restar adulto mayor">−</button>
+              <span class="stepper-count" id="count-mayor">0</span>
+              <button type="button" class="btn-stepper" id="btn-plus-mayor" onclick="modificarCategoria('mayor', 1)" aria-label="Sumar adulto mayor">+</button>
+            </div>
+          </div>
+
+          <!-- Categoría 4: Bebés -->
+          <div class="category-stepper-card">
+            <div class="cat-info">
+              <div class="cat-title-row">
+                <span class="cat-icon">👶</span>
+                <strong class="cat-name">Bebés</strong>
+                <span class="cat-age-range">(0 a 3 años)</span>
+              </div>
+              <div class="cat-price-hint free" id="cat-price-bebe">Gratis ($0)</div>
+            </div>
+            <div class="stepper-controls">
+              <button type="button" class="btn-stepper" id="btn-minus-bebe" onclick="modificarCategoria('bebe', -1)" aria-label="Restar bebé">−</button>
+              <span class="stepper-count" id="count-bebe">0</span>
+              <button type="button" class="btn-stepper" id="btn-plus-bebe" onclick="modificarCategoria('bebe', 1)" aria-label="Sumar bebé">+</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Detalle Individual de Entradas (Ajuste fino de edades según consigna) -->
+        <div class="visitors-detail-section">
+          <div class="visitors-detail-header">
+            <strong>Entradas individuales:</strong>
+            <span style="font-size: 0.78rem; color: var(--text-muted);">Calibrá la edad exacta si lo deseás</span>
+          </div>
+          <div class="visitors-list" id="visitors-list">
+            <!-- Renderizado dinámico desde app.js -->
+          </div>
+        </div>
+      </article>
+
+      <!-- PASO 4: Medio de Pago -->
+      <article class="checkout-card">
+        <div class="card-header-step">
+          <div class="step-num">4</div>
+          <h2 class="step-title">Forma de Pago</h2>
+        </div>
+        
+        <div class="payment-methods-grid">
+          <div class="payment-card selected" id="card-pago-mp" onclick="seleccionarPago('mercado_pago')">
+            <div class="payment-icon">💳</div>
+            <div>
+              <div class="payment-label">Mercado Pago</div>
+              <div class="payment-hint">Tarjeta de crédito / débito en línea</div>
+            </div>
+          </div>
+
+          <div class="payment-card cash" id="card-pago-efectivo" onclick="seleccionarPago('efectivo')">
+            <div class="payment-icon">💵</div>
+            <div>
+              <div class="payment-label">Efectivo</div>
+              <div class="payment-hint">Pago presencial al ingresar en boletería</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Columna Derecha: Resumen de Orden (Sticky) -->
+    <aside class="order-summary-sidebar">
+      <div class="summary-card">
+        <h3 class="summary-title">Resumen de tu Compra</h3>
+        
+        <div class="summary-row">
+          <span style="color: var(--text-muted);">Fecha seleccionada:</span>
+          <strong id="summary-fecha">--/--/----</strong>
+        </div>
+
+        <div class="summary-row">
+          <span style="color: var(--text-muted);">Modalidad:</span>
+          <strong id="summary-pase">Pase Regular</strong>
+        </div>
+
+        <div class="summary-row">
+          <span style="color: var(--text-muted);">Entradas:</span>
+          <strong id="summary-cantidad">1 entrada</strong>
+        </div>
+
+        <div class="summary-row">
+          <span style="color: var(--text-muted);">Medio de Pago:</span>
+          <strong id="summary-pago">Mercado Pago</strong>
+        </div>
+
+        <div class="summary-row" style="margin-top: 1rem; border-top: 1px solid var(--border-subtle); padding-top: 0.8rem;">
+          <span style="color: var(--text-muted);">Subtotal bruto:</span>
+          <span id="summary-subtotal">$10.000</span>
+        </div>
+
+        <div class="summary-row">
+          <span style="color: var(--text-muted);">Descuentos aplicados:</span>
+          <span class="summary-discount" id="summary-descuento">-$0</span>
+        </div>
+
+        <div class="summary-row total">
+          <span>Total Final:</span>
+          <span id="summary-total">$10.000</span>
+        </div>
+
+        <button type="button" class="btn-confirm-purchase" id="btn-submit" onclick="procesarCompra()">
+          Confirmar Compra
+        </button>
+
+        <div id="api-error-alert" style="display: none; margin-top: 1rem; padding: 0.8rem; background: #fee2e2; border-left: 4px solid var(--accent-red); color: #991b1b; font-size: 0.85rem; border-radius: 4px;">
+        </div>
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- ==============================================================================
+       BARRA INFERIOR FLOTANTE MÓVIL (Experiencia App Mobile)
+       ============================================================================== -->
+  <aside class="mobile-bottom-bar" id="mobile-bottom-bar">
+    <div class="mobile-bottom-info">
+      <span class="mobile-bottom-label">Total a pagar</span>
+      <div class="mobile-bottom-price" id="mobile-total-display">$10.000</div>
+      <div class="mobile-bottom-subtext" id="mobile-cant-display">1 ent. • Pase Regular</div>
+    </div>
+    <button type="button" class="btn-mobile-confirm" onclick="procesarCompra()">
+      Continuar Compra
+    </button>
+  </aside>
+
+  <!-- ==============================================================================
+       MODAL 1: Pantalla de Pago Mercado Pago (Simulador oficial pedido por PO)
+       ============================================================================== -->
+  <div class="modal-overlay" id="modal-mercadopago">
+    <div class="modal-box">
+      <div class="mp-header">
+        <div style="display: flex; align-items: center; gap: 0.6rem;">
+          <span style="font-size: 1.4rem;">🤝</span>
+          <strong style="font-size: 1.1rem; letter-spacing: -0.3px;">Mercado Pago Checkout</strong>
+        </div>
+        <button style="background: none; border: none; color: white; font-size: 1.3rem; cursor: pointer;" onclick="cerrarModal('modal-mercadopago')">&times;</button>
+      </div>
+
+      <div class="mp-body">
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+          <div style="font-size: 0.85rem; color: var(--text-muted);">Estás pagando en EcoHarmony Park</div>
+          <div style="font-size: 2rem; font-weight: 900; color: #009ee3; margin: 0.3rem 0;" id="mp-modal-total">$0</div>
+          <div style="font-size: 0.85rem; color: #16a34a; font-weight: 700;">✓ Pago seguro cifrado</div>
+        </div>
+
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: var(--radius-sm); padding: 1rem; margin-bottom: 1.2rem;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.9rem;">
+            <span>Tarjeta ficticia de pruebas:</span>
+            <strong>Visa •••• 4242</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+            <span>Titular:</span>
+            <strong id="mp-modal-titular">Fernando Javier</strong>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 0.8rem;">
+          <button type="button" class="btn-confirm-purchase" style="margin-top: 0; background: #009ee3;" onclick="confirmarTransaccionMP()">
+            Pagar Ahora
+          </button>
+          <button type="button" class="btn-secondary" onclick="cerrarModal('modal-mercadopago')">
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==============================================================================
+       MODAL 2: Voucher de Compra Exitosa
+       ============================================================================== -->
+  <div class="modal-overlay" id="modal-voucher">
+    <div class="modal-box">
+      <div style="background: var(--forest-dark); color: white; padding: 1.2rem 1.5rem; text-align: center;">
+        <div style="font-size: 2.2rem; margin-bottom: 0.3rem;">🎉</div>
+        <h3 style="font-size: 1.3rem;">¡Compra Confirmada!</h3>
+        <p style="font-size: 0.85rem; opacity: 0.85;">Tu lugar en EcoHarmony Park está asegurado</p>
+      </div>
+
+      <div class="modal-body-scrollable">
+        <div class="voucher-ticket">
+          <div style="font-size: 0.8rem; text-transform: uppercase; color: var(--forest-dark); font-weight: 900;">Comprobante de Ingreso</div>
+          <div style="font-size: 1.5rem; font-weight: 900; color: var(--forest-dark); margin: 0.5rem 0;" id="voucher-id-compra">ECO-XXXXXXXX</div>
+          
+          <div style="background: var(--white); border-radius: var(--radius-sm); padding: 1.2rem; margin: 1rem 0; border: 1px solid #e2e8f0; text-align: left; font-size: 0.95rem; line-height: 1.8;">
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.4rem;">
+              <span style="color: var(--text-muted);">Fecha de Visita:</span>
+              <strong id="voucher-fecha">--/--/----</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding: 0.4rem 0;">
+              <span style="color: var(--text-muted);">Cantidad de Entradas:</span>
+              <strong id="voucher-cantidad">-- entradas</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding: 0.4rem 0;">
+              <span style="color: var(--text-muted);">Modalidad:</span>
+              <strong id="voucher-pase">--</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding-top: 0.5rem; font-size: 1.15rem; color: var(--forest-dark);">
+              <span>Monto Total:</span>
+              <strong id="voucher-total">$--</strong>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.2rem;">
+          <button type="button" class="btn-confirm-purchase" style="margin-top: 0;" onclick="abrirVisorEmail()">
+            ✉️ Ver Correo de Confirmación
+          </button>
+          <button type="button" class="btn-secondary" onclick="cerrarModal('modal-voucher')">
+            Finalizar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==============================================================================
+       MODAL 3: Simulador de Correo Recibido (FAQ 5 del PO)
+       ============================================================================== -->
+  <div class="modal-overlay" id="modal-email">
+    <div class="modal-box" style="max-width: 600px;">
+      <div style="background: #334155; color: white; padding: 1rem 1.4rem; display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <span>📧</span>
+          <strong>Bandeja de Entrada: visitante@ecoharmony.com</strong>
+        </div>
+        <button style="background: none; border: none; color: white; font-size: 1.3rem; cursor: pointer;" onclick="cerrarModal('modal-email')">&times;</button>
+      </div>
+
+      <div class="modal-body-scrollable">
+        <div class="email-viewer">
+          <div style="margin-bottom: 0.6rem;">
+            <strong>De:</strong> boletos@ecoharmonypark.com<br>
+            <strong>Para:</strong> <span id="email-destinatario">fernando.javier@ecoharmony.com</span><br>
+            <strong>Asunto:</strong> <span id="email-asunto">Confirmación de tus entradas para EcoHarmony Park</span>
+          </div>
+          <hr style="border: none; border-top: 1px solid #cbd5e1; margin: 0.8rem 0;">
+          
+          <div style="font-size: 0.95rem; line-height: 1.6;">
+            <p>¡Hola <strong>Fernando Javier</strong>!</p>
+            <p>Tu compra de entradas se realizó con éxito. Te esperamos en el bioparque para disfrutar de un día en armonía con la naturaleza.</p>
+            
+            <div style="background: var(--white); border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem; margin: 1rem 0;">
+              <h4 style="color: var(--forest-dark); margin-bottom: 0.5rem;">Detalle de la Transacción</h4>
+              <div><strong>N° de Orden:</strong> <span id="email-orden">ECO-123456</span></div>
+              <div><strong>Fecha de Visita:</strong> <span id="email-fecha">--</span></div>
+              <div><strong>Forma de Pago:</strong> <span id="email-pago">--</span></div>
+              <div style="margin-top: 0.6rem;">
+                <strong>Entradas Adquiridas:</strong>
+                <ul id="email-lista-entradas" style="margin-left: 1.2rem; margin-top: 0.3rem;">
+                  <!-- Llenado dinámico -->
+                </ul>
+              </div>
+              <div style="font-size: 1.1rem; font-weight: 900; color: var(--forest-dark); margin-top: 0.8rem; border-top: 1px dashed #cbd5e1; padding-top: 0.5rem;">
+                Total Pagado: <span id="email-total">$0</span>
+              </div>
+            </div>
+
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 1rem;">
+              📎 <em>Archivo adjunto: comprobante_de_compra_ecoharmony.pdf</em>
+            </p>
+          </div>
+        </div>
+
+        <button type="button" class="btn-secondary" style="width: 100%;" onclick="cerrarModal('modal-email')">
+          Cerrar Correo
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
