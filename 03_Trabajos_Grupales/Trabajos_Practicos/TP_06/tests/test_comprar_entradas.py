@@ -154,6 +154,30 @@ class TestAperturaYFechas:
         assert compra.confirmada is True
         assert compra.fecha_visita == fecha_abierta
 
+    def test_compra_en_fecha_actual_hoy_exito(
+        self, ticket_service, usuario_registrado, monkeypatch
+    ):
+        """El criterio 2 permite comprar para el día actual siempre que el parque esté abierto."""
+        miercoles_abierto = date(2026, 10, 14)  # Miércoles: parque abierto
+        import src.services.ticket_service as ts_module
+
+        class MockDate(date):
+            @classmethod
+            def today(cls):
+                return miercoles_abierto
+
+        monkeypatch.setattr(ts_module, "date", MockDate)
+
+        compra = ticket_service.comprar_entradas(
+            usuario=usuario_registrado,
+            fecha_visita=miercoles_abierto,
+            edades_visitantes=[25],
+            forma_pago=FormaPago.EFECTIVO,
+        )
+        assert compra.confirmada is True
+        assert compra.fecha_visita == miercoles_abierto
+
+
 
 # ------------------------------------------------------------------------------
 # 2. Pruebas de Cantidad de Entradas y Edades
