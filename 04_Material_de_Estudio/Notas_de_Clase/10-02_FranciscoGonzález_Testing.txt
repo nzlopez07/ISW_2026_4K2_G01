@@ -1,0 +1,169 @@
+## ¿Qué es el Testing?
+
+### 📌 Definición Principal
+
+- **Proceso destructivo:** Su objetivo es intentar encontrar defectos (cuya presencia **se asume** de antemano) en el código.
+- **Actitud requerida:** Se debe adoptar una actitud negativa/crítica para demostrar que algo es incorrecto.
+- **Testing exitoso:** Aquel que **encuentra defectos**.
+- **Impacto económico:** A nivel mundial, representa entre el **30% y el 50%** del costo total de un software confiable.
+
+### 📌 Otras Definiciones Oficiales (Estándares)
+
+- **ISTQB:** Proceso de actividades del ciclo de vida (estáticas y dinámicas) de planificación, preparación y evaluación para determinar que los productos satisfacen los requerimientos, son aptos para su propósito y detectar defectos.
+- **IEEE Std 610-1990:** Operar un sistema o componente bajo condiciones especificadas, observar/registrar resultados y evaluar algún aspecto del mismo.
+- **IEEE Std 829-1998:** Analizar un elemento de software para detectar diferencias entre las condiciones existentes y las requeridas (bugs) y evaluar sus características.
+
+## Testing vs. QA (Quality Assurance)
+
+| **Concepto** | **Quality Assurance (QA)** | **Testing (Control de Calidad)** |
+| --- | --- | --- |
+| **Alcance** | Se aplica en **todo el ciclo de vida** del desarrollo (incluye buenas prácticas de implementación). | Se ejecuta cuando el producto (o la parte a testear) **ya está construido**. |
+| **Objetivo** | Asegurar la calidad general del proceso y del producto para prevenir defectos recurrentes. | Encontrar defectos mediante la ejecución de casos de prueba. |
+- **Relación y costos:**
+    - Un software con alta calidad lograda gracias a un buen QA hace que encontrar defectos sea más difícil (testing "no tan exitoso" en términos de cantidad de hallazgos).
+    - Un software con bajo nivel de calidad encarece el **retrabajo** debido a los constantes idas y vueltas entre desarrollo y testing.
+- **Restricción presupuestaria:** El testing es costoso; por ello, se busca una **cobertura óptima** equilibrando costo-beneficio. Cubrir el 100% es imposible por razones lógicas de tiempo y dinero. Esta cobertura se comienza a definir al establecer los *criterios de aceptación*.
+
+## Asegurar la Calidad vs. Controlar la Calidad
+
+- La calidad **no puede "inyectarse" al final** del proceso.
+- Depende de tareas realizadas durante **todo el ciclo de vida**.
+- **Detectar errores tempranamente** ahorra esfuerzos, tiempo y recursos.
+- La calidad abarca tanto al producto como al **proceso** (mejorarlo evita defectos recurrentes).
+- ⚠️ **Regla de oro:** *El testing NO puede asegurar ni calidad en el software ni software de calidad por sí mismo.*
+
+## Principios Fundamentales del Testing
+
+1. **El testing muestra presencia de defectos** (nunca su ausencia).
+2. **El testing exhaustivo es imposible** (no se puede probar todo).
+3. **Testing temprano** (comenzar lo antes posible en el ciclo de vida).
+4. **Agrupamiento de defectos** (los errores suelen concentrarse en pocos módulos o componentes).
+5. **Paradoja del pesticida** (si repites siempre las mismas pruebas, dejarán de encontrar nuevos bugs; hay que actualizarlas).
+6. **El testing es dependiente del contexto** (se prueba distinto una app médica que un sitio de e-commerce).
+7. **Falacia de la ausencia de errores** (encontrar y corregir bugs no sirve de nada si el sistema no es usable o no cumple con las necesidades del usuario).
+
+### 💡 Reglas Prácticas Adicionales:
+
+- Un programador **debería evitar probar su propio código** (ni una unidad de programación sus propios desarrollos).
+- Examinar el software para probar que **no hace** lo que se supone que debería hacer es la mitad de la batalla; la otra mitad es ver que **hace lo que no se supone que debería hacer**.
+- Nunca planifiques el esfuerzo de testing bajo la suposición de que *no se van a encontrar defectos*.
+
+## Mitos Comunes del Testing
+
+❌ **Mito 1:** *"El testing es el proceso para demostrar que los errores no están presentes."*
+
+❌ **Mito 2:** *"El propósito del testing es demostrar que un programa realiza sus funciones de forma correcta."*
+
+❌ **Mito 3:** *"El testing demuestra que un programa hace lo que se supone que debe hacer."*
+
+> **✅ Realidad:** Todas estas afirmaciones son **incorrectas**. El objetivo real es agregar valor al producto revelando su calidad, brindando confianza y, de forma concreta, **encontrar y remover defectos**. No se prueba para mostrar que funciona, sino partiendo de la suposición de que **contiene defectos** para hallar la mayor cantidad posible.
+> 
+- **Nota clave sobre los errores:** Un error está presente si el programa **no hace** lo que debe, pero **también hay errores si el programa hace lo que no se supone que deba hacer**.
+
+## Diferencia entre Error, Defecto y Falla
+
+- **Error:** Equivocación cometida que es detectada y corregida **en la misma etapa** en la que se originó.
+- **Defecto (Bug):** Es un error que **se traslada** de una etapa a otra posterior (el testing encuentra defectos porque son errores de etapas anteriores que llegaron a la fase de prueba).
+- **Falla:** Mal funcionamiento visible del sistema en ejecución.
+    - *Nota importante:* Un error o defecto **puede o no generar una falla**. Por ejemplo, un error en los colores de una interfaz no genera una falla si el sistema sigue funcionando correctamente.
+
+## Gestión de Defectos: Severidad vs. Prioridad
+
+Los defectos se caracterizan en el testing bajo dos dimensiones independientes:
+
+### 🔴 Severidad (Carácter Técnico)
+
+- **Definición:** Gravedad del defecto. Determinada por la persona que hace el testing.
+- **Escala:**
+    - **Bloqueante:** El defecto impide continuar con la ejecución del sistema.
+    - **Crítico:** El sistema funciona, pero la funcionalidad que se está testeando tiene un fallo grave.
+    - **Mayor:** La funcionalidad funciona, pero **no de forma correcta**.
+    - **Menor:** Se ejecuta correctamente pero con advertencias erróneas o baja importancia.
+    - **Cosmética:** Formato de fechas/números, distribución de componentes en GUI, presentación, etc.
+
+### 🟡 Prioridad (Carácter de Negocio)
+
+- **Definición:** Impacto del defecto en la funcionalidad para el **negocio** (ordena la atención según necesidades del cliente).
+- **Escala típica:** Urgencia, Alta, Media, Baja.
+- *Independencia:* Son independientes. Ejemplo: un defecto cosmético (baja severidad) puede tener **alta prioridad** en una aplicación de marketing donde la estética visual es clave, y baja prioridad en un sistema interno de inventarios.
+
+## Casos de Prueba
+
+### 📌 Concepto General
+
+- **Definición:** Secuencia de pasos a seguir para obtener un resultado esperado bajo ciertas condiciones previas.
+- **Importancia:** Es el **artefacto más importante** del testing. Se diseña una vez pero sirve para realizar infinitas ejecuciones (buscando siempre el mismo resultado esperado).
+- **Meta:** Minimizar la cantidad de casos de prueba maximizando la cantidad de defectos encontrados (su objetivo es **descubrir defectos**).
+- **Origen:** Surgen de los requerimientos, permitiendo hacer tanto **verificación** como **validación**.
+
+### 🧩 Estructura de un Caso de Prueba
+
+1. **Objetivo:** Característica del sistema a comprobar.
+2. **Datos de entrada y de ambiente:** Datos introducidos con el sistema en condiciones preestablecidas.
+3. **Comportamiento esperado:** Salida o acción esperada según los requerimientos.
+
+### 🔍 Derivación de Casos de Prueba (Fuentes)
+
+- Documentos del cliente / Información de relevamiento / Requerimientos.
+- Especificaciones de programación / Código.
+
+> **💡 Conclusiones sobre su generación:** Ninguna técnica es completa por sí sola; lo ideal es **combinarlas**. Sin requerimientos, todo es mucho más difícil. Hay que ser sistemático y documentar las suposiciones.
+> 
+
+## Condiciones de Prueba
+
+- **Definición:** Reacción esperada de un sistema frente a un estímulo particular (determinado por las entradas).
+- **Regla:** Cada condición de prueba debe ser probada por **al menos un caso de prueba**.
+
+## Ciclos de Prueba
+
+- **Definición:** Ejecución de la **totalidad** de los casos de prueba establecidos aplicados a una misma versión del sistema.
+- **Ciclo 0:** Generalmente el primer ciclo. **Siempre es manual**, donde se configura todo. A partir del ciclo 1 se pueden automatizar las pruebas.
+- **Flujo:** Si se detectan defectos, el producto vuelve a desarrollo para su corrección.
+- **Alerta:** Una cantidad alta de ciclos de prueba indica un mal proceso de QA (genera mucho retrabajo y eleva los costos de desarrollo).
+
+## Pruebas de Regresión
+
+Al cambiar de versión tras un ciclo, surge el desafío de verificar si la corrección de errores introdujo nuevos bugs. Existen dos enfoques:
+
+1. **El Ideal (Ejecución total):** Ejecutar exhaustivamente todos los casos de prueba en cada ciclo (como si fuera el ciclo 0). Es el menos utilizado por temas de tiempo y practicidad.
+2. **El Práctico (Enfoque selectivo):** Ejecutar todos los casos en el ciclo 0, pero a partir del ciclo 1 ejecutar **sólo los casos asociados a defectos previos**.
+    - *El riesgo:* Estadísticamente, al corregir código se pueden romper otras partes. Si no se hace regresión total, pueden pasar inadvertidos nuevos errores.
+    - *Solución intermedia:* No aplicar regresión estricta durante los ciclos (probar solo los bugs corregidos) y, **cuando todos los defectos estén solucionados**, hacer una ejecución completa de todos los casos de prueba para garantizar la estabilidad final.
+
+## Niveles de Prueba
+
+Las pruebas de software se estructuran en diferentes niveles según el alcance de lo que se está evaluando:
+
+1. **Pruebas Unitarias**
+    - Se prueba cada **componente individual** tras su realización de forma independiente.
+    - Se realizan con acceso al código fuente y apoyo del entorno de desarrollo (frameworks de pruebas, depuradores).
+    - Los errores se suelen reparar tan pronto se encuentran, **sin constancia oficial** de incidentes.
+2. **Pruebas de Integración**
+    - Orientadas a verificar que las partes que funcionan bien de forma aislada **también lo hacen en conjunto**.
+    - La estrategia debe ser **incremental**, utilizando dos esquemas principales (lo ideal es combinarlos):
+        - *Top-down* (de arriba hacia abajo)
+        - *Bottom-up* (de abajo hacia arriba)
+    - ⚠️ Los módulos críticos deben probarse lo más tempranamente posible.
+    - **Puntos clave:** Conectar de a poco las partes complejas y minimizar la necesidad de programas auxiliares (stubs/drivers).
+3. **Pruebas de Sistema**
+    - Se realizan cuando la aplicación funciona como un **todo** (construcción final).
+    - Determinan si el sistema global opera satisfactoriamente (recuperación de fallas, seguridad, estrés, performance, etc.).
+    - El entorno debe corresponderse al de **producción** tanto como sea posible.
+    - Investigan requerimientos tanto **funcionales como no funcionales**.
+4. **Pruebas de Aceptación**
+    - Realizadas por el **usuario** para determinar si la aplicación se ajusta a sus necesidades.
+    - **Meta principal:** Establecer confianza en el sistema y características no funcionales (encontrar defectos **no** es el foco principal).
+    - Se dividen en:
+        - **Pruebas Alfa:** En ambiente de laboratorio (controlado).
+        - **Pruebas Beta:** En ambientes de trabajo reales (con usuarios finales).
+
+## Ambientes para la Construcción del Software
+
+Son los recursos de hardware y software necesarios según la etapa del desarrollo:
+
+- **Desarrollo:** Entorno para programar y desplegar. Aquí se ejecutan las *pruebas unitarias* y de integración.
+- **Pruebas (Test):** Utilizado exclusivamente por los testers (los desarrolladores no deben tener acceso). Aquí se realizan las *pruebas de sistema*.
+- **Preproducción:** Debería ser idéntico al entorno productivo para validar el comportamiento real. Aquí se hacen las *pruebas de aceptación*.
+    - *Dificultad:* A veces es muy costoso o imposible replicar configuraciones masivas (ej. servidores de Google).
+- **Producción:** Configuración final de los usuarios reales. **No se realizan pruebas aquí**, ya que la versión debería cumplir estrictamente con el *Definition of Done*.

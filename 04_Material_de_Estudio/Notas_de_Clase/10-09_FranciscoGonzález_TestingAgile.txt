@@ -1,0 +1,107 @@
+## 1. Introducción al Testing y Aseguramiento de Calidad (SQA)
+
+El **Testing de software** es una de las tareas fundamentales dentro del **Aseguramiento de Calidad del Software (SQA)**, el cual abarca tanto el control de calidad del proceso como el del producto.
+
+- **Calidad a lo largo del ciclo:** La calidad del software no se añade al final, se obtiene y se construye a lo largo de todo su desarrollo. Detectar errores en etapas tempranas siempre es **menos costoso** que detectarlos en etapas posteriores.
+- **Administración de Configuración (SCM):** Es el puntapié inicial necesario para permitir la correcta realización de las tareas de aseguramiento de calidad.
+- **Control de Calidad del Proceso vs. Producto:**
+    - **Proceso:** Se controla bajo el argumento de que *el proceso de desarrollo posee un gran impacto en la calidad del producto* (en teoría, un mejor proceso deriva en un mejor producto).
+    - **Producto:** Tras desarrollar el software, el testing revela la calidad intrínseca del producto, es decir, si este satisface los requerimientos definidos por el cliente en etapas anteriores.
+- **Diferencia clave:** `QA != Testing`. El testing por sí solo **no asegura la calidad**; es solo una actividad más que debe estar acompañada de todas las demás prácticas de SQA.
+
+## 2. El Manifiesto del Testing Ágil
+
+En los entornos ágiles, la mentalidad del testing cambia radicalmente respecto a los modelos tradicionales:
+
+1. **Pruebas durante** → sobre pruebas al final.
+2. **Prevenir defectos** → sobre encontrar defectos.
+3. **Entender lo que se está probando** → sobre verificar la funcionalidad.
+4. **Construir un mejor sistema** → sobre romper el sistema.
+5. **Responsabilidad de todo el equipo por la calidad** → sobre que el tester es el único responsable de la calidad.
+
+## 3. 9 Principios para el Testing en Proyectos Ágiles
+
+1. **El testing se mueve hacia adelante en el proyecto:** Se empieza a probar desde el inicio (involucrando al tester en la definición de historias).
+2. **El testing no es una fase:** Es una actividad continua que ocurre durante todo el sprint.
+3. **Todos hacen testing:** Desarrolladores, testers y Product Owners colaboran activamente.
+4. **Reducir la latencia del feedback:** Cuanto antes se detecte un error, más rápido se corrige y más barato sale.
+5. **Las pruebas representan expectativas:** Sirven para alinear qué debe hacer el sistema según el negocio.
+6. **Mantener el código limpio, corregir los defectos rápido:** Deuda técnica baja y resolución inmediata de bugs.
+7. **Reducir la sobrecarga de documentación de las pruebas:** Menos documentos estáticos y pesados, más pruebas ejecutables y automatizadas.
+8. **Las pruebas son parte del “done” (Definición de Hecho):** Una historia no está terminada si no pasó sus pruebas correspondientes.
+9. **De probar al final a Conducido por Pruebas:** Adoptar enfoques como TDD y ATDD.
+
+## 4. Enfoque Tradicional (Cascada) vs. Ágil
+
+- **Modelo Tradicional (Cascada):** El testing ocurre al final de todo el ciclo de desarrollo. Su enfoque principal es **buscar bugs** y suele recaer en un equipo aislado. Las pruebas de interfaz gráfica (GUI) y End-to-End predominan de forma masiva (80-90%).
+- **Modelo Ágil:** El testing se integra desde el primer día. Su enfoque principal es **prevenir bugs** mediante la colaboración temprana. Su pirámide se invierte en cuanto a costos y esfuerzo, priorizando las pruebas unitarias automatizadas en la base.
+
+## 5. El Modelo en V y la Granularidad
+
+El modelo en V ayuda a determinar cuándo se pueden realizar ciertas actividades según la etapa de desarrollo:
+
+- **Desarrollo:** Se mueve desde componentes de **granularidad gruesa** (requerimientos abstractos, arquitectura) hacia componentes de **menor granularidad** (clases, módulos).
+- **Testing:** Se realiza en **sentido inverso** a la granularidad del desarrollo:
+    - Se empieza desde el *Testing de Componentes* / *Testing Unitario* (nivel de código) hasta las pruebas de aceptación y sistema.
+
+## 6. Las 6 Prácticas Concretas del Testing Ágil
+
+1. **Pruebas de unidad e integración automatizadas:** Ejecutadas constantemente por los desarrolladores.
+2. **TDD (Test Driven Development):** Desarrollo guiado por pruebas unitarias.
+3. **Pruebas de Regresión a nivel de sistema automatizadas:** Para garantizar que los nuevos cambios no rompan lo existente.
+4. **ATDD (Acceptance Test-Driven Development):** Desarrollo guiado por pruebas de aceptación.
+5. **Pruebas exploratorias:** Para descubrir fallos sutiles, de usabilidad o casos borde que los scripts automatizados no ven.
+6. **Control de versión de las pruebas con el código:** Las pruebas viven en el mismo repositorio que el código fuente.
+
+## 7. Deep Dive: Técnicas Clave
+
+### Test Driven Development (TDD)
+
+Es una técnica de desarrollo donde se escribe primero la prueba unitaria antes de escribir el código de producción. Su fundamento filosófico es: *si no tengo claro qué tengo que hacer, no puedo crear pruebas para ello*. Consta de dos prácticas principales:
+
+- **Test First Development:** Se escriben las pruebas unitarias de la característica a implementar. Obliga al desarrollador a modularizar el código y cumplir con el principio de responsabilidad única (métodos y clases enfocados en una sola cosa).
+- **Refactoring:** Reestructurar el código existente sin alterar su comportamiento externo para mejorar su legibilidad, reducir complejidad y facilitar su mantenimiento.
+
+### Desarrollo Conducido por Pruebas de Aceptación (ATDD)
+
+- **¿Qué es?:** Es una práctica de colaboración donde el equipo de desarrollo, el Product Owner (negocio) y los testers definen conjuntamente los **criterios de aceptación** antes de programar la funcionalidad.
+- **Objetivo:** Asegurar que todos entienden exactamente qué problema se va a resolver y cómo se validará el éxito de la historia de usuario (normalmente usando formatos como *Given-When-Then* de Cucumber/BDD). Sirva como la "brújula" funcional para los desarrolladores.
+
+## Análisis de Esquemas y Componentes Clave
+
+### A. El Rol del Tester en Equipos Ágiles
+
+El tester deja de ser un "aislado que rompe el sistema" y pasa a ser un habilitador de calidad en el centro de la colaboración:
+
+- **Relación con el Product Owner (PO):** Le ayuda en la preparación y revisión de historias, definición de Criterios de Aceptación, entendimiento del dominio de negocio e identificación de dependencias.
+- **Relación con los Developers:** Define estrategias de prueba, automatiza pruebas funcionales (ATDD), detecta y notifica bugs, da feedback temprano de las historias y sugiere mejoras funcionales/de usabilidad.
+- **Relación con el System Team:** Prepara documentación de historias a integrar, difunde planes y datos de pruebas, ayuda a conocer la completitud del *feature* y comunica bugs al PO y devs.
+- **Responsabilidades Propias:** Preparación y mantenimiento del ambiente de pruebas, validación del *Done* de las historias, métricas de calidad y aceptación de historias junto al PO.
+
+### B. Cuadrantes de Testing Ágil
+
+!image.png
+
+Clasifican las pruebas según su orientación (al negocio o a la tecnología) y su propósito (guiar el desarrollo o criticar el producto):
+
+- **Q1 (Tecnología / Guían el desarrollo):** Pruebas Unitarias y de Componentes (a nivel de código).
+- **Q2 (Negocio / Guían el desarrollo):** Pruebas de Aceptación de la Historia, UX, prototipos y simulaciones (ejemplos de comportamiento esperado).
+- **Q3 (Negocio / Critican el producto):** Pruebas Exploratorias, flujos de trabajo, usabilidad, UAT (User Acceptance Testing) y monitoreo/observabilidad.
+- **Q4 (Tecnología / Critican el producto):** Pruebas de rendimiento, carga, seguridad, recuperabilidad y otros atributos no funcionales (`...ilidad`).
+
+### C. Pirámide de Testing Ágil
+
+Muestra la distribución ideal de las pruebas en un entorno moderno:
+
+- **Base (Muy amplia):** Pruebas Unitarias / de Componentes (hechas por el programador). Son rápidas y económicas.
+- **Centro:** Capa de Servicio / API, reglas de negocio y pruebas funcionales.
+- **Cima (Estrecha):** Pruebas de Flujo de Trabajo a través de la interfaz gráfica (GUI) y pruebas manuales/exploratorias. Se minimizan porque son costosas y lentas de mantener.
+
+!image.png
+
+### D. Comparativa de Pirámides: Tradicional vs. Ágil
+
+!image.png
+
+- **Pirámide Tradicional (Invertida - Busca Bugs):** Concentra el 80-90% del esfuerzo en la cúspide (End-to-End GUI Tests manuales o lentos), dejando las unitarias en la mínima expresión (1-5%). Esto genera lentitud, alto costo de mantenimiento y retroalimentación tardía.
+- **Pirámide Ágil (Correcta - Previene Bugs):** Carga el **80-90% en la base (Unit Tests)**, un **5-15% en Acceptance Tests** y apenas un **1-5% en la cúspide (GUI Tests)**. Esto garantiza velocidad, automatización y detección temprana de errores.
