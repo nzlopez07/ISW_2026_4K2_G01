@@ -133,6 +133,10 @@ class TestAperturaYFechas:
     ):
         """El horizonte máximo de compra es de un mes (30 días)."""
         fecha_lejana = date.today() + timedelta(days=35)
+        # Se evita lunes o feriado: la prueba debe fallar solo por la anticipación
+        feriados = [(12, 25), (1, 1)]
+        while fecha_lejana.weekday() == 0 or (fecha_lejana.month, fecha_lejana.day) in feriados:
+            fecha_lejana += timedelta(days=1)
         with pytest.raises(FechaInvalidaException):
             ticket_service.comprar_entradas(
                 usuario=usuario_registrado,
