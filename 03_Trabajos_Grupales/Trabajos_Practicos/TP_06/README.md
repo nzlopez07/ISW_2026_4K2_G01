@@ -105,3 +105,20 @@ python web/server.py
 ```
 
 Las compras se guardan en `web/ecoharmony.db` (SQLite, no se sube al repositorio). Para empezar de cero, borrar ese archivo.
+
+---
+
+## 6. Despliegue en Render
+
+Crear un **Web Service** conectado al repositorio con esta configuración:
+
+| Campo | Valor |
+| :--- | :--- |
+| Root Directory | `03_Trabajos_Grupales/Trabajos_Practicos/TP_06` |
+| Runtime | Python 3 |
+| Build Command | `cd web/frontend && npm install && npm run build` |
+| Start Command | `python web/server.py` |
+| Variable de entorno | `TZ` = `America/Argentina/Buenos_Aires` |
+
+`TZ` hace que la fecha y la hora del servidor sean las de Argentina (las reglas de "hoy" y de las 17:30 dependen de ellas). En el plan gratuito el disco no es persistente: la base `ecoharmony.db` se reinicia cuando el servicio se redespliega o se suspende por inactividad.
+

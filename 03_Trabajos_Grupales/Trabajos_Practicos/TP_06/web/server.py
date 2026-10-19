@@ -233,8 +233,8 @@ class EcoHarmonyRequestHandler(SimpleHTTPRequestHandler):
         self.wfile.write(contenido)
 
 
-def iniciar_servidor(puerto: int = 8080):
-    servidor = ThreadingHTTPServer(("127.0.0.1", puerto), EcoHarmonyRequestHandler)
+def iniciar_servidor(puerto: int = 8080, host: str = "127.0.0.1"):
+    servidor = ThreadingHTTPServer((host, puerto), EcoHarmonyRequestHandler)
     print(f"Servidor EcoHarmony Park iniciado en http://localhost:{puerto}")
     try:
         servidor.serve_forever()
@@ -244,5 +244,8 @@ def iniciar_servidor(puerto: int = 8080):
 
 
 if __name__ == "__main__":
-    puerto = int(sys.argv[1]) if len(sys.argv) > 1 else 8080
-    iniciar_servidor(puerto)
+    # En Render la plataforma define el puerto (PORT) y hay que escuchar en 0.0.0.0
+    if "PORT" in os.environ:
+        iniciar_servidor(int(os.environ["PORT"]), host="0.0.0.0")
+    else:
+        iniciar_servidor(int(sys.argv[1]) if len(sys.argv) > 1 else 8080)
