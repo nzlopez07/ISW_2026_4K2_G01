@@ -70,6 +70,7 @@ Las excepciones de negocio derivan de una clase base común `DominioException`, 
 | `FechaInvalidaException` | La fecha de visita es anterior al día actual o supera los 30 días de anticipación. |
 | `CantidadEntradasInvalidaException` | Se intentan comprar menos de 1 o más de 10 entradas en la transacción. |
 | `EdadInvalidaException` | La edad de un visitante es menor a 0 o mayor o igual a 135 años. |
+| `TipoPaseInvalidoException` | El tipo de pase de una entrada no es Regular ni VIP. |
 | `FormaPagoInvalidaException` | No se especifica forma de pago o se ingresa un medio no contemplado. |
 | `ErrorEnvioEmailException` | Fallo de comunicación al despachar el correo de confirmación. |
 | `ErrorProcesamientoPagoException` | Fallo al procesar el pago con la pasarela electrónica (Mercado Pago). |
@@ -127,3 +128,29 @@ Todas las pruebas fallan con `NotImplementedError`, confirmando que:
 1. Las pruebas están correctamente programadas y descubiertas por el test runner.
 2. Ningún test pasa por casualidad ("falso positivo").
 3. El sistema está listo para avanzar a la fase **GREEN**.
+
+---
+
+## 7. Correcciones posteriores a la revisión
+
+Se hicieron en un nuevo ciclo RED - GREEN. La suite pasó de 36 a 39 casos:
+
+1. **Tipo de pase por visitante.** La User Story pide "la edad de cada visitante y tipo de pase" sin aclarar si el pase es uno para toda la compra; antes se aplicaba el mismo a todas las entradas. Ahora `comprar_entradas` recibe la lista de `Entrada` (edad y pase de cada visitante), algo que el modelo ya contemplaba. Caso nuevo: `test_cada_entrada_con_su_tipo_de_pase`.
+2. **Pago rechazado.** El servicio ignoraba la respuesta de Mercado Pago: si el pago se rechazaba, la compra se confirmaba igual y se enviaba el correo. Ahora se lanza `ErrorProcesamientoPagoException`. Caso nuevo: `test_pago_rechazado_no_confirma_la_compra`.
+3. **Compra sin forma de pago.** Es una prueba de usuario de la consigna. El servicio ya la rechazaba, pero el servidor web completaba "efectivo" por defecto; se agregó el caso `None` a `test_forma_pago_invalida_falla` y se quitó ese valor por defecto del servidor.
+
+Además se corrigió `test_compra_con_mas_de_un_mes_de_anticipacion_falla`, que fallaba los días en que hoy + 35 caía en lunes (el servicio respondía `ParqueCerradoException`): ahora usa el siguiente día abierto. No agrega casos.
+
+**RED** (la firma todavía no acepta `entradas`):
+
+```text
+TypeError: TicketService.comprar_entradas() got an unexpected keyword argument 'entradas'
+============================= 39 failed =============================
+```
+
+**GREEN:**
+
+```text
+============================= 39 passed =============================
+```
+
