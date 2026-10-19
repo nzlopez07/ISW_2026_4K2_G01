@@ -1,0 +1,238 @@
+.redireccion {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 1.5rem;
+  text-align: center;
+  background: rgba(244, 246, 239, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: aparecer-fondo 0.25s var(--curva-suave);
+}
+
+.redireccion__spinner {
+  width: 54px;
+  height: 54px;
+  margin-bottom: 0.6rem;
+  border-radius: 50%;
+  border: 4px solid #d6eefb;
+  border-top-color: var(--color-mp);
+  animation: girar 0.8s linear infinite;
+}
+
+.redireccion__titulo {
+  font-family: var(--fuente-titulos);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--color-bosque);
+}
+
+.redireccion__texto {
+  color: var(--color-texto-2);
+}
+
+.modal__dialogo.pasarela {
+  width: min(100%, 420px);
+  overflow: hidden;
+  background: #f5f6f8;
+}
+
+.pasarela .modal__cerrar {
+  top: 0.55rem;
+  right: 0.6rem;
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: none;
+}
+
+.pasarela .modal__cerrar:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.pasarela__barra {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.95rem 3.5rem 0.95rem 1.25rem;
+  color: #fff;
+  background: var(--color-mp);
+}
+
+.pasarela__marca {
+  font-family: var(--fuente-texto);
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.pasarela__seguro {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-left: auto;
+  font-size: 0.75rem;
+  font-weight: 650;
+  opacity: 0.92;
+}
+
+.pasarela__cuerpo {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.25rem;
+}
+
+.pasarela__comercio {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.pasarela__comercio img {
+  width: 36px;
+  height: auto;
+  padding: 3px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.pasarela__comercio div {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.pasarela__comercio span {
+  font-size: 0.78rem;
+  color: #6b7280;
+}
+
+.pasarela__monto,
+.pasarela__medio {
+  padding: 1rem;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.pasarela__monto {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.pasarela__monto span,
+.pasarela__etiqueta {
+  font-size: 0.8rem;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.pasarela__monto strong {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #1f2937;
+}
+
+.pasarela__monto small {
+  font-size: 0.82rem;
+  color: #4b5563;
+}
+
+.pasarela__medio {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.pasarela__tarjeta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1.5px solid var(--color-mp);
+  background: #f2fbff;
+}
+
+.pasarela__tarjeta-icono {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 28px;
+  border-radius: 5px;
+  color: #fff;
+  background: linear-gradient(135deg, #1a1f71, #2b3bb3);
+}
+
+.pasarela__tarjeta-datos {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+.pasarela__tarjeta-datos strong {
+  font-size: 0.9rem;
+}
+
+.pasarela__tarjeta-datos span {
+  font-size: 0.78rem;
+  color: #6b7280;
+}
+
+.pasarela__tarjeta-check {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  margin-left: auto;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--color-mp);
+}
+
+.pasarela__cuotas {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #4b5563;
+}
+
+.pasarela__pagar {
+  width: 100%;
+  min-height: 50px;
+  border-radius: 8px;
+  color: #fff;
+  background: var(--color-mp);
+}
+
+.pasarela__pagar:hover:not(:disabled) {
+  background: var(--color-mp-oscuro);
+}
+
+.pasarela__volver {
+  align-self: center;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 650;
+  color: var(--color-mp-oscuro);
+  border-radius: 6px;
+}
+
+.pasarela__volver:hover:not(:disabled) {
+  text-decoration: underline;
+}
+
+.pasarela__volver:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

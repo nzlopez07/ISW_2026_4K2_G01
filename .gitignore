@@ -22,3 +22,7 @@ ENV/
 # OS generated files
 .DS_Store
 Thumbs.db
+
+# Frontend: dependencias de npm e interfaz compilada
+node_modules/
+dist/
