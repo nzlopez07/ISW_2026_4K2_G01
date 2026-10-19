@@ -1,0 +1,74 @@
+:root {
+  /* Superficies */
+  --color-fondo: #f4f6ef;
+  --color-superficie: #ffffff;
+  --color-superficie-suave: #f7f9f3;
+  --color-superficie-hundida: #eef2e8;
+  --color-borde: #dfe6d7;
+  --color-borde-fuerte: #c6d3ba;
+
+  /* Texto */
+  --color-texto: #142619;
+  --color-texto-2: #48594c;
+  --color-texto-3: #5f7063;
+  --color-texto-invertido: #f6faf0;
+
+  /* Marca */
+  --color-bosque: #0f2a18;
+  --color-bosque-2: #173b23;
+  --color-primario: #2e7d32;
+  --color-primario-hover: #256a29;
+  --color-primario-activo: #1d5520;
+  --color-primario-suave: #e5f2dd;
+  --color-primario-borde: #b7d9a4;
+  --color-lima: #8cc63f;
+  --color-lima-suave: #eef7dd;
+
+  /* Pase VIP */
+  --color-vip: #94600b;
+  --color-vip-suave: #fdf4df;
+  --color-vip-borde: #ecd08b;
+
+  /* Estados */
+  --color-error: #b42318;
+  --color-error-suave: #fef3f2;
+  --color-error-borde: #fbc8c3;
+  --color-alerta: #a14b06;
+  --color-alerta-suave: #fff8eb;
+  --color-alerta-borde: #fbd78d;
+  --color-exito: #217a3c;
+  --color-exito-suave: #ecf8ef;
+  --color-info: #1f5fa8;
+  --color-info-suave: #eef5fd;
+
+  /* Mercado Pago (pasarela) */
+  --color-mp: #009ee3;
+  --color-mp-oscuro: #0b7fb5;
+
+  /* Tipografía */
+  --fuente-titulos: 'Fraunces Variable', 'Fraunces', Georgia, 'Times New Roman', serif;
+  --fuente-texto: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* Radios */
+  --radio-xs: 8px;
+  --radio-sm: 12px;
+  --radio-md: 16px;
+  --radio-lg: 24px;
+  --radio-xl: 32px;
+  --radio-pildora: 999px;
+
+  /* Sombras */
+  --sombra-xs: 0 1px 2px rgba(20, 38, 25, 0.06);
+  --sombra-sm: 0 1px 2px rgba(20, 38, 25, 0.05), 0 4px 12px -4px rgba(20, 38, 25, 0.08);
+  --sombra-md: 0 2px 4px rgba(20, 38, 25, 0.04), 0 12px 32px -12px rgba(20, 38, 25, 0.18);
+  --sombra-lg: 0 4px 8px rgba(20, 38, 25, 0.05), 0 28px 64px -20px rgba(20, 38, 25, 0.28);
+  --sombra-foco: 0 0 0 3px rgba(140, 198, 63, 0.45);
+
+  /* Movimiento */
+  --curva-salida: cubic-bezier(0.22, 1, 0.36, 1);
+  --curva-suave: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Layout */
+  --ancho-max: 1180px;
+  --alto-encabezado: 72px;
+}
