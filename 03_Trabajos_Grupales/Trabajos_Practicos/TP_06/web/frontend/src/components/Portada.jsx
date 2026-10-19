@@ -10,7 +10,7 @@ export default function Portada({ etiqueta, titulo, bajada }) {
     <section className="portada">
       <div className="portada__fondo" aria-hidden="true">
         <LightRays
-          raysColor="#eaf6d2"
+          raysColor="#f2e8cf"
           raysSpeed={0.55}
           lightSpread={0.85}
           rayLength={1.5}
@@ -56,7 +56,7 @@ export default function Portada({ etiqueta, titulo, bajada }) {
             </li>
             <li>
               <IconoEntrada tamano={17} />
-              Hasta {CANTIDAD_MAXIMA} entradas por compra
+              Hasta {CANTIDAD_MAXIMA} entradas por fecha
             </li>
           </ul>
         </div>

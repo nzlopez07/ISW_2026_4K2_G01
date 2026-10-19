@@ -6,7 +6,7 @@
   background: rgba(255, 255, 255, 0.86);
   backdrop-filter: saturate(1.6) blur(14px);
   -webkit-backdrop-filter: saturate(1.6) blur(14px);
-  border-bottom: 1px solid rgba(198, 211, 186, 0.6);
+  border-bottom: 1px solid rgba(214, 201, 168, 0.6);
 }
 
 .encabezado__contenido {
@@ -48,7 +48,7 @@
 }
 
 .marca__nombre {
-  font-family: var(--fuente-titulos);
+  font-family: var(--fuente);
   font-size: 1.28rem;
   font-weight: 650;
   letter-spacing: -0.025em;
@@ -86,7 +86,7 @@
   font-weight: 800;
   letter-spacing: 0.02em;
   color: var(--color-bosque);
-  background: linear-gradient(135deg, #cfe9a8, var(--color-lima));
+  background: linear-gradient(135deg, var(--crema), var(--color-lima));
   flex-shrink: 0;
 }
 
@@ -115,8 +115,8 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #3fb950;
-  box-shadow: 0 0 0 3px rgba(63, 185, 80, 0.18);
+  background: var(--verde-medio);
+  box-shadow: 0 0 0 3px rgba(106, 153, 78, 0.18);
 }
 
 @media (max-width: 640px) {

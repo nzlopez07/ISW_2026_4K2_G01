@@ -6,7 +6,7 @@
   place-items: center;
   padding: 1.25rem;
   overflow-y: auto;
-  background: rgba(10, 26, 15, 0.55);
+  background: rgba(31, 42, 33, 0.55);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   animation: aparecer-fondo 0.25s var(--curva-suave);

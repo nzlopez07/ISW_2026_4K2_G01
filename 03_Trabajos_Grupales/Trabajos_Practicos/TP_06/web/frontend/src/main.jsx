@@ -1,7 +1,8 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import '@fontsource-variable/fraunces/opsz.css';
-import '@fontsource-variable/plus-jakarta-sans';
+import '@fontsource/lato/400.css';
+import '@fontsource/lato/700.css';
+import '@fontsource/lato/900.css';
 import './styles/tokens.css';
 import './styles/base.css';
 import App from './App.jsx';

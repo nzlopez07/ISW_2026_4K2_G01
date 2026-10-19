@@ -5,7 +5,7 @@ import { enmascararFecha, validarFechaEscrita } from '../lib/reglas.js';
 import { IconoAlerta, IconoCalendario, IconoCheck } from './Iconos.jsx';
 import './SelectorFecha.css';
 
-export default function SelectorFecha({ hoy, fecha, onCambio, mostrarRequerido }) {
+export default function SelectorFecha({ hoy, hora, fecha, onCambio, mostrarRequerido }) {
   const id = useId();
   const [texto, setTexto] = useState(fecha ? formatearCorta(fecha) : '');
   const [error, setError] = useState(null);
@@ -19,7 +19,7 @@ export default function SelectorFecha({ hoy, fecha, onCambio, mostrarRequerido }
       setError(alSalir && enmascarado ? 'Completá la fecha con el formato dd/mm/aaaa.' : null);
       return;
     }
-    const { iso, mensaje } = validarFechaEscrita(enmascarado, hoy);
+    const { iso, mensaje } = validarFechaEscrita(enmascarado, hoy, hora);
     setError(mensaje);
     onCambio(iso);
   };
@@ -75,7 +75,7 @@ export default function SelectorFecha({ hoy, fecha, onCambio, mostrarRequerido }
         </div>
       </div>
 
-      <Calendario hoy={hoy} seleccionada={fecha} onElegir={elegir} />
+      <Calendario hoy={hoy} hora={hora} seleccionada={fecha} onElegir={elegir} />
     </div>
   );
 }

@@ -15,7 +15,7 @@ html {
 
 body {
   min-height: 100vh;
-  font-family: var(--fuente-texto);
+  font-family: var(--fuente);
   font-size: 15px;
   line-height: 1.55;
   color: var(--color-texto);
@@ -47,11 +47,10 @@ button {
 h1,
 h2,
 h3 {
-  font-family: var(--fuente-titulos);
+  font-family: var(--fuente);
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.15;
-  font-variation-settings: 'opsz' 72;
 }
 
 ::selection {
@@ -111,19 +110,19 @@ h3 {
 
 .boton--primario {
   color: #fff;
-  background: linear-gradient(180deg, #34893a 0%, var(--color-primario) 100%);
+  background: linear-gradient(180deg, var(--verde-medio) 0%, var(--verde) 100%);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.18),
-    0 1px 2px rgba(20, 38, 25, 0.2),
-    0 8px 20px -8px rgba(46, 125, 50, 0.6);
+    0 1px 2px rgba(31, 42, 33, 0.2),
+    0 8px 20px -8px rgba(56, 102, 65, 0.6);
 }
 
 .boton--primario:hover:not(:disabled) {
-  background: linear-gradient(180deg, #2f7e34 0%, var(--color-primario-hover) 100%);
+  background: linear-gradient(180deg, var(--verde) 0%, var(--color-primario-hover) 100%);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.18),
-    0 1px 2px rgba(20, 38, 25, 0.2),
-    0 12px 24px -8px rgba(46, 125, 50, 0.7);
+    0 1px 2px rgba(31, 42, 33, 0.2),
+    0 12px 24px -8px rgba(56, 102, 65, 0.7);
 }
 
 .boton--secundario {
@@ -200,7 +199,7 @@ h3 {
 }
 
 .campo__control:hover {
-  border-color: #aebfa0;
+  border-color: var(--color-borde-fuerte);
 }
 
 .campo__control:focus-within {
@@ -210,11 +209,11 @@ h3 {
 
 .campo__control[data-estado='error'] {
   border-color: var(--color-error);
-  background: #fffdfc;
+  background: var(--color-error-suave);
 }
 
 .campo__control[data-estado='error']:focus-within {
-  box-shadow: 0 0 0 3px rgba(180, 35, 24, 0.18);
+  box-shadow: 0 0 0 3px rgba(188, 71, 73, 0.18);
 }
 
 .campo__control[data-estado='ok'] {
@@ -246,7 +245,7 @@ h3 {
 }
 
 .campo__input::placeholder {
-  color: #9aa89c;
+  color: #9a9a8c;
   font-weight: 500;
 }
 
@@ -310,7 +309,7 @@ h3 {
 .aviso--info {
   color: var(--color-info);
   background: var(--color-info-suave);
-  border: 1px solid #c6dcf5;
+  border: 1px solid var(--color-primario-borde);
 }
 
 .aviso--error {

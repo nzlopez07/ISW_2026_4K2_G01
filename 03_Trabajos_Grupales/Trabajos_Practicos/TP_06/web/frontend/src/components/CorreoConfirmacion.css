@@ -1,6 +1,6 @@
 .modal__dialogo.correo {
   width: min(100%, 600px);
-  background: #f3f4f1;
+  background: var(--color-fondo);
 }
 
 .correo__barra {
@@ -22,7 +22,7 @@
 }
 
 .correo__asunto {
-  font-family: var(--fuente-texto);
+  font-family: var(--fuente);
   font-size: 1.05rem;
   font-weight: 750;
   letter-spacing: -0.01em;
@@ -96,7 +96,7 @@
 }
 
 .correo__portada h4 {
-  font-family: var(--fuente-titulos);
+  font-family: var(--fuente);
   font-size: 1.35rem;
   font-weight: 600;
   color: var(--color-bosque);

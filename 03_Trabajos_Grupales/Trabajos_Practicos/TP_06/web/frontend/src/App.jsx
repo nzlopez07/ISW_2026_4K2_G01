@@ -183,12 +183,13 @@ export default function App() {
                 id="paso-fecha"
                 numero={1}
                 titulo="¿Cuándo nos visitás?"
-                descripcion="Abrimos de martes a domingo, de 8:30 a 19:00 h. Cerramos los lunes, el 25 de diciembre y el 1 de enero."
+                descripcion="Abrimos de martes a domingo, de 8:30 a 19:00 h. Cerramos los lunes, el 25 de diciembre y el 1 de enero. Para el mismo día se puede comprar hasta las 17:30."
                 completo={Boolean(fecha)}
               >
                 <SelectorFecha
                   key={versionFormulario}
                   hoy={estado.hoy}
+                  hora={estado.hora}
                   fecha={fecha}
                   onCambio={setFecha}
                   mostrarRequerido={intentoConfirmar}
