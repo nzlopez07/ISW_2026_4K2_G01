@@ -22,6 +22,7 @@
 
   /* Marca */
   --color-bosque: var(--verde);
+  --color-bosque-2: #24422b;
   --color-primario: var(--verde);
   --color-primario-hover: #2f5637;
   --color-primario-activo: #2a4d31;
