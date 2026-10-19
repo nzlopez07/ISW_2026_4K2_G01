@@ -3,7 +3,7 @@
 Ciclo TDD - Fase RED.
 Diseño basado en la consigna oficial y las especificaciones del Product Owner.
 """
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 from unittest.mock import Mock
 import pytest
 
@@ -11,12 +11,13 @@ from src.domain.exceptions import (
     CantidadEntradasInvalidaException,
     EdadInvalidaException,
     ErrorEnvioEmailException,
+    ErrorProcesamientoPagoException,
     FechaInvalidaException,
     FormaPagoInvalidaException,
     ParqueCerradoException,
     UsuarioNoRegistradoException,
 )
-from src.domain.models import FormaPago, TipoPase, Usuario
+from src.domain.models import Entrada, FormaPago, TipoPase, Usuario
 from src.services.email_service import EmailService
 from src.services.payment_service import PaymentService
 from src.services.ticket_service import TicketService
@@ -95,7 +96,7 @@ class TestAperturaYFechas:
             ticket_service.comprar_entradas(
                 usuario=usuario_registrado,
                 fecha_visita=proximo_lunes,
-                edades_visitantes=[25],
+                entradas=[Entrada(edad_visitante=25)],
                 forma_pago=FormaPago.EFECTIVO,
             )
 
@@ -113,7 +114,7 @@ class TestAperturaYFechas:
             ticket_service.comprar_entradas(
                 usuario=usuario_registrado,
                 fecha_visita=feriado,
-                edades_visitantes=[30],
+                entradas=[Entrada(edad_visitante=30)],
                 forma_pago=FormaPago.EFECTIVO,
             )
 
@@ -124,7 +125,7 @@ class TestAperturaYFechas:
             ticket_service.comprar_entradas(
                 usuario=usuario_registrado,
                 fecha_visita=ayer,
-                edades_visitantes=[25],
+                entradas=[Entrada(edad_visitante=25)],
                 forma_pago=FormaPago.EFECTIVO,
             )
 
@@ -133,11 +134,15 @@ class TestAperturaYFechas:
     ):
         """El horizonte máximo de compra es de un mes (30 días)."""
         fecha_lejana = date.today() + timedelta(days=35)
+        # Se evita lunes o feriado: la prueba debe fallar solo por la anticipación
+        feriados = [(12, 25), (1, 1)]
+        while fecha_lejana.weekday() == 0 or (fecha_lejana.month, fecha_lejana.day) in feriados:
+            fecha_lejana += timedelta(days=1)
         with pytest.raises(FechaInvalidaException):
             ticket_service.comprar_entradas(
                 usuario=usuario_registrado,
                 fecha_visita=fecha_lejana,
-                edades_visitantes=[25],
+                entradas=[Entrada(edad_visitante=25)],
                 forma_pago=FormaPago.EFECTIVO,
             )
 
@@ -148,7 +153,7 @@ class TestAperturaYFechas:
         compra = ticket_service.comprar_entradas(
             usuario=usuario_registrado,
             fecha_visita=fecha_abierta,
-            edades_visitantes=[28],
+            entradas=[Entrada(edad_visitante=28)],
             forma_pago=FormaPago.EFECTIVO,
         )
         assert compra.confirmada is True
@@ -161,21 +166,43 @@ class TestAperturaYFechas:
         miercoles_abierto = date(2026, 10, 14)  # Miércoles: parque abierto
         import src.services.ticket_service as ts_module
 
-        class MockDate(date):
+        class MockDatetime(datetime):
             @classmethod
-            def today(cls):
-                return miercoles_abierto
+            def now(cls, tz=None):
+                return datetime(2026, 10, 14, 10, 0)
 
-        monkeypatch.setattr(ts_module, "date", MockDate)
+        monkeypatch.setattr(ts_module, "datetime", MockDatetime)
 
         compra = ticket_service.comprar_entradas(
             usuario=usuario_registrado,
             fecha_visita=miercoles_abierto,
-            edades_visitantes=[25],
+            entradas=[Entrada(edad_visitante=25)],
             forma_pago=FormaPago.EFECTIVO,
         )
         assert compra.confirmada is True
         assert compra.fecha_visita == miercoles_abierto
+
+    def test_compra_para_hoy_despues_de_las_17_30_falla(
+        self, ticket_service, usuario_registrado, monkeypatch
+    ):
+        """Para el día actual solo se puede comprar hasta las 17:30 (FAQ 26)."""
+        miercoles_abierto = date(2026, 10, 14)
+        import src.services.ticket_service as ts_module
+
+        class MockDatetime(datetime):
+            @classmethod
+            def now(cls, tz=None):
+                return datetime(2026, 10, 14, 17, 31)
+
+        monkeypatch.setattr(ts_module, "datetime", MockDatetime)
+
+        with pytest.raises(FechaInvalidaException):
+            ticket_service.comprar_entradas(
+                usuario=usuario_registrado,
+                fecha_visita=miercoles_abierto,
+                entradas=[Entrada(edad_visitante=25)],
+                forma_pago=FormaPago.EFECTIVO,
+            )
 
 
 
@@ -196,7 +223,7 @@ class TestCantidadYEdades:
             ticket_service.comprar_entradas(
                 usuario=usuario_registrado,
                 fecha_visita=fecha_abierta,
-                edades_visitantes=edades,
+                entradas=[Entrada(edad_visitante=edad) for edad in edades],
                 forma_pago=FormaPago.EFECTIVO,
             )
 
@@ -209,10 +236,28 @@ class TestCantidadYEdades:
         compra = ticket_service.comprar_entradas(
             usuario=usuario_registrado,
             fecha_visita=fecha_abierta,
-            edades_visitantes=edades,
+            entradas=[Entrada(edad_visitante=edad) for edad in edades],
             forma_pago=FormaPago.EFECTIVO,
         )
         assert len(compra.entradas) == cantidad_valida
+
+    def test_mas_de_10_entradas_para_una_fecha_en_varias_compras_falla(
+        self, ticket_service, usuario_registrado, fecha_abierta
+    ):
+        """El máximo de 10 entradas es por fecha, sumando todas las compras (FAQ 27)."""
+        ticket_service.comprar_entradas(
+            usuario=usuario_registrado,
+            fecha_visita=fecha_abierta,
+            entradas=[Entrada(edad_visitante=30) for _ in range(6)],
+            forma_pago=FormaPago.EFECTIVO,
+        )
+        with pytest.raises(CantidadEntradasInvalidaException):
+            ticket_service.comprar_entradas(
+                usuario=usuario_registrado,
+                fecha_visita=fecha_abierta,
+                entradas=[Entrada(edad_visitante=30) for _ in range(5)],
+                forma_pago=FormaPago.EFECTIVO,
+            )
 
     @pytest.mark.parametrize("edad_invalida", [-1, 135, 150])
     def test_edad_visitante_fuera_de_rango_falla(
@@ -223,7 +268,7 @@ class TestCantidadYEdades:
             ticket_service.comprar_entradas(
                 usuario=usuario_registrado,
                 fecha_visita=fecha_abierta,
-                edades_visitantes=[edad_invalida],
+                entradas=[Entrada(edad_visitante=edad_invalida)],
                 forma_pago=FormaPago.EFECTIVO,
             )
 
@@ -255,9 +300,8 @@ class TestTarifasYDescuentos:
         compra = ticket_service.comprar_entradas(
             usuario=usuario_registrado,
             fecha_visita=fecha_abierta,
-            edades_visitantes=[edad],
+            entradas=[Entrada(edad_visitante=edad, tipo_pase=TipoPase.REGULAR)],
             forma_pago=FormaPago.EFECTIVO,
-            tipo_pase=TipoPase.REGULAR,
         )
         assert compra.monto_total == precio_esperado
         assert compra.entradas[0].precio == precio_esperado
@@ -278,9 +322,8 @@ class TestTarifasYDescuentos:
         compra = ticket_service.comprar_entradas(
             usuario=usuario_registrado,
             fecha_visita=fecha_abierta,
-            edades_visitantes=[edad],
+            entradas=[Entrada(edad_visitante=edad, tipo_pase=TipoPase.VIP)],
             forma_pago=FormaPago.EFECTIVO,
-            tipo_pase=TipoPase.VIP,
         )
         assert compra.monto_total == precio_esperado
         assert compra.entradas[0].precio == precio_esperado
@@ -295,12 +338,27 @@ class TestTarifasYDescuentos:
         compra = ticket_service.comprar_entradas(
             usuario=usuario_registrado,
             fecha_visita=fecha_abierta,
-            edades_visitantes=edades,
+            entradas=[Entrada(edad_visitante=edad, tipo_pase=TipoPase.REGULAR) for edad in edades],
             forma_pago=FormaPago.EFECTIVO,
-            tipo_pase=TipoPase.REGULAR,
         )
         assert compra.monto_total == 20000.0
         assert len(compra.entradas) == 4
+
+    def test_cada_entrada_con_su_tipo_de_pase(
+        self, ticket_service, usuario_registrado, fecha_abierta
+    ):
+        """El pase se elige por visitante: adulto VIP ($20.000) + adulto Regular ($10.000)."""
+        compra = ticket_service.comprar_entradas(
+            usuario=usuario_registrado,
+            fecha_visita=fecha_abierta,
+            entradas=[
+                Entrada(edad_visitante=35, tipo_pase=TipoPase.VIP),
+                Entrada(edad_visitante=35, tipo_pase=TipoPase.REGULAR),
+            ],
+            forma_pago=FormaPago.EFECTIVO,
+        )
+        assert [e.precio for e in compra.entradas] == [20000.0, 10000.0]
+        assert compra.monto_total == 30000.0
 
 
 # ------------------------------------------------------------------------------
@@ -317,7 +375,7 @@ class TestFormasPagoYNotificacion:
         compra = ticket_service.comprar_entradas(
             usuario=usuario_registrado,
             fecha_visita=fecha_abierta,
-            edades_visitantes=[25],
+            entradas=[Entrada(edad_visitante=25)],
             forma_pago=FormaPago.MERCADO_PAGO,
         )
         assert compra.forma_pago == FormaPago.MERCADO_PAGO
@@ -330,22 +388,38 @@ class TestFormasPagoYNotificacion:
         compra = ticket_service.comprar_entradas(
             usuario=usuario_registrado,
             fecha_visita=fecha_abierta,
-            edades_visitantes=[25],
+            entradas=[Entrada(edad_visitante=25)],
             forma_pago=FormaPago.EFECTIVO,
         )
         assert compra.forma_pago == FormaPago.EFECTIVO
         mock_payment_service.procesar_pago.assert_not_called()
 
-    def test_forma_pago_invalida_falla(
-        self, ticket_service, usuario_registrado, fecha_abierta
+    def test_pago_rechazado_no_confirma_la_compra(
+        self, ticket_service, usuario_registrado, fecha_abierta,
+        mock_payment_service, mock_email_service
     ):
-        """Si se especifica un medio de pago no soportado, lanza excepción."""
+        """Si Mercado Pago rechaza el pago, la compra falla y no se envía el correo."""
+        mock_payment_service.procesar_pago.return_value = False
+        with pytest.raises(ErrorProcesamientoPagoException):
+            ticket_service.comprar_entradas(
+                usuario=usuario_registrado,
+                fecha_visita=fecha_abierta,
+                entradas=[Entrada(edad_visitante=25)],
+                forma_pago=FormaPago.MERCADO_PAGO,
+            )
+        mock_email_service.enviar_confirmacion.assert_not_called()
+
+    @pytest.mark.parametrize("forma_pago", [None, "TRANSFERENCIA_BANCARIA"])
+    def test_forma_pago_invalida_falla(
+        self, ticket_service, usuario_registrado, fecha_abierta, forma_pago
+    ):
+        """Sin forma de pago seleccionada o con un medio no soportado, lanza excepción."""
         with pytest.raises(FormaPagoInvalidaException):
             ticket_service.comprar_entradas(
                 usuario=usuario_registrado,
                 fecha_visita=fecha_abierta,
-                edades_visitantes=[25],
-                forma_pago="TRANSFERENCIA_BANCARIA",  # type: ignore
+                entradas=[Entrada(edad_visitante=25)],
+                forma_pago=forma_pago,  # type: ignore
             )
 
     def test_envio_mail_confirmacion_exito(
@@ -355,7 +429,7 @@ class TestFormasPagoYNotificacion:
         compra = ticket_service.comprar_entradas(
             usuario=usuario_registrado,
             fecha_visita=fecha_abierta,
-            edades_visitantes=[25],
+            entradas=[Entrada(edad_visitante=25)],
             forma_pago=FormaPago.EFECTIVO,
         )
         mock_email_service.enviar_confirmacion.assert_called_once_with(
@@ -374,7 +448,7 @@ class TestFormasPagoYNotificacion:
             ticket_service.comprar_entradas(
                 usuario=usuario_registrado,
                 fecha_visita=fecha_abierta,
-                edades_visitantes=[25],
+                entradas=[Entrada(edad_visitante=25)],
                 forma_pago=FormaPago.EFECTIVO,
             )
 
@@ -392,6 +466,6 @@ class TestAutenticacionUsuario:
             ticket_service.comprar_entradas(
                 usuario=None,
                 fecha_visita=fecha_abierta,
-                edades_visitantes=[25],
+                entradas=[Entrada(edad_visitante=25)],
                 forma_pago=FormaPago.EFECTIVO,
             )
