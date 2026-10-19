@@ -3,7 +3,7 @@
 Ciclo TDD - Fase RED.
 Diseño basado en la consigna oficial y las especificaciones del Product Owner.
 """
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 from unittest.mock import Mock
 import pytest
 
@@ -166,12 +166,12 @@ class TestAperturaYFechas:
         miercoles_abierto = date(2026, 10, 14)  # Miércoles: parque abierto
         import src.services.ticket_service as ts_module
 
-        class MockDate(date):
+        class MockDatetime(datetime):
             @classmethod
-            def today(cls):
-                return miercoles_abierto
+            def now(cls, tz=None):
+                return datetime(2026, 10, 14, 10, 0)
 
-        monkeypatch.setattr(ts_module, "date", MockDate)
+        monkeypatch.setattr(ts_module, "datetime", MockDatetime)
 
         compra = ticket_service.comprar_entradas(
             usuario=usuario_registrado,
@@ -181,6 +181,28 @@ class TestAperturaYFechas:
         )
         assert compra.confirmada is True
         assert compra.fecha_visita == miercoles_abierto
+
+    def test_compra_para_hoy_despues_de_las_17_30_falla(
+        self, ticket_service, usuario_registrado, monkeypatch
+    ):
+        """Para el día actual solo se puede comprar hasta las 17:30 (FAQ 26)."""
+        miercoles_abierto = date(2026, 10, 14)
+        import src.services.ticket_service as ts_module
+
+        class MockDatetime(datetime):
+            @classmethod
+            def now(cls, tz=None):
+                return datetime(2026, 10, 14, 17, 31)
+
+        monkeypatch.setattr(ts_module, "datetime", MockDatetime)
+
+        with pytest.raises(FechaInvalidaException):
+            ticket_service.comprar_entradas(
+                usuario=usuario_registrado,
+                fecha_visita=miercoles_abierto,
+                entradas=[Entrada(edad_visitante=25)],
+                forma_pago=FormaPago.EFECTIVO,
+            )
 
 
 
@@ -218,6 +240,24 @@ class TestCantidadYEdades:
             forma_pago=FormaPago.EFECTIVO,
         )
         assert len(compra.entradas) == cantidad_valida
+
+    def test_mas_de_10_entradas_para_una_fecha_en_varias_compras_falla(
+        self, ticket_service, usuario_registrado, fecha_abierta
+    ):
+        """El máximo de 10 entradas es por fecha, sumando todas las compras (FAQ 27)."""
+        ticket_service.comprar_entradas(
+            usuario=usuario_registrado,
+            fecha_visita=fecha_abierta,
+            entradas=[Entrada(edad_visitante=30) for _ in range(6)],
+            forma_pago=FormaPago.EFECTIVO,
+        )
+        with pytest.raises(CantidadEntradasInvalidaException):
+            ticket_service.comprar_entradas(
+                usuario=usuario_registrado,
+                fecha_visita=fecha_abierta,
+                entradas=[Entrada(edad_visitante=30) for _ in range(5)],
+                forma_pago=FormaPago.EFECTIVO,
+            )
 
     @pytest.mark.parametrize("edad_invalida", [-1, 135, 150])
     def test_edad_visitante_fuera_de_rango_falla(
