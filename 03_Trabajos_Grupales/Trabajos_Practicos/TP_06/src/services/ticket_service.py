@@ -1,11 +1,12 @@
 """Servicio para la compra de entradas de EcoHarmony Park."""
-from datetime import date, timedelta
+from datetime import date, datetime, time, timedelta
 from typing import List, Optional
 import uuid
 
 from src.domain.exceptions import (
     CantidadEntradasInvalidaException,
     EdadInvalidaException,
+    ErrorProcesamientoPagoException,
     FechaInvalidaException,
     FormaPagoInvalidaException,
     ParqueCerradoException,
@@ -31,39 +32,39 @@ class TicketService:
     ) -> None:
         self.email_service = email_service
         self.payment_service = payment_service
+        # Entradas ya compradas por cada usuario (DNI) para cada fecha
+        self.entradas_compradas = {}
 
     def comprar_entradas(
         self,
         usuario: Optional[Usuario],
         fecha_visita: date,
-        edades_visitantes: List[int],
+        entradas: List[Entrada],
         forma_pago: FormaPago,
-        tipo_pase: TipoPase = TipoPase.REGULAR,
     ) -> CompraEntradas:
         """Valida los datos, calcula el total y orquesta el pago y la confirmación."""
         self._validar_solicitud(
             usuario=usuario,
             fecha_visita=fecha_visita,
-            edades_visitantes=edades_visitantes,
+            entradas=entradas,
             forma_pago=forma_pago,
-            tipo_pase=tipo_pase,
         )
 
         # Generamos cada entrada con su tarifa calculada individualmente
-        entradas: List[Entrada] = [
+        entradas_cotizadas: List[Entrada] = [
             Entrada(
-                edad_visitante=edad,
-                tipo_pase=tipo_pase,
-                precio=self._calcular_precio_entrada(edad, tipo_pase),
+                edad_visitante=entrada.edad_visitante,
+                tipo_pase=entrada.tipo_pase,
+                precio=self._calcular_precio_entrada(entrada.edad_visitante, entrada.tipo_pase),
             )
-            for edad in edades_visitantes
+            for entrada in entradas
         ]
-        monto_total = sum(e.precio for e in entradas)
+        monto_total = sum(e.precio for e in entradas_cotizadas)
 
         compra = CompraEntradas(
             usuario=usuario,
             fecha_visita=fecha_visita,
-            entradas=entradas,
+            entradas=entradas_cotizadas,
             forma_pago=forma_pago,
             monto_total=monto_total,
             id_compra=f"ECO-{uuid.uuid4().hex[:8].upper()}",
@@ -72,11 +73,15 @@ class TicketService:
 
         # Si el pago es con tarjeta, invocamos pasarela de Mercado Pago
         if forma_pago == FormaPago.MERCADO_PAGO and self.payment_service:
-            self.payment_service.procesar_pago(compra)
+            if not self.payment_service.procesar_pago(compra):
+                raise ErrorProcesamientoPagoException("Mercado Pago rechazó el pago.")
 
         # Despacho de mail de confirmación
         if self.email_service:
             self.email_service.enviar_confirmacion(email=usuario.email, compra=compra)
+
+        clave = (usuario.dni, fecha_visita)
+        self.entradas_compradas[clave] = self.entradas_compradas.get(clave, 0) + len(entradas)
 
         compra.confirmada = True
         return compra
@@ -85,9 +90,8 @@ class TicketService:
         self,
         usuario: Optional[Usuario],
         fecha_visita: date,
-        edades_visitantes: List[int],
+        entradas: List[Entrada],
         forma_pago: FormaPago,
-        tipo_pase: TipoPase,
     ) -> None:
         """Centraliza las validaciones de negocio previas a la compra."""
         # 1. Usuario registrado
@@ -96,10 +100,13 @@ class TicketService:
                 "La compra solo está permitida a usuarios registrados."
             )
 
-        # 2. Fecha no puede ser anterior a hoy
-        hoy = date.today()
+        # 2. Fecha no puede ser anterior a hoy, y para hoy solo hasta las 17:30
+        ahora = datetime.now()
+        hoy = ahora.date()
         if fecha_visita < hoy:
             raise FechaInvalidaException("La fecha no puede ser anterior a hoy.")
+        if fecha_visita == hoy and ahora.time() > time(17, 30):
+            raise FechaInvalidaException("Para el día de hoy solo se puede comprar hasta las 17:30.")
 
         # 3. Días de apertura del parque
         self._validar_calendario_apertura(fecha_visita)
@@ -111,21 +118,25 @@ class TicketService:
             )
 
         # 5. Cantidad de entradas: 1 a 10
-        cantidad = len(edades_visitantes)
+        cantidad = len(entradas)
         if cantidad < 1 or cantidad > 10:
             raise CantidadEntradasInvalidaException(
                 "La cantidad de entradas debe ser entre 1 y 10."
             )
+        ya_compradas = self.entradas_compradas.get((usuario.dni, fecha_visita), 0)
+        if ya_compradas + cantidad > 10:
+            raise CantidadEntradasInvalidaException(
+                f"Solo se pueden comprar 10 entradas por fecha (ya compraste {ya_compradas})."
+            )
 
-        # 6. Rango biológico de edades
-        for edad in edades_visitantes:
-            if edad < 0 or edad >= 135:
-                raise EdadInvalidaException(f"Edad fuera de rango: {edad}")
+        # 6. Rango biológico de edades y tipo de pase de cada entrada
+        for entrada in entradas:
+            if entrada.edad_visitante < 0 or entrada.edad_visitante >= 135:
+                raise EdadInvalidaException(f"Edad fuera de rango: {entrada.edad_visitante}")
+            if entrada.tipo_pase not in (TipoPase.REGULAR, TipoPase.VIP):
+                raise TipoPaseInvalidoException(f"Tipo de pase no válido: {entrada.tipo_pase}")
 
-        # 7. Tipo de pase y medio de pago válidos
-        if tipo_pase not in (TipoPase.REGULAR, TipoPase.VIP):
-            raise TipoPaseInvalidoException(f"Tipo de pase no válido: {tipo_pase}")
-
+        # 7. Medio de pago válido
         if forma_pago not in (FormaPago.EFECTIVO, FormaPago.MERCADO_PAGO):
             raise FormaPagoInvalidaException(f"Forma de pago no válida: {forma_pago}")
 
