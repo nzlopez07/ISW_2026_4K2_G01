@@ -2,7 +2,7 @@ import LightRays from '../reactbits/LightRays.jsx';
 import BlurText from '../reactbits/BlurText.jsx';
 import logo from '../assets/brand/logo-ecoharmony.webp';
 import { CANTIDAD_MAXIMA, DIAS_ANTICIPACION } from '../lib/reglas.js';
-import { IconoCalendario, IconoEntrada, IconoHoja, IconoReloj } from './Iconos.jsx';
+import { IconoAlerta, IconoCalendario, IconoEntrada, IconoHoja, IconoReloj } from './Iconos.jsx';
 import './Portada.css';
 
 export default function Portada({ etiqueta, titulo, bajada }) {
@@ -57,6 +57,10 @@ export default function Portada({ etiqueta, titulo, bajada }) {
             <li>
               <IconoEntrada tamano={17} />
               Hasta {CANTIDAD_MAXIMA} entradas por fecha
+            </li>
+            <li>
+              <IconoAlerta tamano={17} />
+              Cerrado 25/12 y 01/01
             </li>
           </ul>
         </div>

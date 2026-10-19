@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import BlurText from '../reactbits/BlurText.jsx';
 import logoChico from '../assets/brand/logo-ecoharmony-sm.webp';
 import { capitalizar, formatearLarga } from '../lib/fechas.js';
@@ -6,6 +7,10 @@ import { IconoCorreo, IconoInfo } from './Iconos.jsx';
 import './Confirmacion.css';
 
 export default function Confirmacion({ resultado, fecha, usuario, onVerCorreo, onNuevaCompra }) {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
   const correo = resultado.email_confirmacion;
   const pagoOnline = resultado.forma_pago === 'mercado_pago';
   const cantidad = resultado.cantidad_entradas;
