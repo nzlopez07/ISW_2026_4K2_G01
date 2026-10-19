@@ -15,7 +15,7 @@ from urllib.parse import urlparse
 DIRECTORIO_ACTUAL = os.path.dirname(os.path.abspath(__file__))
 RAIZ_TP06 = os.path.abspath(os.path.join(DIRECTORIO_ACTUAL, ".."))
 DIRECTORIO_INTERFAZ = os.path.join(DIRECTORIO_ACTUAL, "frontend", "dist")
-RUTA_BASE_DATOS = os.path.join(DIRECTORIO_ACTUAL, "ecoharmony.db")
+RUTA_BASE_DATOS = os.environ.get("DB_PATH", os.path.join(DIRECTORIO_ACTUAL, "ecoharmony.db"))
 if RAIZ_TP06 not in sys.path:
     sys.path.insert(0, RAIZ_TP06)
 
@@ -246,5 +246,5 @@ def iniciar_servidor(puerto: int = 8080, host: str = None):
 
 
 if __name__ == "__main__":
-    puerto = int(sys.argv[1]) if len(sys.argv) > 1 else 8080
+    puerto = int(sys.argv[1]) if len(sys.argv) > 1 else int(os.environ.get("PORT", "8080"))
     iniciar_servidor(puerto)

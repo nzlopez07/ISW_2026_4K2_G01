@@ -9,6 +9,13 @@ services:
       - "8092:8092"
     volumes:
       - ecoharmony_data:/app/web/data
+    networks:
+      - default
 
 volumes:
   ecoharmony_data:
+
+networks:
+  default:
+    name: web_net
+    external: true
