@@ -5,7 +5,7 @@ import './Calendario.css';
 
 const ENCABEZADOS = ['Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá', 'Do'];
 
-export default function Calendario({ hoy, seleccionada, onElegir }) {
+export default function Calendario({ hoy, hora, seleccionada, onElegir }) {
   const meses = useMemo(() => mesesEntre(hoy, ultimaFechaDeVenta(hoy)), [hoy]);
 
   return (
@@ -33,7 +33,7 @@ export default function Calendario({ hoy, seleccionada, onElegir }) {
                 }
 
                 const cierre = motivoCierre(iso);
-                const fueraDePeriodo = !cierre && evaluarFecha(iso, hoy) !== null;
+                const fueraDePeriodo = !cierre && evaluarFecha(iso, hoy, hora) !== null;
                 const estado = cierre ? 'is-cerrado' : fueraDePeriodo ? 'is-fuera' : 'is-disponible';
                 const clases = [
                   'calendario__dia',
@@ -52,7 +52,7 @@ export default function Calendario({ hoy, seleccionada, onElegir }) {
                     disabled={estado !== 'is-disponible'}
                     aria-pressed={iso === seleccionada}
                     aria-label={capitalizar(formatearLarga(iso))}
-                    title={cierre ?? (fueraDePeriodo ? 'Fuera del período de venta' : undefined)}
+                    title={cierre ?? (fueraDePeriodo ? evaluarFecha(iso, hoy, hora) : undefined)}
                     onClick={() => onElegir(iso)}
                   >
                     {desdeIso(iso).dia}

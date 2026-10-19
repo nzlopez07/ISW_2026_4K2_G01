@@ -114,7 +114,7 @@ export default function Resumen({ usuario, fecha, formaPago, resumen, pendientes
         )}
 
         <ClickSpark
-          sparkColor={['#8cc63f', '#2e7d32', '#e9c46a']}
+          sparkColor={['#a7c957', '#6a994e', '#386641']}
           sparkCount={10}
           sparkRadius={36}
           sparkSize={11}

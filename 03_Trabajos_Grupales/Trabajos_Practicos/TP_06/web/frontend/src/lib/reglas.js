@@ -6,6 +6,7 @@ export const CANTIDAD_MINIMA = 1;
 export const CANTIDAD_MAXIMA = 10;
 export const EDAD_MAXIMA = 134;
 export const DIAS_ANTICIPACION = 30;
+export const HORA_LIMITE_HOY = '17:30';
 
 export const CATEGORIAS = [
   { codigo: 'bebe', nombre: 'Bebé', desde: 0, hasta: 3, factor: 0 },
@@ -15,10 +16,6 @@ export const CATEGORIAS = [
 ];
 
 export const NOMBRE_PASE = { regular: 'Regular', vip: 'VIP' };
-export const DESCRIPCION_PASE = {
-  regular: 'Acceso a todos los senderos, miradores y exhibiciones del parque.',
-  vip: 'Todo lo del pase Regular, con acceso preferencial y comodidades exclusivas.'
-};
 export const NOMBRE_FORMA_PAGO = { mercado_pago: 'Mercado Pago', efectivo: 'Efectivo en boletería' };
 
 const formatoPesos = new Intl.NumberFormat('es-AR', { maximumFractionDigits: 0 });
@@ -98,8 +95,9 @@ export function motivoCierre(iso) {
   return null;
 }
 
-export function evaluarFecha(iso, hoy) {
+export function evaluarFecha(iso, hoy, hora) {
   if (iso < hoy) return `La fecha no puede ser anterior a hoy (${formatearCorta(hoy)}).`;
+  if (iso === hoy && hora > HORA_LIMITE_HOY) return `Para el día de hoy solo se puede comprar hasta las ${HORA_LIMITE_HOY}.`;
   const ultima = ultimaFechaDeVenta(hoy);
   if (iso > ultima) {
     return `Podés comprar con hasta ${DIAS_ANTICIPACION} días de anticipación: elegí una fecha hasta el ${formatearCorta(ultima)}.`;
@@ -109,7 +107,7 @@ export function evaluarFecha(iso, hoy) {
 }
 
 // Devuelve la fecha ISO solo si existe y se puede reservar; si no, el motivo
-export function validarFechaEscrita(texto, hoy) {
+export function validarFechaEscrita(texto, hoy, hora) {
   const partes = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(texto);
   if (!partes) return { iso: null, mensaje: 'Completá la fecha con el formato dd/mm/aaaa.' };
   const [dia, mes, anio] = partes.slice(1).map(Number);
@@ -117,7 +115,7 @@ export function validarFechaEscrita(texto, hoy) {
     return { iso: null, mensaje: 'La fecha ingresada no existe. Revisá el día y el mes.' };
   }
   const iso = aIso(anio, mes, dia);
-  const mensaje = evaluarFecha(iso, hoy);
+  const mensaje = evaluarFecha(iso, hoy, hora);
   return { iso: mensaje ? null : iso, mensaje };
 }
 

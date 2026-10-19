@@ -4,7 +4,6 @@ import {
   CANTIDAD_MAXIMA,
   CANTIDAD_MINIMA,
   CATEGORIAS,
-  DESCRIPCION_PASE,
   NOMBRE_PASE,
   categoriaPorEdad,
   etiquetaBeneficio,
@@ -29,7 +28,6 @@ function Tarifas({ tarifas }) {
               </span>
               <span className="tarifa__precio numero">{formatearPrecio(precio)}</span>
             </div>
-            <p className="tarifa__detalle">{DESCRIPCION_PASE[tipo]}</p>
           </div>
         ))}
       </div>
@@ -160,7 +158,7 @@ export default function Visitantes({ tarifas, visitantes, despachar, mostrarErro
             Cantidad de entradas
           </span>
           <span className="cantidad__ayuda">
-            Mínimo {CANTIDAD_MINIMA} · máximo {CANTIDAD_MAXIMA} por compra
+            Mínimo {CANTIDAD_MINIMA} · máximo {CANTIDAD_MAXIMA} por fecha
           </span>
         </div>
         <div className="cantidad__control" role="group" aria-labelledby="cantidad-entradas">
@@ -191,7 +189,7 @@ export default function Visitantes({ tarifas, visitantes, despachar, mostrarErro
       {cantidad >= CANTIDAD_MAXIMA && (
         <p className="aviso aviso--alerta" role="status">
           <IconoInfo tamano={18} />
-          Alcanzaste el máximo de {CANTIDAD_MAXIMA} entradas por compra. Si son más visitantes, podés hacer otra compra.
+          Alcanzaste el máximo de {CANTIDAD_MAXIMA} entradas por fecha.
         </p>
       )}
 

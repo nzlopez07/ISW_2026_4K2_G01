@@ -29,7 +29,7 @@
 .alerta-compra:focus-visible {
   box-shadow:
     var(--sombra-md),
-    0 0 0 3px rgba(180, 35, 24, 0.2);
+    0 0 0 3px rgba(188, 71, 73, 0.2);
 }
 
 .alerta-compra div {

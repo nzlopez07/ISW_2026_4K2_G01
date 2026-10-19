@@ -109,6 +109,7 @@ class EcoHarmonyRequestHandler(SimpleHTTPRequestHandler):
                 },
                 "horario": "08:30 a 19:00 (Entrada hasta las 17:30)",
                 "hoy": date.today().isoformat(),
+                "hora": datetime.now().strftime("%H:%M"),
             })
             return
 

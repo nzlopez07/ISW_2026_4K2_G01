@@ -5,7 +5,7 @@
   padding: 4.25rem 1.5rem 8.5rem;
   color: var(--color-texto-invertido);
   background:
-    radial-gradient(110% 85% at 50% -15%, #2b6340 0%, #15391f 42%, #0c2414 78%),
+    radial-gradient(110% 85% at 50% -15%, var(--verde-medio) 0%, var(--verde) 42%, #2a4d31 78%),
     var(--color-bosque);
 }
 
@@ -19,8 +19,8 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(60% 50% at 85% 60%, rgba(140, 198, 63, 0.12), transparent 70%),
-    linear-gradient(180deg, transparent 55%, rgba(8, 26, 14, 0.55) 100%);
+    radial-gradient(60% 50% at 85% 60%, rgba(167, 201, 87, 0.12), transparent 70%),
+    linear-gradient(180deg, transparent 55%, rgba(31, 42, 33, 0.55) 100%);
   pointer-events: none;
 }
 
@@ -50,9 +50,9 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #d6eeb0;
-  background: rgba(140, 198, 63, 0.14);
-  border: 1px solid rgba(140, 198, 63, 0.32);
+  color: var(--crema);
+  background: rgba(167, 201, 87, 0.14);
+  border: 1px solid rgba(167, 201, 87, 0.32);
 }
 
 .portada__titulo {
@@ -68,7 +68,7 @@
   max-width: 34rem;
   font-size: 1.1rem;
   line-height: 1.6;
-  color: rgba(238, 246, 228, 0.82);
+  color: rgba(242, 232, 207, 0.82);
 }
 
 .portada__datos {
@@ -88,7 +88,7 @@
   border-radius: var(--radio-pildora);
   font-size: 0.86rem;
   font-weight: 600;
-  color: #f1f8e6;
+  color: #fbf8f0;
   background: rgba(255, 255, 255, 0.07);
   border: 1px solid rgba(255, 255, 255, 0.13);
   backdrop-filter: blur(6px);
@@ -108,10 +108,10 @@
   aspect-ratio: 1;
   padding: 13%;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 28%, #ffffff 0%, #f6f9f0 62%, #e8f0dc 100%);
+  background: radial-gradient(circle at 35% 28%, #ffffff 0%, #fcf9f2 62%, var(--crema) 100%);
   box-shadow:
     0 0 0 10px rgba(255, 255, 255, 0.05),
-    0 0 110px rgba(140, 198, 63, 0.28),
+    0 0 110px rgba(167, 201, 87, 0.28),
     0 40px 80px -24px rgba(0, 0, 0, 0.6);
   animation: flotar 7s ease-in-out infinite;
 }
@@ -125,7 +125,7 @@
   position: absolute;
   inset: -18px;
   border-radius: 50%;
-  border: 1.5px dashed rgba(214, 238, 176, 0.32);
+  border: 1.5px dashed rgba(242, 232, 207, 0.32);
   animation: girar 70s linear infinite;
 }
 

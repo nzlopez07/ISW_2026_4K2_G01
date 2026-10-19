@@ -29,7 +29,7 @@ export default function FormasPago({ formaPago, onCambio, mostrarRequerido }) {
           <SpotlightCard
             key={valor}
             theme="light"
-            spotlightColor="rgba(140, 198, 63, 0.9)"
+            spotlightColor="rgba(167, 201, 87, 0.9)"
             intensity={0.35}
             spotlightSize={260}
             borderGlow={0.9}

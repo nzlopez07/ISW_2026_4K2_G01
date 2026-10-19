@@ -33,7 +33,7 @@
 }
 
 .pie__marca strong {
-  font-family: var(--fuente-titulos);
+  font-family: var(--fuente);
   font-size: 1.05rem;
   font-weight: 650;
   color: var(--color-bosque);

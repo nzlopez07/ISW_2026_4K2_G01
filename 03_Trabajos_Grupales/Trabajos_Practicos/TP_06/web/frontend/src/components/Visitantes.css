@@ -70,7 +70,7 @@
 .cantidad__valor {
   min-width: 2.6ch;
   text-align: center;
-  font-family: var(--fuente-titulos);
+  font-family: var(--fuente);
   font-size: 1.45rem;
   font-weight: 650;
   color: var(--color-bosque);
@@ -97,7 +97,7 @@
 
 .tarifa--vip {
   border-color: var(--color-vip-borde);
-  background: linear-gradient(135deg, #fffaf0 0%, var(--color-vip-suave) 100%);
+  background: linear-gradient(135deg, var(--color-superficie-suave) 0%, var(--color-vip-suave) 100%);
 }
 
 .tarifa__cabecera {
@@ -120,18 +120,12 @@
 }
 
 .tarifa__precio {
-  font-family: var(--fuente-titulos);
+  font-family: var(--fuente);
   font-size: 1.2rem;
   font-weight: 650;
   color: var(--color-bosque);
 }
 
-.tarifa__detalle {
-  margin-top: 0.2rem;
-  font-size: 0.82rem;
-  color: var(--color-texto-2);
-  line-height: 1.45;
-}
 
 .tarifas__descuentos {
   display: flex;
@@ -202,7 +196,7 @@
 
 .visitante--error {
   border-color: var(--color-error-borde);
-  background: #fffbfa;
+  background: var(--color-error-suave);
 }
 
 @keyframes entrar-visitante {
@@ -240,7 +234,7 @@
 }
 
 .visitante__titulo h3 {
-  font-family: var(--fuente-texto);
+  font-family: var(--fuente);
   font-size: 0.98rem;
   font-weight: 750;
   letter-spacing: -0.01em;
@@ -343,7 +337,7 @@
 }
 
 .pase__opcion:hover {
-  border-color: #aebfa0;
+  border-color: var(--color-borde-fuerte);
 }
 
 .pase__opcion:has(input:focus-visible) {
@@ -376,9 +370,9 @@
 }
 
 .pase__opcion--vip.is-activo {
-  border-color: #c99a2e;
+  border-color: var(--verde-medio);
   background: var(--color-vip-suave);
-  box-shadow: inset 0 0 0 1px #c99a2e;
+  box-shadow: inset 0 0 0 1px var(--verde-medio);
 }
 
 .pase__opcion--vip.is-activo .pase__nombre,
