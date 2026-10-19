@@ -140,7 +140,8 @@ Se hicieron en nuevos ciclos RED - GREEN. La suite pasó de 36 a 41 casos:
 3. **Compra sin forma de pago.** Es una prueba de usuario de la consigna. El servicio ya la rechazaba, pero el servidor web completaba "efectivo" por defecto; se agregó el caso `None` a `test_forma_pago_invalida_falla` y se quitó ese valor por defecto del servidor.
 
 4. **Compra para el día actual hasta las 17:30 (FAQ 26).** El servicio toma fecha y hora con `datetime.now()`; por eso la prueba de compra para hoy ahora fija también la hora. Caso nuevo: `test_compra_para_hoy_despues_de_las_17_30_falla`.
-5. **Máximo de 10 entradas por fecha, sumando compras (FAQ 27).** El servicio lleva en memoria las entradas compradas por usuario y fecha. Caso nuevo: `test_mas_de_10_entradas_para_una_fecha_en_varias_compras_falla`.
+5. **Máximo de 10 entradas por fecha, sumando compras (FAQ 27).** El servicio consulta las entradas ya compradas por usuario y fecha. Caso nuevo: `test_mas_de_10_entradas_para_una_fecha_en_varias_compras_falla`.
+6. **Persistencia.** En la fase REFACTOR el conteo pasó a `RegistroCompras`, con el mismo patrón que `EmailService` y `PaymentService`. Las pruebas usan la versión en memoria y el servidor web una con SQLite (`web/ecoharmony.db`) que guarda cada compra con sus entradas.
 
 Además se corrigió `test_compra_con_mas_de_un_mes_de_anticipacion_falla`, que fallaba los días en que hoy + 35 caía en lunes (el servicio respondía `ParqueCerradoException`): ahora usa el siguiente día abierto. No agrega casos.
 

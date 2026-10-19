@@ -103,3 +103,5 @@ Después alcanza con levantar el servidor desde `TP_06` y abrir http://localhost
 ```bash
 python web/server.py
 ```
+
+Las compras se guardan en `web/ecoharmony.db` (SQLite, no se sube al repositorio). Para empezar de cero, borrar ese archivo.
