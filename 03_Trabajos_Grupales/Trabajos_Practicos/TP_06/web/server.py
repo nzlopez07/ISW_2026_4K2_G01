@@ -5,6 +5,7 @@ Conecta la interfaz visual de usuario directamente con el TicketService de TDD.
 from datetime import date, datetime
 import json
 import os
+import sqlite3
 import sys
 from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -14,6 +15,7 @@ from urllib.parse import urlparse
 DIRECTORIO_ACTUAL = os.path.dirname(os.path.abspath(__file__))
 RAIZ_TP06 = os.path.abspath(os.path.join(DIRECTORIO_ACTUAL, ".."))
 DIRECTORIO_INTERFAZ = os.path.join(DIRECTORIO_ACTUAL, "frontend", "dist")
+RUTA_BASE_DATOS = os.path.join(DIRECTORIO_ACTUAL, "ecoharmony.db")
 if RAIZ_TP06 not in sys.path:
     sys.path.insert(0, RAIZ_TP06)
 
@@ -21,6 +23,7 @@ from src.domain.exceptions import DominioException
 from src.domain.models import CompraEntradas, Entrada, FormaPago, TipoPase, Usuario
 from src.services.email_service import EmailService
 from src.services.payment_service import PaymentService
+from src.services.registro_compras import RegistroCompras
 from src.services.ticket_service import TicketService
 
 
@@ -69,12 +72,56 @@ class WebPaymentService(PaymentService):
         return True
 
 
+class SqliteRegistroCompras(RegistroCompras):
+    """Guarda las compras confirmadas y sus entradas en una base SQLite."""
+    def __init__(self, ruta: str):
+        self.ruta = ruta
+        with sqlite3.connect(self.ruta) as conexion:
+            conexion.executescript("""
+                CREATE TABLE IF NOT EXISTS compras (
+                    id_compra TEXT PRIMARY KEY,
+                    dni TEXT NOT NULL,
+                    fecha_visita TEXT NOT NULL,
+                    forma_pago TEXT NOT NULL,
+                    monto_total REAL NOT NULL
+                );
+                CREATE TABLE IF NOT EXISTS entradas (
+                    id_compra TEXT NOT NULL REFERENCES compras (id_compra),
+                    edad_visitante INTEGER NOT NULL,
+                    tipo_pase TEXT NOT NULL,
+                    precio REAL NOT NULL
+                );
+            """)
+
+    def guardar(self, compra: CompraEntradas) -> None:
+        with sqlite3.connect(self.ruta) as conexion:
+            conexion.execute(
+                "INSERT INTO compras VALUES (?, ?, ?, ?, ?)",
+                (compra.id_compra, compra.usuario.dni, compra.fecha_visita.isoformat(),
+                 compra.forma_pago.value, compra.monto_total),
+            )
+            conexion.executemany(
+                "INSERT INTO entradas VALUES (?, ?, ?, ?)",
+                [(compra.id_compra, e.edad_visitante, e.tipo_pase.value, e.precio) for e in compra.entradas],
+            )
+
+    def entradas_compradas(self, dni: str, fecha: date) -> int:
+        with sqlite3.connect(self.ruta) as conexion:
+            fila = conexion.execute(
+                "SELECT COUNT(*) FROM entradas JOIN compras USING (id_compra) "
+                "WHERE dni = ? AND fecha_visita = ?",
+                (dni, fecha.isoformat()),
+            ).fetchone()
+        return fila[0]
+
+
 # Instancia del servicio de tickets de negocio
 servicio_email = WebEmailService()
 servicio_pago = WebPaymentService()
 servicio_tickets = TicketService(
     email_service=servicio_email,
     payment_service=servicio_pago,
+    registro_compras=SqliteRegistroCompras(RUTA_BASE_DATOS),
 )
 
 # Usuario registrado por defecto según la consigna
