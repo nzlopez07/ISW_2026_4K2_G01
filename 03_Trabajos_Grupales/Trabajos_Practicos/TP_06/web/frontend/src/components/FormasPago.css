@@ -1,0 +1,119 @@
+.formas-pago {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.formas-pago__opciones {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.opcion-pago.spotlight-card {
+  padding: 0;
+  border-radius: var(--radio-md);
+  transition:
+    box-shadow 0.25s var(--curva-suave),
+    transform 0.3s var(--curva-salida);
+}
+
+.opcion-pago.spotlight-card:hover {
+  transform: translateY(-2px);
+}
+
+.opcion-pago.is-elegida {
+  --spotlight-card-border: var(--color-primario) !important;
+  box-shadow:
+    0 0 0 1.5px var(--color-primario),
+    0 14px 30px -18px rgba(56, 102, 65, 0.7) !important;
+}
+
+.opcion-pago:has(input:focus-visible) {
+  box-shadow: var(--sombra-foco) !important;
+}
+
+.opcion-pago__contenido {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  height: 100%;
+  padding: 1.15rem 1.15rem 1.2rem;
+  cursor: pointer;
+}
+
+.opcion-pago__icono {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+  border-radius: var(--radio-sm);
+  color: var(--color-primario);
+  background: var(--color-primario-suave);
+}
+
+.opcion-pago--mercado_pago .opcion-pago__icono {
+  color: var(--color-mp-oscuro);
+  background: #e6f6fd;
+}
+
+.opcion-pago__textos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.opcion-pago__titulo {
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+.opcion-pago__detalle {
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--color-texto-2);
+}
+
+.opcion-pago__nota {
+  margin-top: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 750;
+  letter-spacing: 0.02em;
+  color: var(--color-primario);
+}
+
+.opcion-pago__marca {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  margin-left: auto;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-borde-fuerte);
+  background: var(--color-superficie);
+  color: #fff;
+  transition:
+    background-color 0.2s var(--curva-suave),
+    border-color 0.2s var(--curva-suave);
+}
+
+.opcion-pago.is-elegida .opcion-pago__marca {
+  border-color: var(--color-primario);
+  background: var(--color-primario);
+}
+
+.formas-pago__error {
+  padding: 0.6rem 0.75rem;
+  border-radius: var(--radio-sm);
+  background: var(--color-error-suave);
+  border: 1px solid var(--color-error-borde);
+}
+
+@media (max-width: 640px) {
+  .formas-pago__opciones {
+    grid-template-columns: 1fr;
+  }
+}

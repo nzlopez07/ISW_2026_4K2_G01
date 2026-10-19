@@ -1,0 +1,77 @@
+/* Paleta del PO: #386641, #6a994e, #a7c957, #f2e8cf, #bc4749 · Fuente: Lato */
+:root {
+  --verde: #386641;
+  --verde-medio: #6a994e;
+  --lima: #a7c957;
+  --crema: #f2e8cf;
+  --rojo: #bc4749;
+
+  /* Superficies */
+  --color-fondo: #faf6ec;
+  --color-superficie: #ffffff;
+  --color-superficie-suave: #fcf9f2;
+  --color-superficie-hundida: var(--crema);
+  --color-borde: #e8dfc8;
+  --color-borde-fuerte: #d6c9a8;
+
+  /* Texto */
+  --color-texto: #1f2a21;
+  --color-texto-2: #4a524a;
+  --color-texto-3: #5f655c;
+  --color-texto-invertido: #fbf8f0;
+
+  /* Marca */
+  --color-bosque: var(--verde);
+  --color-primario: var(--verde);
+  --color-primario-hover: #2f5637;
+  --color-primario-activo: #2a4d31;
+  --color-primario-suave: #eef4dd;
+  --color-primario-borde: var(--lima);
+  --color-lima: var(--lima);
+  --color-lima-suave: #f3f7e8;
+
+  /* Pase VIP */
+  --color-vip: var(--verde);
+  --color-vip-suave: var(--crema);
+  --color-vip-borde: var(--verde-medio);
+
+  /* Estados */
+  --color-error: var(--rojo);
+  --color-error-suave: #fbf0ef;
+  --color-error-borde: #e6b9ba;
+  --color-alerta: var(--verde);
+  --color-alerta-suave: var(--crema);
+  --color-alerta-borde: var(--color-borde-fuerte);
+  --color-exito: var(--verde);
+  --color-info: var(--verde);
+  --color-info-suave: var(--color-lima-suave);
+
+  /* Mercado Pago (pantalla simulada) */
+  --color-mp: #009ee3;
+  --color-mp-oscuro: #0b7fb5;
+
+  --fuente: 'Lato', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* Radios */
+  --radio-xs: 8px;
+  --radio-sm: 12px;
+  --radio-md: 16px;
+  --radio-lg: 24px;
+  --radio-xl: 32px;
+  --radio-pildora: 999px;
+
+  /* Sombras */
+  --sombra-xs: 0 1px 2px rgba(31, 42, 33, 0.06);
+  --sombra-sm: 0 1px 2px rgba(31, 42, 33, 0.05), 0 4px 12px -4px rgba(31, 42, 33, 0.08);
+  --sombra-md: 0 2px 4px rgba(31, 42, 33, 0.04), 0 12px 32px -12px rgba(31, 42, 33, 0.18);
+  --sombra-lg: 0 4px 8px rgba(31, 42, 33, 0.05), 0 28px 64px -20px rgba(31, 42, 33, 0.28);
+  --sombra-foco: 0 0 0 3px rgba(167, 201, 87, 0.55);
+
+  /* Movimiento */
+  --curva-salida: cubic-bezier(0.22, 1, 0.36, 1);
+  --curva-suave: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Layout */
+  --ancho-max: 1180px;
+  --alto-encabezado: 72px;
+}

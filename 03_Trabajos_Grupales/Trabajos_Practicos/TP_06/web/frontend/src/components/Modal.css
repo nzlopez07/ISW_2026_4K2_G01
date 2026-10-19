@@ -1,0 +1,58 @@
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  overflow-y: auto;
+  background: rgba(31, 42, 33, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: aparecer-fondo 0.25s var(--curva-suave);
+}
+
+.modal__dialogo {
+  position: relative;
+  width: min(100%, 460px);
+  max-height: calc(100vh - 2.5rem);
+  overflow-y: auto;
+  border-radius: var(--radio-lg);
+  background: var(--color-superficie);
+  box-shadow: 0 40px 100px -30px rgba(0, 0, 0, 0.55);
+  animation: aparecer-dialogo 0.4s var(--curva-salida);
+  outline: none;
+}
+
+.modal__cerrar {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: var(--color-texto-2);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: var(--sombra-xs);
+  transition: background-color 0.2s var(--curva-suave);
+}
+
+.modal__cerrar:hover {
+  background: var(--color-superficie-hundida);
+}
+
+@keyframes aparecer-fondo {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes aparecer-dialogo {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+}

@@ -1,0 +1,60 @@
+.pie {
+  margin-top: 2rem;
+  padding: 2rem 1.5rem;
+  border-top: 1px solid var(--color-borde);
+  background: var(--color-superficie);
+}
+
+.pie__contenido {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  max-width: var(--ancho-max);
+  margin: 0 auto;
+}
+
+.pie__marca {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.pie__marca img {
+  width: 34px;
+  height: auto;
+}
+
+.pie__marca div {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.pie__marca strong {
+  font-family: var(--fuente);
+  font-size: 1.05rem;
+  font-weight: 650;
+  color: var(--color-bosque);
+}
+
+.pie__marca span,
+.pie__horario,
+.pie__legal {
+  font-size: 0.82rem;
+  color: var(--color-texto-3);
+}
+
+.pie__horario {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+}
+
+@media (max-width: 960px) {
+  .pie {
+    padding-bottom: 7rem; /* Espacio para la barra inferior de compra */
+  }
+}

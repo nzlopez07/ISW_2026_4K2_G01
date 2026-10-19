@@ -21,7 +21,7 @@
 3. **Días de Apertura:** La fecha debe coincidir con los días de funcionamiento del bioparque (martes a domingos de 8:30 a 19:00). El parque está cerrado todos los lunes, y los feriados 25 de diciembre y 1 de enero.
 4. **Cantidad de Entradas:** La compra debe ser de 1 a 10 entradas inclusive (`1 <= cantidad <= 10`).
 5. **Edad de los Visitantes:** Se debe ingresar la edad de cada visitante individualmente (`0 <= edad < 135`).
-6. **Tipo de Pase:** Debe indicar pase Regular ($10.000) o VIP ($20.000).
+6. **Tipo de Pase:** Cada entrada indica su pase, Regular ($10.000) o VIP ($20.000).
 7. **Cálculo de Monto con Descuentos por Edad:**
    - 0 a 3 años: Gratis ($0).
    - 4 a 15 años: 50% de descuento.
@@ -54,19 +54,24 @@ TP_06/
 │       ├── email_service.py     # Protocolo / Interfaz de envío de emails
 │       ├── payment_service.py   # Protocolo / Interfaz de pasarela Mercado Pago
 │       └── ticket_service.py    # Orquestador del caso de uso
-└── tests/
-    ├── __init__.py
-    └── test_comprar_entradas.py # Suite de pruebas unitarias idiomáticas con Pytest
+├── tests/
+│   ├── __init__.py
+│   └── test_comprar_entradas.py # Suite de pruebas unitarias idiomáticas con Pytest
+└── web/
+    ├── server.py                # Servidor de la demo: API + interfaz compilada
+    └── frontend/                # Interfaz en React (Vite)
 ```
 
 ---
 
-## 3. Estado Actual: Fase RED de TDD
+## 3. Ciclo TDD
 
 Siguiendo el ciclo TDD:
-1. **Fase RED (Actual):** Se diseñó la suite automatizada en `tests/test_comprar_entradas.py` agrupada en clases temáticas (`TestAperturaYFechas`, `TestCantidadYEdades`, `TestTarifasYDescuentos`, `TestFormasPagoYNotificacion`, `TestAutenticacionUsuario`) con `@pytest.mark.parametrize`. Todas las pruebas fallan inicialmente con `NotImplementedError`, garantizando ausencia de falsos positivos.
+1. **Fase RED:** Se diseñó la suite automatizada en `tests/test_comprar_entradas.py` agrupada en clases temáticas (`TestAperturaYFechas`, `TestCantidadYEdades`, `TestTarifasYDescuentos`, `TestFormasPagoYNotificacion`, `TestAutenticacionUsuario`) con `@pytest.mark.parametrize`. Todas las pruebas fallan inicialmente con `NotImplementedError`, garantizando ausencia de falsos positivos.
 2. **Fase GREEN:** Implementación mínima en `src/services/ticket_service.py` para satisfacer los tests.
 3. **Fase REFACTOR:** Modularización y optimización del diseño sin romper las pruebas.
+
+Las correcciones de la revisión se hicieron en un nuevo ciclo RED - GREEN (ver `docs/DECISIONES_DISENO.md`, sección 7).
 
 ---
 
@@ -79,3 +84,24 @@ pip install -r requirements.txt
 # 2. Ejecutar pytest en modo detallado
 pytest -v
 ```
+
+---
+
+## 5. Demo Web
+
+Requiere Node.js. La interfaz se compila la primera vez (y cada vez que cambie algo en `web/frontend`):
+
+```bash
+cd web/frontend
+npm install
+npm run build
+cd ../..
+```
+
+Después alcanza con levantar el servidor desde `TP_06` y abrir http://localhost:8080:
+
+```bash
+python web/server.py
+```
+
+Las compras se guardan en `web/ecoharmony.db` (SQLite, no se sube al repositorio). Para empezar de cero, borrar ese archivo.

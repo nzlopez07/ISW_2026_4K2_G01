@@ -1,0 +1,400 @@
+.visitantes {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.cantidad {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.cantidad__texto {
+  display: flex;
+  flex-direction: column;
+}
+
+.cantidad__etiqueta {
+  font-weight: 750;
+  font-size: 0.98rem;
+}
+
+.cantidad__ayuda {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-texto-3);
+}
+
+.cantidad__control {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 4px;
+  border-radius: var(--radio-pildora);
+  background: var(--color-superficie);
+  border: 1.5px solid var(--color-borde-fuerte);
+  box-shadow: var(--sombra-xs);
+}
+
+.cantidad__boton {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: var(--color-primario);
+  background: var(--color-primario-suave);
+  transition:
+    background-color 0.2s var(--curva-suave),
+    transform 0.2s var(--curva-salida),
+    opacity 0.2s;
+}
+
+.cantidad__boton:hover:not(:disabled) {
+  color: #fff;
+  background: var(--color-primario);
+}
+
+.cantidad__boton:active:not(:disabled) {
+  transform: scale(0.92);
+}
+
+.cantidad__boton:disabled {
+  color: var(--color-texto-3);
+  background: var(--color-superficie-hundida);
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.cantidad__valor {
+  min-width: 2.6ch;
+  text-align: center;
+  font-family: var(--fuente);
+  font-size: 1.45rem;
+  font-weight: 650;
+  color: var(--color-bosque);
+}
+
+.tarifas {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.tarifas__pases {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.tarifa {
+  padding: 0.85rem 1rem;
+  border-radius: var(--radio-md);
+  border: 1px solid var(--color-borde);
+  background: var(--color-superficie-suave);
+}
+
+.tarifa--vip {
+  border-color: var(--color-vip-borde);
+  background: linear-gradient(135deg, var(--color-superficie-suave) 0%, var(--color-vip-suave) 100%);
+}
+
+.tarifa__cabecera {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.tarifa__nombre {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 800;
+  font-size: 0.92rem;
+}
+
+.tarifa--vip .tarifa__nombre {
+  color: var(--color-vip);
+}
+
+.tarifa__precio {
+  font-family: var(--fuente);
+  font-size: 1.2rem;
+  font-weight: 650;
+  color: var(--color-bosque);
+}
+
+
+.tarifas__descuentos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.descuento {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.4rem 0.3rem 0.75rem;
+  border-radius: var(--radio-pildora);
+  font-size: 0.8rem;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+}
+
+.descuento__nombre {
+  font-weight: 750;
+}
+
+.descuento__rango {
+  color: var(--color-texto-3);
+  font-weight: 600;
+}
+
+.descuento__beneficio {
+  padding: 0.12rem 0.55rem;
+  border-radius: var(--radio-pildora);
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: var(--color-primario-activo);
+  background: var(--color-primario-suave);
+}
+
+.descuento--adulto .descuento__beneficio {
+  color: var(--color-texto-2);
+  background: var(--color-superficie-hundida);
+}
+
+.descuento--bebe .descuento__beneficio {
+  color: var(--color-info);
+  background: var(--color-info-suave);
+}
+
+.visitantes__lista {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0;
+  list-style: none;
+}
+
+.visitante {
+  padding: 1rem 1.1rem 1.1rem;
+  border-radius: var(--radio-md);
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  box-shadow: var(--sombra-xs);
+  animation: entrar-visitante 0.35s var(--curva-salida);
+  transition:
+    border-color 0.2s var(--curva-suave),
+    background-color 0.2s var(--curva-suave);
+}
+
+.visitante--error {
+  border-color: var(--color-error-borde);
+  background: var(--color-error-suave);
+}
+
+@keyframes entrar-visitante {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.99);
+  }
+}
+
+.visitante__cabecera {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.visitante__numero {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--color-bosque);
+  background: var(--color-superficie-hundida);
+}
+
+.visitante__titulo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.6rem;
+  min-width: 0;
+}
+
+.visitante__titulo h3 {
+  font-family: var(--fuente);
+  font-size: 0.98rem;
+  font-weight: 750;
+  letter-spacing: -0.01em;
+}
+
+.etiqueta-categoria {
+  padding: 0.15rem 0.6rem;
+  border-radius: var(--radio-pildora);
+  font-size: 0.75rem;
+  font-weight: 750;
+  white-space: nowrap;
+  color: var(--color-primario-activo);
+  background: var(--color-primario-suave);
+}
+
+.etiqueta-categoria--adulto {
+  color: var(--color-texto-2);
+  background: var(--color-superficie-hundida);
+}
+
+.etiqueta-categoria--bebe {
+  color: var(--color-info);
+  background: var(--color-info-suave);
+}
+
+.etiqueta-categoria--pendiente {
+  color: var(--color-texto-3);
+  background: transparent;
+  border: 1px dashed var(--color-borde-fuerte);
+}
+
+.visitante__precio {
+  margin-left: auto;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--color-bosque);
+  white-space: nowrap;
+}
+
+.visitante__quitar {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  color: var(--color-texto-3);
+  transition:
+    background-color 0.2s var(--curva-suave),
+    color 0.2s var(--curva-suave);
+}
+
+.visitante__quitar:hover {
+  color: var(--color-error);
+  background: var(--color-error-suave);
+}
+
+.visitante__campos {
+  display: grid;
+  grid-template-columns: minmax(130px, 170px) minmax(0, 1fr);
+  gap: 1rem;
+  margin-top: 0.9rem;
+}
+
+.pase {
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.pase legend {
+  padding: 0;
+  margin-bottom: 0.4rem;
+}
+
+.pase__opciones {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.pase__opcion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-height: 48px;
+  padding: 0 0.9rem;
+  border-radius: var(--radio-sm);
+  border: 1.5px solid var(--color-borde-fuerte);
+  background: var(--color-superficie);
+  cursor: pointer;
+  transition:
+    border-color 0.2s var(--curva-suave),
+    background-color 0.2s var(--curva-suave),
+    box-shadow 0.2s var(--curva-suave);
+}
+
+.pase__opcion:hover {
+  border-color: var(--color-borde-fuerte);
+}
+
+.pase__opcion:has(input:focus-visible) {
+  box-shadow: var(--sombra-foco);
+}
+
+.pase__nombre {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-weight: 750;
+  font-size: 0.92rem;
+}
+
+.pase__precio {
+  font-size: 0.86rem;
+  font-weight: 650;
+  color: var(--color-texto-2);
+}
+
+.pase__opcion--regular.is-activo {
+  border-color: var(--color-primario);
+  background: var(--color-primario-suave);
+  box-shadow: inset 0 0 0 1px var(--color-primario);
+}
+
+.pase__opcion--regular.is-activo .pase__nombre,
+.pase__opcion--regular.is-activo .pase__precio {
+  color: var(--color-primario-activo);
+}
+
+.pase__opcion--vip.is-activo {
+  border-color: var(--verde-medio);
+  background: var(--color-vip-suave);
+  box-shadow: inset 0 0 0 1px var(--verde-medio);
+}
+
+.pase__opcion--vip.is-activo .pase__nombre,
+.pase__opcion--vip.is-activo .pase__precio {
+  color: var(--color-vip);
+}
+
+.visitante__error {
+  margin-top: 0.6rem;
+}
+
+@media (max-width: 640px) {
+  .tarifas__pases {
+    grid-template-columns: 1fr;
+  }
+
+  .visitante__campos {
+    grid-template-columns: 1fr;
+  }
+
+  .cantidad {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

@@ -5,6 +5,7 @@ Conecta la interfaz visual de usuario directamente con el TicketService de TDD.
 from datetime import date, datetime
 import json
 import os
+import sqlite3
 import sys
 from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -13,13 +14,16 @@ from urllib.parse import urlparse
 # Agregar la raíz de TP_06 al path de Python para importar los módulos de src
 DIRECTORIO_ACTUAL = os.path.dirname(os.path.abspath(__file__))
 RAIZ_TP06 = os.path.abspath(os.path.join(DIRECTORIO_ACTUAL, ".."))
+DIRECTORIO_INTERFAZ = os.path.join(DIRECTORIO_ACTUAL, "frontend", "dist")
+RUTA_BASE_DATOS = os.path.join(DIRECTORIO_ACTUAL, "ecoharmony.db")
 if RAIZ_TP06 not in sys.path:
     sys.path.insert(0, RAIZ_TP06)
 
 from src.domain.exceptions import DominioException
-from src.domain.models import CompraEntradas, FormaPago, TipoPase, Usuario
+from src.domain.models import CompraEntradas, Entrada, FormaPago, TipoPase, Usuario
 from src.services.email_service import EmailService
 from src.services.payment_service import PaymentService
+from src.services.registro_compras import RegistroCompras
 from src.services.ticket_service import TicketService
 
 
@@ -68,12 +72,56 @@ class WebPaymentService(PaymentService):
         return True
 
 
+class SqliteRegistroCompras(RegistroCompras):
+    """Guarda las compras confirmadas y sus entradas en una base SQLite."""
+    def __init__(self, ruta: str):
+        self.ruta = ruta
+        with sqlite3.connect(self.ruta) as conexion:
+            conexion.executescript("""
+                CREATE TABLE IF NOT EXISTS compras (
+                    id_compra TEXT PRIMARY KEY,
+                    dni TEXT NOT NULL,
+                    fecha_visita TEXT NOT NULL,
+                    forma_pago TEXT NOT NULL,
+                    monto_total REAL NOT NULL
+                );
+                CREATE TABLE IF NOT EXISTS entradas (
+                    id_compra TEXT NOT NULL REFERENCES compras (id_compra),
+                    edad_visitante INTEGER NOT NULL,
+                    tipo_pase TEXT NOT NULL,
+                    precio REAL NOT NULL
+                );
+            """)
+
+    def guardar(self, compra: CompraEntradas) -> None:
+        with sqlite3.connect(self.ruta) as conexion:
+            conexion.execute(
+                "INSERT INTO compras VALUES (?, ?, ?, ?, ?)",
+                (compra.id_compra, compra.usuario.dni, compra.fecha_visita.isoformat(),
+                 compra.forma_pago.value, compra.monto_total),
+            )
+            conexion.executemany(
+                "INSERT INTO entradas VALUES (?, ?, ?, ?)",
+                [(compra.id_compra, e.edad_visitante, e.tipo_pase.value, e.precio) for e in compra.entradas],
+            )
+
+    def entradas_compradas(self, dni: str, fecha: date) -> int:
+        with sqlite3.connect(self.ruta) as conexion:
+            fila = conexion.execute(
+                "SELECT COUNT(*) FROM entradas JOIN compras USING (id_compra) "
+                "WHERE dni = ? AND fecha_visita = ?",
+                (dni, fecha.isoformat()),
+            ).fetchone()
+        return fila[0]
+
+
 # Instancia del servicio de tickets de negocio
 servicio_email = WebEmailService()
 servicio_pago = WebPaymentService()
 servicio_tickets = TicketService(
     email_service=servicio_email,
     payment_service=servicio_pago,
+    registro_compras=SqliteRegistroCompras(RUTA_BASE_DATOS),
 )
 
 # Usuario registrado por defecto según la consigna
@@ -87,9 +135,11 @@ USUARIO_LOGUEADO = Usuario(
 class EcoHarmonyRequestHandler(SimpleHTTPRequestHandler):
     """Manejador HTTP para la API de compras y los archivos estáticos."""
 
+    # En Windows el registro puede asociar .js a text/plain y el navegador no carga la interfaz
+    extensions_map = {**SimpleHTTPRequestHandler.extensions_map, ".js": "text/javascript"}
+
     def __init__(self, *args, **kwargs):
-        directorio_static = os.path.join(DIRECTORIO_ACTUAL, "static")
-        super().__init__(*args, directory=directorio_static, **kwargs)
+        super().__init__(*args, directory=DIRECTORIO_INTERFAZ, **kwargs)
 
     def do_GET(self):
         url = urlparse(self.path)
@@ -105,11 +155,21 @@ class EcoHarmonyRequestHandler(SimpleHTTPRequestHandler):
                     "vip": TicketService.PRECIO_VIP,
                 },
                 "horario": "08:30 a 19:00 (Entrada hasta las 17:30)",
+                "hoy": date.today().isoformat(),
+                "hora": datetime.now().strftime("%H:%M"),
             })
             return
 
         if url.path == "/api/ultimo-email":
             self._responder_json(servicio_email.ultimo_email_enviado or {})
+            return
+
+        if not os.path.isdir(DIRECTORIO_INTERFAZ):
+            self.send_error(
+                HTTPStatus.SERVICE_UNAVAILABLE,
+                "Falta compilar la interfaz",
+                "Ejecutar: cd web/frontend && npm install && npm run build",
+            )
             return
 
         return super().do_GET()
@@ -128,20 +188,22 @@ class EcoHarmonyRequestHandler(SimpleHTTPRequestHandler):
                     raise DominioException("Debe seleccionar una fecha de visita.")
                 fecha_visita = datetime.strptime(fecha_str, "%Y-%m-%d").date()
 
-                # Parsear edades
-                edades = [int(e) for e in datos.get("edades_visitantes", [])]
+                # Parsear entradas: edad y tipo de pase de cada visitante
+                entradas = [
+                    Entrada(edad_visitante=int(e["edad"]), tipo_pase=TipoPase(e["tipo_pase"]))
+                    for e in datos.get("entradas", [])
+                ]
 
-                # Parsear forma de pago y pase
-                forma_pago = FormaPago(datos.get("forma_pago", "efectivo"))
-                tipo_pase = TipoPase(datos.get("tipo_pase", "regular"))
+                # Parsear forma de pago (sin valor por defecto: el visitante debe elegirla)
+                forma_pago = datos.get("forma_pago")
+                forma_pago = FormaPago(forma_pago) if forma_pago else None
 
                 # Ejecutar caso de uso en TicketService
                 compra = servicio_tickets.comprar_entradas(
                     usuario=USUARIO_LOGUEADO,
                     fecha_visita=fecha_visita,
-                    edades_visitantes=edades,
+                    entradas=entradas,
                     forma_pago=forma_pago,
-                    tipo_pase=tipo_pase,
                 )
 
                 self._responder_json({
@@ -150,7 +212,6 @@ class EcoHarmonyRequestHandler(SimpleHTTPRequestHandler):
                     "monto_total": compra.monto_total,
                     "fecha_visita": compra.fecha_visita.strftime("%d/%m/%Y"),
                     "forma_pago": compra.forma_pago.value,
-                    "tipo_pase": compra.entradas[0].tipo_pase.value if compra.entradas else "regular",
                     "cantidad_entradas": len(compra.entradas),
                     "email_confirmacion": servicio_email.ultimo_email_enviado,
                 })
