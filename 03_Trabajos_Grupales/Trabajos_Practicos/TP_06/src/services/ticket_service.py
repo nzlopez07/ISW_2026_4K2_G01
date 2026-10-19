@@ -16,6 +16,7 @@ from src.domain.exceptions import (
 from src.domain.models import CompraEntradas, Entrada, FormaPago, TipoPase, Usuario
 from src.services.email_service import EmailService
 from src.services.payment_service import PaymentService
+from src.services.registro_compras import RegistroCompras, RegistroComprasEnMemoria
 
 
 class TicketService:
@@ -29,11 +30,11 @@ class TicketService:
         self,
         email_service: Optional[EmailService] = None,
         payment_service: Optional[PaymentService] = None,
+        registro_compras: Optional[RegistroCompras] = None,
     ) -> None:
         self.email_service = email_service
         self.payment_service = payment_service
-        # Entradas ya compradas por cada usuario (DNI) para cada fecha
-        self.entradas_compradas = {}
+        self.registro_compras = registro_compras or RegistroComprasEnMemoria()
 
     def comprar_entradas(
         self,
@@ -80,10 +81,8 @@ class TicketService:
         if self.email_service:
             self.email_service.enviar_confirmacion(email=usuario.email, compra=compra)
 
-        clave = (usuario.dni, fecha_visita)
-        self.entradas_compradas[clave] = self.entradas_compradas.get(clave, 0) + len(entradas)
-
         compra.confirmada = True
+        self.registro_compras.guardar(compra)
         return compra
 
     def _validar_solicitud(
@@ -123,7 +122,7 @@ class TicketService:
             raise CantidadEntradasInvalidaException(
                 "La cantidad de entradas debe ser entre 1 y 10."
             )
-        ya_compradas = self.entradas_compradas.get((usuario.dni, fecha_visita), 0)
+        ya_compradas = self.registro_compras.entradas_compradas(usuario.dni, fecha_visita)
         if ya_compradas + cantidad > 10:
             raise CantidadEntradasInvalidaException(
                 f"Solo se pueden comprar 10 entradas por fecha (ya compraste {ya_compradas})."
