@@ -233,9 +233,11 @@ class EcoHarmonyRequestHandler(SimpleHTTPRequestHandler):
         self.wfile.write(contenido)
 
 
-def iniciar_servidor(puerto: int = 8080):
-    servidor = ThreadingHTTPServer(("127.0.0.1", puerto), EcoHarmonyRequestHandler)
-    print(f"Servidor EcoHarmony Park iniciado en http://localhost:{puerto}")
+def iniciar_servidor(puerto: int = 8080, host: str = None):
+    if host is None:
+        host = os.environ.get("HOST", "0.0.0.0")
+    servidor = ThreadingHTTPServer((host, puerto), EcoHarmonyRequestHandler)
+    print(f"Servidor EcoHarmony Park iniciado en http://{host}:{puerto}")
     try:
         servidor.serve_forever()
     except KeyboardInterrupt:
