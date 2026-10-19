@@ -1,5 +1,5 @@
 """Servicio para la compra de entradas de EcoHarmony Park."""
-from datetime import date, timedelta
+from datetime import date, datetime, time, timedelta
 from typing import List, Optional
 import uuid
 
@@ -32,6 +32,8 @@ class TicketService:
     ) -> None:
         self.email_service = email_service
         self.payment_service = payment_service
+        # Entradas ya compradas por cada usuario (DNI) para cada fecha
+        self.entradas_compradas = {}
 
     def comprar_entradas(
         self,
@@ -78,6 +80,9 @@ class TicketService:
         if self.email_service:
             self.email_service.enviar_confirmacion(email=usuario.email, compra=compra)
 
+        clave = (usuario.dni, fecha_visita)
+        self.entradas_compradas[clave] = self.entradas_compradas.get(clave, 0) + len(entradas)
+
         compra.confirmada = True
         return compra
 
@@ -95,10 +100,13 @@ class TicketService:
                 "La compra solo está permitida a usuarios registrados."
             )
 
-        # 2. Fecha no puede ser anterior a hoy
-        hoy = date.today()
+        # 2. Fecha no puede ser anterior a hoy, y para hoy solo hasta las 17:30
+        ahora = datetime.now()
+        hoy = ahora.date()
         if fecha_visita < hoy:
             raise FechaInvalidaException("La fecha no puede ser anterior a hoy.")
+        if fecha_visita == hoy and ahora.time() > time(17, 30):
+            raise FechaInvalidaException("Para el día de hoy solo se puede comprar hasta las 17:30.")
 
         # 3. Días de apertura del parque
         self._validar_calendario_apertura(fecha_visita)
@@ -114,6 +122,11 @@ class TicketService:
         if cantidad < 1 or cantidad > 10:
             raise CantidadEntradasInvalidaException(
                 "La cantidad de entradas debe ser entre 1 y 10."
+            )
+        ya_compradas = self.entradas_compradas.get((usuario.dni, fecha_visita), 0)
+        if ya_compradas + cantidad > 10:
+            raise CantidadEntradasInvalidaException(
+                f"Solo se pueden comprar 10 entradas por fecha (ya compraste {ya_compradas})."
             )
 
         # 6. Rango biológico de edades y tipo de pase de cada entrada
