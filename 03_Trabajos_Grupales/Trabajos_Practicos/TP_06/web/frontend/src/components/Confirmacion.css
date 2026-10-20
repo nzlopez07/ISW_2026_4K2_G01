@@ -1,0 +1,299 @@
+.confirmacion {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: min(100%, 820px);
+  margin: 0 auto;
+  padding: 2.25rem;
+  border-radius: var(--radio-xl);
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  box-shadow: var(--sombra-lg);
+  scroll-margin-top: calc(var(--alto-encabezado) + 2rem);
+}
+
+.confirmacion__encabezado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+.confirmacion__sello {
+  width: 76px;
+  height: 76px;
+  padding: 10px;
+  border-radius: 50%;
+  background: var(--color-primario-suave);
+  box-shadow: 0 0 0 10px rgba(238, 244, 221, 0.5);
+}
+
+.confirmacion__sello svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.confirmacion__circulo {
+  stroke: var(--color-primario);
+  stroke-dasharray: 151;
+  stroke-dashoffset: 151;
+  animation: trazar 0.7s var(--curva-salida) forwards;
+}
+
+.confirmacion__tilde {
+  stroke: var(--color-primario);
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: trazar 0.45s var(--curva-salida) 0.55s forwards;
+}
+
+@keyframes trazar {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.confirmacion__titulo {
+  justify-content: center;
+  font-size: clamp(1.7rem, 3.4vw, 2.3rem);
+  color: var(--color-bosque);
+  text-wrap: balance;
+}
+
+.confirmacion__resumen {
+  max-width: 36rem;
+  font-size: 1.08rem;
+  color: var(--color-texto-2);
+}
+
+.confirmacion__resumen strong {
+  color: var(--color-texto);
+}
+
+.boleto {
+  --muesca: 14px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 210px;
+  border-radius: var(--radio-lg);
+  background: var(--color-superficie-suave);
+  border: 1px solid var(--color-borde);
+  overflow: hidden;
+  -webkit-mask:
+    radial-gradient(circle var(--muesca) at calc(100% - 210px) 0, transparent 98%, #000) top / 100% 51% no-repeat,
+    radial-gradient(circle var(--muesca) at calc(100% - 210px) 100%, transparent 98%, #000) bottom / 100% 51% no-repeat;
+  mask:
+    radial-gradient(circle var(--muesca) at calc(100% - 210px) 0, transparent 98%, #000) top / 100% 51% no-repeat,
+    radial-gradient(circle var(--muesca) at calc(100% - 210px) 100%, transparent 98%, #000) bottom / 100% 51% no-repeat;
+}
+
+.boleto__principal {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  min-width: 0;
+  padding: 1.4rem 1.5rem;
+}
+
+.boleto__marca {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.boleto__marca img {
+  width: 38px;
+  height: auto;
+}
+
+.boleto__marca div {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.boleto__marca strong {
+  font-family: var(--fuente);
+  font-size: 1.1rem;
+  font-weight: 650;
+  color: var(--color-bosque);
+}
+
+.boleto__marca span {
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-primario);
+}
+
+.boleto__datos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem 1.25rem;
+}
+
+.boleto__datos dt {
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-texto-3);
+}
+
+.boleto__datos dd {
+  margin: 0.1rem 0 0;
+  font-weight: 700;
+}
+
+.boleto__tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+}
+
+.boleto__tabla th {
+  padding: 0.45rem 0.5rem;
+  text-align: left;
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-texto-3);
+  border-bottom: 1px solid var(--color-borde-fuerte);
+}
+
+.boleto__tabla td {
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--color-borde);
+  font-weight: 600;
+}
+
+.boleto__tabla tr:last-child td {
+  border-bottom: 0;
+}
+
+.boleto__importe {
+  text-align: right !important;
+  white-space: nowrap;
+}
+
+.boleto__visitante {
+  display: block;
+  font-weight: 700;
+}
+
+.boleto__edad {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-texto-3);
+}
+
+.boleto__talon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.2rem;
+  padding: 1.4rem 1.25rem;
+  color: var(--color-texto-invertido);
+  background-color: var(--color-bosque-2, #24422b);
+  background:
+    radial-gradient(120% 80% at 100% 0%, rgba(167, 201, 87, 0.35), transparent 60%),
+    linear-gradient(160deg, var(--color-bosque-2, #24422b), var(--color-bosque, #386641));
+  border-left: 2px dashed rgba(255, 255, 255, 0.35);
+}
+
+.boleto__etiqueta {
+  font-size: 0.7rem;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(242, 232, 207, 0.7);
+}
+
+.boleto__orden {
+  margin-bottom: 1rem;
+  font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+}
+
+.boleto__total {
+  font-family: var(--fuente);
+  font-size: 2rem;
+  font-weight: 650;
+  line-height: 1.1;
+}
+
+.confirmacion__correo {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1rem 1.1rem;
+  border-radius: var(--radio-md);
+  background: var(--color-lima-suave);
+  border: 1px solid var(--color-primario-borde);
+}
+
+.confirmacion__correo p {
+  flex: 1 1 220px;
+  font-size: 0.92rem;
+  color: var(--color-texto-2);
+}
+
+.confirmacion__correo strong {
+  color: var(--color-texto);
+  overflow-wrap: anywhere;
+}
+
+.confirmacion__correo-icono {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  color: var(--color-primario);
+  background: var(--color-superficie);
+}
+
+.confirmacion__acciones {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 700px) {
+  .confirmacion {
+    padding: 1.4rem 1.1rem;
+  }
+
+  .boleto {
+    grid-template-columns: 1fr;
+    -webkit-mask: none;
+    mask: none;
+  }
+
+  .boleto__talon {
+    border-left: 0;
+    border-top: 2px dashed rgba(255, 255, 255, 0.35);
+  }
+
+  .confirmacion__correo {
+    flex-wrap: wrap;
+  }
+
+  .confirmacion__correo .boton {
+    width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .boleto__datos {
+    grid-template-columns: 1fr;
+  }
+}

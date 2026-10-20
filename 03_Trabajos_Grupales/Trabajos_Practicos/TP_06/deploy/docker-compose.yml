@@ -1,0 +1,21 @@
+services:
+  ecoharmony:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    container_name: ecoharmony_app
+    restart: unless-stopped
+    ports:
+      - "8092:8092"
+    volumes:
+      - ecoharmony_data:/app/web/data
+    networks:
+      - default
+
+volumes:
+  ecoharmony_data:
+
+networks:
+  default:
+    name: web_net
+    external: true
