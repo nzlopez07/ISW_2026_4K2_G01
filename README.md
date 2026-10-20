@@ -71,6 +71,12 @@ Repositorio grupal de la cátedra: materiales de clase, trabajos prácticos, tra
     │   │   │   └── 📄 Entrega_TP_04_G01_v1.0.md
     │   │   ├── 📁 TP_05/
     │   │   ├── 📁 TP_06/
+    │   │   │   ├── 📁 docs/
+    │   │   │   │   └── 📄 DECISIONES_DISENO.md
+    │   │   │   ├── 📁 src/
+    │   │   │   ├── 📁 tests/
+    │   │   │   ├── 📁 web/
+    │   │   │   └── 📄 README.md
     │   │   ├── 📁 TP_07/
     │   │   │   ├── 📄 Entrega_TP_07_G01_v1.0.docx
     │   │   │   └── 📄 Entrega_TP_07_G01_v1.0.pdf
@@ -160,6 +166,7 @@ La tabla de líneas base registradas permite llevar el control de los hitos del 
 |---|---|---|---|
 | `v1.0` | `v1.0` | 06/09/2026 | Línea base inicial del repositorio correspondiente a la corrección del TP4 (Herramientas de SCM). |
 | `v2.0` | `v2.0` | 07/10/2026 | Línea base del repositorio correspondiente a la entrega del TP7 (Scrum - Ejercicio de aplicación). |
+| `v3.0` | `v3.0` | 20/10/2026 | Línea base del repositorio correspondiente a la finalización y aprobación del TP 06 (Aseguramiento de Calidad con TDD y EcoHarmony Park). |
 
 ---
 
