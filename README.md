@@ -84,14 +84,17 @@ Repositorio grupal de la cátedra: materiales de clase, trabajos prácticos, tra
     │   └── 📁 Trabajos_de_Investigacion/
     │       ├── 📄 Lineamientos_Investigacion.pdf
     │       ├── 📁 TIG_01_Exposicion_DespliegueDeProducto/
+    │       │   ├── 📄 TIG_01_G01.md
+    │       │   ├── 📄 TIG_01_G01.pdf
+    │       │   └── 📄 TIG_01_G01.pptx
     │       └── 📁 TIG_02_PosterCientifico_FrameworksLeanAgile/
+    │           └── 📄 TIG_02_G01.pdf
     │
     └── 📁 04_Material_de_Estudio/
         ├── 📁 Ejercicios_Practicos_Resueltos/
         │   └── 📄 Guia_TPs_Resueltos_Catedra.pdf
         ├── 📁 Notas_de_Clase/
         └── 📁 Resumenes/
-            └── 📄 Resumen_U1aU3_DesarrolloDeSoftware_ClaudiaAlca.pdf
 ```
 
 ---

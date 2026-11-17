@@ -1,4 +1,4 @@
-# Masterclass Unidad 4: Aseguramiento de Calidad de Proceso y de Producto (SQA, Modelos, CMMI, Auditorías, Revisiones, Testing y TDD)
+# Resumen Unidad 4: Aseguramiento de Calidad de Proceso y de Producto (SQA, Modelos, CMMI, Auditorías, Revisiones, Testing y TDD)
 
 > **Materia:** Ingeniería y Calidad de Software (UTN-FRC 4K2)  
 > **Cátedra:** Ing. Laura Covara – Ing. Judith Meles  
